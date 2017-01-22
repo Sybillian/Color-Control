@@ -1,0 +1,16 @@
+$redblocks=1067 53 863 1069 53 865
+$blueblocks=1067 53 863 1069 53 865
+# ItemControl
+>{"type":"repeating-chain","conditional":false,"auto":true}
+/scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube] spawnItem 1 // Spawn Timer
+/execute @e[type=minecraft:item] ~ ~-3 ~
+	scoreboard players tag @e[r=1,c=1,type=minecraft:area_effect_cloud,tag=cube] add hasItem // Tags AECs with item
+/scoreboard players tag @e[type=minecraft:area_effect_cloud,tag=!hasItem,score_spawnItem=20,score_spawnItem_min=20] add trySpawn // Starts spawn process
+/execute @e[type=minecraft:area_effect_cloud,tag=trySpawn] ~ ~ ~
+	testforblocks $redblocks ~-1 ~2 ~-1 // Test for claimed blocks
+/execute @e[type=minecraft:area_effect_cloud,tag=trySpawn] ~ ~ ~
+	stats entity @e[type=minecraft:area_effect_cloud,tag=trySpawn,r=0,c=1] set AffectedBlocks @e[type=minecraft:area_effect_cloud,tag=trySpawn,r=0,c=1] blocksRed
+/scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20] spawnItem 0
+/scoreboard players tag @e[type=minecraft:area_effect_cloud,tag=cube,score_blocksRed=9,score_blocksRed_min=9] add spawnItem
+/scoreboard players tag @e[type=minecraft:area_effect_cloud,tag=hasItem] remove hasItem
+/scoreboard players tag @e[type=minecraft:area_effect_cloud,tag=trySpawn] remove trySpawn

@@ -1,0 +1,24 @@
+# RotateCubes1
+>{"type":"impulse-chain","conditional":false,"auto":false}
+/execute @e[tag=cube] ~ ~ ~ /clone ~-2 ~1 ~-1 ~-2 ~1 ~1 ~1 ~20 ~-1 // Move -x to +y
+/execute @e[tag=cube] ~ ~ ~ /clone ~-2 ~ ~-1 ~-2 ~ ~1 ~ ~20 ~-1
+/execute @e[tag=cube] ~ ~ ~ /clone ~-2 ~-1 ~-1 ~-2 ~-1 ~1 ~-1 ~20 ~-1
+/execute @e[tag=cube] ~ ~ ~ /clone ~-1 ~2 ~1 ~-1 ~2 ~-1 ~2 ~19 ~-1 // Move +y to +x
+/execute @e[tag=cube] ~ ~ ~ /clone ~ ~2 ~1 ~ ~2 ~-1 ~2 ~18 ~-1
+/execute @e[tag=cube] ~ ~ ~ /clone ~1 ~2 ~1 ~1 ~2 ~-1 ~2 ~17 ~-1
+/execute @e[tag=cube] ~ ~ ~ /clone ~2 ~-1 ~1 ~2 ~-1 ~-1 ~-1 ~16 ~-1 // Move +x to -y
+/execute @e[tag=cube] ~ ~ ~ /clone ~2 ~ ~1 ~2 ~ ~-1 ~ ~16 ~-1
+/execute @e[tag=cube] ~ ~ ~ /clone ~2 ~1 ~1 ~2 ~1 ~-1 ~1 ~16 ~-1
+/execute @e[tag=cube] ~ ~ ~ /clone ~1 ~-2 ~1 ~1 ~-2 ~-1 ~-2 ~17 ~-1 // Move -y to -x
+/execute @e[tag=cube] ~ ~ ~ /clone ~ ~-2 ~1 ~ ~-2 ~-1 ~-2 ~18 ~-1
+/execute @e[tag=cube] ~ ~ ~ /clone ~-1 ~-2 ~1 ~-1 ~-2 ~-1 ~-2 ~19 ~-1
+/execute @e[tag=cube] ~ ~ ~ /clone ~-1 ~-1 ~-2 ~-1 ~-1 ~2 ~-1 ~19 ~-2 // Rotate Sides
+/execute @e[tag=cube] ~ ~ ~ /clone ~-1 ~ ~-2 ~-1 ~ ~2 ~ ~19 ~-2
+/execute @e[tag=cube] ~ ~ ~ /clone ~-1 ~1 ~-2 ~-1 ~1 ~2 ~1 ~19 ~-2
+/execute @e[tag=cube] ~ ~ ~ /clone ~ ~1 ~-2 ~ ~1 ~2 ~1 ~18 ~-2
+/execute @e[tag=cube] ~ ~ ~ /clone ~ ~ ~-2 ~ ~ ~2 ~ ~18 ~-2 
+/execute @e[tag=cube] ~ ~ ~ /clone ~ ~-1 ~-2 ~ ~-1 ~2 ~-1 ~18 ~-2
+/execute @e[tag=cube] ~ ~ ~ /clone ~1 ~1 ~-2 ~1 ~1 ~2 ~1 ~17 ~-2
+/execute @e[tag=cube] ~ ~ ~ /clone ~1 ~ ~-2 ~1 ~ ~2 ~ ~17 ~-2
+/execute @e[tag=cube] ~ ~ ~ /clone ~1 ~-1 ~-2 ~1 ~-1 ~2 ~-1 ~17 ~-2
+/execute @e[tag=cube] ~ ~ ~ /clone ~-2 ~16 ~-2 ~2 ~20 ~2 ~-2 ~-2 ~-2 // Set new cube
