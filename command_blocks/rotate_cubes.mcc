@@ -1,24 +1,42 @@
+# TriggerCubes
+>{"type":"repeating-chain","conditional":false,"auto":false} //SET TO TRUE BEFORE FINAL COMPILE
+ /scoreboard players remove #Cubes rotateCubes 1
+ /scoreboard players test #Cubes rotateCubes 600 600
+>{"conditional":true}
+ /execute @e[type=minecraft:area_effect_cloud,tag=oc_marker,name=RotateCubes1] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
+>{"conditional":false}
+ /scoreboard players test #Cubes rotateCubes 1 1
+>{"conditional":true}
+ /execute @e[type=minecraft:area_effect_cloud,tag=oc_marker,name=RotateCubes2] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /scoreboard players set #Cubes rotateCubes 1200
+>{"conditional":false}
+
 # RotateCubes1
 >{"type":"impulse-chain","conditional":false,"auto":false}
-/execute @e[tag=cube] ~ ~ ~ /clone ~-2 ~1 ~-1 ~-2 ~1 ~1 ~1 ~20 ~-1 // Move -x to +y
-/execute @e[tag=cube] ~ ~ ~ /clone ~-2 ~ ~-1 ~-2 ~ ~1 ~ ~20 ~-1
-/execute @e[tag=cube] ~ ~ ~ /clone ~-2 ~-1 ~-1 ~-2 ~-1 ~1 ~-1 ~20 ~-1
-/execute @e[tag=cube] ~ ~ ~ /clone ~-1 ~2 ~1 ~-1 ~2 ~-1 ~2 ~19 ~-1 // Move +y to +x
-/execute @e[tag=cube] ~ ~ ~ /clone ~ ~2 ~1 ~ ~2 ~-1 ~2 ~18 ~-1
-/execute @e[tag=cube] ~ ~ ~ /clone ~1 ~2 ~1 ~1 ~2 ~-1 ~2 ~17 ~-1
-/execute @e[tag=cube] ~ ~ ~ /clone ~2 ~-1 ~1 ~2 ~-1 ~-1 ~-1 ~16 ~-1 // Move +x to -y
-/execute @e[tag=cube] ~ ~ ~ /clone ~2 ~ ~1 ~2 ~ ~-1 ~ ~16 ~-1
-/execute @e[tag=cube] ~ ~ ~ /clone ~2 ~1 ~1 ~2 ~1 ~-1 ~1 ~16 ~-1
-/execute @e[tag=cube] ~ ~ ~ /clone ~1 ~-2 ~1 ~1 ~-2 ~-1 ~-2 ~17 ~-1 // Move -y to -x
-/execute @e[tag=cube] ~ ~ ~ /clone ~ ~-2 ~1 ~ ~-2 ~-1 ~-2 ~18 ~-1
-/execute @e[tag=cube] ~ ~ ~ /clone ~-1 ~-2 ~1 ~-1 ~-2 ~-1 ~-2 ~19 ~-1
-/execute @e[tag=cube] ~ ~ ~ /clone ~-1 ~-1 ~-2 ~-1 ~-1 ~2 ~-1 ~19 ~-2 // Rotate Sides
-/execute @e[tag=cube] ~ ~ ~ /clone ~-1 ~ ~-2 ~-1 ~ ~2 ~ ~19 ~-2
-/execute @e[tag=cube] ~ ~ ~ /clone ~-1 ~1 ~-2 ~-1 ~1 ~2 ~1 ~19 ~-2
-/execute @e[tag=cube] ~ ~ ~ /clone ~ ~1 ~-2 ~ ~1 ~2 ~1 ~18 ~-2
-/execute @e[tag=cube] ~ ~ ~ /clone ~ ~ ~-2 ~ ~ ~2 ~ ~18 ~-2 
-/execute @e[tag=cube] ~ ~ ~ /clone ~ ~-1 ~-2 ~ ~-1 ~2 ~-1 ~18 ~-2
-/execute @e[tag=cube] ~ ~ ~ /clone ~1 ~1 ~-2 ~1 ~1 ~2 ~1 ~17 ~-2
-/execute @e[tag=cube] ~ ~ ~ /clone ~1 ~ ~-2 ~1 ~ ~2 ~ ~17 ~-2
-/execute @e[tag=cube] ~ ~ ~ /clone ~1 ~-1 ~-2 ~1 ~-1 ~2 ~-1 ~17 ~-2
-/execute @e[tag=cube] ~ ~ ~ /clone ~-2 ~16 ~-2 ~2 ~20 ~2 ~-2 ~-2 ~-2 // Set new cube
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~-2 ~1 ~-1 ~-2 ~1 ~1 ~-999 ~2 ~-1001 // Move -x to +y
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~-2 ~ ~-1 ~-2 ~ ~1 ~-1000 ~2 ~-1001
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~-2 ~-1 ~-1 ~-2 ~-1 ~1 ~-1001 ~2 ~-1001
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~-1 ~2 ~1 ~-1 ~2 ~-1 ~-998 ~1 ~-1001 // Move +y to +x
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~ ~2 ~1 ~ ~2 ~-1 ~-998 ~ ~-1001
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~1 ~2 ~1 ~1 ~2 ~-1 ~-998 ~-1 ~-1001
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~2 ~-1 ~1 ~2 ~-1 ~-1 ~-1001 ~-2 ~-1001 // Move +x to -y
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~2 ~ ~1 ~2 ~ ~-1 ~-1000 ~-2 ~-1001
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~2 ~1 ~1 ~2 ~1 ~-1 ~-999 ~-2 ~-1001
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~1 ~-2 ~1 ~1 ~-2 ~-1 ~-1002 ~-1 ~-1001 // Move -y to -x
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~ ~-2 ~1 ~ ~-2 ~-1 ~-1002 ~ ~-1001
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~-1 ~-2 ~1 ~-1 ~-2 ~-1 ~-1002 ~1 ~-1001
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~-1 ~-1 ~-2 ~-1 ~-1 ~2 ~-1001 ~1 ~-1002 // Rotate sides
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~-1 ~ ~-2 ~-1 ~ ~2 ~-1000 ~1 ~-1002
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~-1 ~1 ~-2 ~-1 ~1 ~2 ~-999 ~1 ~-1002
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~ ~1 ~-2 ~ ~1 ~2 ~-999 ~ ~-1002
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~ ~ ~-2 ~ ~ ~2 ~-1000 ~ ~-1002 
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~ ~-1 ~-2 ~ ~-1 ~2 ~-1001 ~ ~-1002
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~1 ~1 ~-2 ~1 ~1 ~2 ~-999 ~-1 ~-1002
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~1 ~ ~-2 ~1 ~ ~2 ~-1000 ~-1 ~-1002
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~1 ~-1 ~-2 ~1 ~-1 ~2 ~-1001 ~-1 ~-1002
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~-1002 ~-2 ~-1002 ~-998 ~2 ~-998 ~-2 ~-2 ~-2 // Set new cube
+ /execute @e[type=minecraft:area_effect_cloud,tag=oc_marker,name=RotateCubes1] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+
+# RotateCubes2
+>{"type":"impulse-chain","conditional":false,"auto":false}
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~
