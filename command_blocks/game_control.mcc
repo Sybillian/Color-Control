@@ -1,6 +1,24 @@
-# StartGame
->{}
-
-//# HandleGame
-
-//# EndGame
+# HandleGame
+>{"type":"repeating-chain","conditional":false,"auto":true}
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~-2 ~2 minecraft:wool color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~2 ~-2 ~-2 minecraft:wool color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~2 ~-2 ~-2 ~2 ~2 minecraft:wool color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~2 ~-2 ~2 ~2 ~-2 minecraft:wool color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~2 ~-2 minecraft:wool color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~2 ~-2 minecraft:wool color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~-2 ~2 ~2 minecraft:wool color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~2 ~-2 ~-2 minecraft:wool color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~-2 ~-2 ~2 minecraft:wool color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~-2 ~2 minecraft:wool color=black
+ /execute @a[team=Blue,score_brokeWool=1,score_brokeWool_min=1] ~ ~ ~
+ 	execute @e[type=minecraft:area_effect_cloud,tag=cube,c=1] ~ ~ ~
+ 		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:wool color=blue replace minecraft:air
+ /execute @a[team=Red,score_brokeWool=1,score_brokeWool_min=1] ~ ~ ~
+ 	execute @e[type=minecraft:area_effect_cloud,tag=cube,c=1] ~ ~ ~
+ 		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:wool color=red replace minecraft:air
+ /scoreboard players set @a[score_brokeWool_min=1] brokeWool 0
+ /testforblocks 962 50 962 962 52 962 -3 1 -7 masked // Red Glass
+ /stats block ~1 ~ ~ set AffectedBlocks RedGlass glassCheck
+ /testforblocks 1038 50 1038 1038 52 1038 -3 1 -5 masked // Blue Glass
+ /stats block ~1 ~ ~ set AffectedBlocks BlueGlass glassCheck
+ /tp @e[type=armor_stand,tag=display] ~ ~ ~ ~1 ~ // Rotate armor stands
