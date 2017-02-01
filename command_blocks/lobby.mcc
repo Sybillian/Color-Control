@@ -1,0 +1,14 @@
+# LobbyControl
+>{"type":"repeating-chain","conditional":false,"auto":true}
+ /effect @a minecraft:saturation 10 5 true
+ /scoreboard players add @a regenTimer 1
+ /scoreboard players set @a[score_regenTimer_min=31] regenTimer 0
+ /effect @a[score_regenTimer=30,score_regenTimer_min=30] minecraft:regeneration 1 2 true
+ /execute @a[x=-1000,y=30,z=-1000,r=50] ~ ~ ~ detect ~ ~-1 ~ minecraft:wool color=red
+ 	scoreboard teams join Red @p
+ /execute @a[x=-1000,y=30,z=-1000,r=50] ~ ~ ~ detect ~ ~-1 ~ minecraft:wool color=blue
+ 	scoreboard teams join Blue @p
+ /execute @a[x=-1000,y=30,z=-1000,r=50] ~ ~ ~ detect ~ ~-1 ~ minecraft:wool color=silver
+ 	scoreboard teams join Spectators @p
+ /execute @a[x=-1000,y=30,z=-1000,r=50] ~ ~ ~ detect ~ ~-1 ~ minecraft:barrier -1
+ 	scoreboard teams leave @p

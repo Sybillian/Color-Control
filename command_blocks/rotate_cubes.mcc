@@ -6,6 +6,7 @@
  /scoreboard players test #Phase rotateCubes 1 1
  /execute @e[type=minecraft:area_effect_cloud,tag=oc_marker,name=RotateCubesX] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
  /scoreboard players operation #Timer rotateCubes = #TimerSetting rotateCubes
+ /tellraw @a {"text":"The cubes have rotated!","color":"yellow"}
  /scoreboard players set #Phase rotateCubes 2
 >{"conditional":false}
  /scoreboard players test #Timer rotateCubes 1 1
@@ -13,6 +14,7 @@
  /scoreboard players test #Phase rotateCubes 2 2
  /execute @e[type=minecraft:area_effect_cloud,tag=oc_marker,name=RotateCubesZ] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
  /scoreboard players operation #Timer rotateCubes = #TimerSetting rotateCubes
+ /tellraw @a {"text":"The cubes have rotated!","color":"yellow"}
  /scoreboard players set #Phase rotateCubes 1
 >{"conditional":false}
 

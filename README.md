@@ -2,7 +2,7 @@
 
 Initial project description from some time ago:
 
-A PvP map where there is a 5x5 grid of 5x5 cubes floating in the void. The cubes are separated by 10 blocks, and the edges are black wool (thus not playing into the core game mechanic). Teams spawn on the cubes on opposite corners of this grid, and every side of their cube is made of wool of their team color. This cannot be changed at any point during the game. The adjacent cubes to either side - not diagonally - will also be the team's color. The adjacent cubes can be captured like any other, as detailed below.
+A PvP map where there is a 5x5 grid of 5x5 cubes floating in the void. The cubes are separated by 10 blocks, and the edges are black wool (thus not playing into the core game mechanic). Teams spawn on the cubes on opposite corners of this grid, and every side of their cube is made of wool of their team color. This cannot be changed at any point during the game. The adjacent cubes to either side - not diagonally - will also be the team's color. Any other cubes can be captured, as detailed below.
 
 At the beginning of the match, each cube will be made of white wool. When a player breaks a wool block, it changes to the color of his team. When a side of a cube is either fully blue or fully red, it is considered "captured" and will spawn items that only the capturing team can pick up. These items can include blocks for bridging, crafting materials, and arrows/potions. If a side is partially red and partially blue, it will not spawn items (nor will white sides).
 

@@ -1,0 +1,80 @@
+# EndGameA
+>{"type":"repeating-chain","conditional":false,"auto":false}
+ /scoreboard players remove Red calcPoints 1
+ /scoreboard players remove Blue calcPoints 1
+ /scoreboard players test Red calcPoints 1 // Test for red victory
+>{"conditional":true}
+ /scoreboard players test Blue calcPoints * 0
+ /execute @e[type=minecraft:area_effect_cloud,name=RedWinTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,name=EndGameA] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+>{"conditional":false}
+ /scoreboard players test Blue calcPoints 1 // Test for blue victory
+>{"conditional":true}
+ /scoreboard players test Red calcPoints * 0
+ /execute @e[type=minecraft:area_effect_cloud,name=BlueWinTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,name=EndGameA] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+>{"conditional":false}
+ /scoreboard players test Blue calcPoints 0 0 // Test for tie
+>{"conditional":true}
+ /scoreboard players test Red calcPoints 0 0
+ /execute @e[type=minecraft:area_effect_cloud,name=DrawTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,name=EndGameA] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+>{"conditional":false}
+
+# RedWinTime
+>{"type":"impulse-chain","conditional":false,"auto":false}
+ /tellraw @a {"text":"Red team wins!","color":"red","bold":"true"}
+ /tellraw @a [{"text":"Red Points","color":"red"},{"text":" | ","color":"white"},{"score":{"name":"Red","objective":"Points"},"color":"green"}]
+ /tellraw @a [{"text":"Blue Points","color":"blue"},{"text":" | ","color":"white"},{"score":{"name":"Blue","objective":"Points"},"color":"yellow"}]
+ /execute @e[type=minecraft:area_effect_cloud,name=EndGameB] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,name=RedWinTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+
+# BlueWinTime
+>{"type":"impulse-chain","conditional":false,"auto":false}
+ /tellraw @a {"text":"Blue team wins!","color":"blue","bold":"true"}
+ /tellraw @a [{"text":"Blue Points","color":"blue"},{"text":" | ","color":"white"},{"score":{"name":"Blue","objective":"Points"},"color":"green"}]
+ /tellraw @a [{"text":"Red Points","color":"red"},{"text":" | ","color":"white"},{"score":{"name":"Red","objective":"Points"},"color":"yellow"}]
+ /execute @e[type=minecraft:area_effect_cloud,name=EndGameB] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,name=BlueWinTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+
+# DrawTime
+>{"type":"impulse-chain","conditional":false,"auto":false}
+ /tellraw @a {"text":"The game has ended in a draw!","color":"yellow","bold":"true"}
+ /tellraw @a [{"text":"Red Points","color":"red"},{"text":" | ","color":"white"},{"score":{"name":"Red","objective":"Points"},"color":"yellow"}]
+ /tellraw @a [{"text":"Blue Points","color":"blue"},{"text":" | ","color":"white"},{"score":{"name":"Blue","objective":"Points"},"color":"yellow"}]
+ /execute @e[type=minecraft:area_effect_cloud,name=EndGameB] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,name=DrawTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+
+# RedWinElimination
+>{"type":"impulse-chain","conditional":false,"auto":false}
+ /tellraw @a {"text":"Red team wins!","color":"red","bold":"true"}
+ /tellraw @a [{"text":"Red Core Health","color":"red"},{"text":" | ","color":"white"},{"score":{"name":"RedGlass","objective":"glassCheck"},"color":"green"}]
+ /tellraw @a [{"text":"Blue Core Health","color":"blue"},{"text":" | ","color":"white"},{"text":"0","color":"red"}]
+ /scoreboard players set Red brokeGlass 0
+ /scoreboard players set Blue brokeGlass 0
+ /execute @e[type=minecraft:area_effect_cloud,name=EndGameB] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,name=RedWinElimination] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+
+# BlueWinElimination
+>{"type":"impulse-chain","conditional":false,"auto":false}
+ /tellraw @a {"text":"Blue team wins!","color":"blue","bold":"true"}
+ /tellraw @a [{"text":"Blue Core Health","color":"blue"},{"text":" | ","color":"white"},{"score":{"name":"BlueGlass","objective":"glassCheck"},"color":"green"}]
+ /tellraw @a [{"text":"Red Core Health","color":"red"},{"text":" | ","color":"white"},{"text":"0","color":"red"}]
+ /scoreboard players set Red brokeGlass 0
+ /scoreboard players set Blue brokeGlass 0
+ /execute @e[type=minecraft:area_effect_cloud,name=EndGameB] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,name=BlueWinElimination] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+
+# EndGameB
+>{"type":"impulse-chain","conditional":false,"auto":false}
+ /clear @a
+ /tp @a -1000 31 -1000
+ /spawnpoint @a -1000 31 -1000
+ /scoreboard teams leave @a
+ /scoreboard players set Red Points 0
+ /scoreboard players set Blue Points 0
+ /scoreboard players set Red calcPoints 0
+ /scoreboard players set Blue calcPoints 0
+ /tellraw @a {"text":"Thanks for playing!","color":"green"}
+ /setblock -992 32 -1000 minecraft:stone_button facing=west
+ /execute @e[type=minecraft:area_effect_cloud,name=EndGameB] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
