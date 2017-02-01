@@ -51,8 +51,16 @@
 	give @a[team=Red,r=3] minecraft:splash_potion 1 0 {Potion:strong_leaping} // Potion of Leaping
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=10,score_cloudType_min=10,score_blocksRed=9,score_blocksRed_min=9] ~ ~3 ~
 	give @a[team=Red,r=3] minecraft:diamond 1 0 // Diamonds
- /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=11,score_cloudType_min=11,score_blocksRed=9,score_blocksRed_min=9] ~ ~3 ~
-	setblock ~ ~ ~ minecraft:enchanting_table 0 replace // Ench. Table
+ /execute @a[team=Red] ~ ~-3 ~
+	execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=11,score_cloudType_min=11,score_blocksRed=9,score_blocksRed_min=9,r=5] ~ ~3 ~
+		scoreboard players tag @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=11,score_cloudType_min=11,c=1] add redPresent
+/execute @e[type=minecraft:area_effect_cloud,tag=redPresent,score_cloudType=11,score_cloudType_min=11,score_blocksRed=9,score_blocksRed_min=9] ~ ~3 ~
+	setblock ~ ~ ~ minecraft:enchanting_table 0 replace
+/execute @e[type=minecraft:area_effect_cloud,tag=!redPresent,score_cloudType=11,score_cloudType_min=11,score_blocksRed=9,score_blocksRed_min=9] ~ ~3 ~
+	fill ~ ~ ~ ~ ~ ~ minecraft:air 0 replace minecraft:enchanting_table
+/execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=11,score_cloudType_min=11,score_blocksRed=0,score_blocksRed_min=0,score_blocksBlue=0,score_blocksBlue_min=0] ~ ~3 ~
+	fill ~ ~ ~ ~ ~ ~ minecraft:air 0 replace minecraft:enchanting_table
+/scoreboard players tag @e[type=minecraft:area_effect_cloud,tag=redPresent] remove redPresent
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=12,score_cloudType_min=12,score_blocksRed=9,score_blocksRed_min=9] ~ ~3 ~
 	teleport @a[team=Red,r=1] 971 51 1029 // TP1
 >{"conditional":true} 
@@ -94,8 +102,16 @@
 	give @a[team=Blue,r=3] minecraft:splash_potion 1 0 {Potion:strong_leaping} // Potion of Leaping
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=10,score_cloudType_min=10,score_blocksBlue=9,score_blocksBlue_min=9] ~ ~3 ~
 	give @a[team=Blue,r=3] minecraft:diamond 1 0 // Diamonds
- /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=11,score_cloudType_min=11,score_blocksBlue=9,score_blocksBlue_min=9] ~ ~3 ~
-	setblock ~ ~ ~ minecraft:enchanting_table 0 replace // Ench. Table
+ /execute @a[team=Blue] ~ ~-3 ~
+	execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=11,score_cloudType_min=11,score_blocksBlue=9,score_blocksBlue_min=9,r=5] ~ ~3 ~
+		scoreboard players tag @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=11,score_cloudType_min=11,c=1] add bluePresent
+/execute @e[type=minecraft:area_effect_cloud,tag=bluePresent,score_cloudType=11,score_cloudType_min=11,score_blocksBlue=9,score_blocksBlue_min=9] ~ ~3 ~
+	setblock ~ ~ ~ minecraft:enchanting_table 0 replace
+/execute @e[type=minecraft:area_effect_cloud,tag=!bluePresent,score_cloudType=11,score_cloudType_min=11,score_blocksBlue=9,score_blocksBlue_min=9] ~ ~3 ~
+	fill ~ ~ ~ ~ ~ ~ minecraft:air 0 replace minecraft:enchanting_table
+/execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=11,score_cloudType_min=11,score_blocksRed=0,score_blocksRed_min=0,score_blocksBlue=0,score_blocksBlue_min=0] ~ ~3 ~
+	fill ~ ~ ~ ~ ~ ~ minecraft:air 0 replace minecraft:enchanting_table
+/scoreboard players tag @e[type=minecraft:area_effect_cloud,tag=bluePresent] remove bluePresent
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=12,score_cloudType_min=12,score_blocksBlue=9,score_blocksBlue_min=9] ~ ~3 ~
 	teleport @a[team=Blue,r=1] 971 51 1029 // TP1
 >{"conditional":true} 
