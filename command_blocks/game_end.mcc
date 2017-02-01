@@ -78,7 +78,6 @@
  /scoreboard players set Blue calcPoints 0
  /scoreboard objectives setdisplay sidebar
  /tellraw @a {"text":"Thanks for playing!","color":"green"}
- /setblock -992 32 -1000 minecraft:stone_button facing=west
  /execute @e[type=minecraft:area_effect_cloud,name=TriggerCubes] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
  /execute @e[type=minecraft:area_effect_cloud,name=EndGameC] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
  /execute @e[type=minecraft:area_effect_cloud,name=EndGameB] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}

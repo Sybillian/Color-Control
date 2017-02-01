@@ -33,10 +33,10 @@
  /teleport @a[team=!] 0 51 0
  /scoreboard players set #StartGame gameSettings 0
  /execute @e[type=area_effect_cloud,name=StartGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /scoreboard scoreboard teams join Spectators @a[team=]
 
 # StartGame
 >{"type":"impulse-chain","conditional":false,"auto":false}
+ /scoreboard scoreboard teams join Spectators @a[team=]
  /tp @a[team=Red] 970 51 970
  /tp @a[team=Blue] 1030 51 1030
  /tp @a[team=Spectators] 1000 60 1000
@@ -111,6 +111,8 @@
 >{"conditional":false}
  /setblock 961 45 961 minecraft:air
  /scoreboard players set @a[score_brokeClay_min=1] brokeClay 0
+ /scoreboard teams join Spectators @a[x=-1000,y=31,z=-1000,r=50]
+ /teleport @a[x=-1000,y=31,z=-1000,r=50] 1000 60 1000
  /give @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] minecraft:shears 1 0 {Unbreakable:1b}
  /scoreboard players remove #TimePassed gameSettings 1
  /scoreboard players test #TimePassed gameSettings 17999 17999
