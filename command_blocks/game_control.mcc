@@ -112,6 +112,9 @@
  /setblock 961 45 961 minecraft:air
  /scoreboard players set @a[score_brokeClay_min=1] brokeClay 0
  /scoreboard teams join Spectators @a[x=-1000,y=31,z=-1000,r=50]
+>{"conditional":true}
+ /gamemode 3 @a[team=Spectators,x=-1000,y=31,z=-1000,r=50]
+>{"conditional":false}
  /teleport @a[x=-1000,y=31,z=-1000,r=50] 1000 60 1000
  /give @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] minecraft:shears 1 0 {Unbreakable:1b}
  /scoreboard players remove #TimePassed gameSettings 1

@@ -15,7 +15,13 @@
  	scoreboard teams join Spectators @p
  /scoreboard players test #TimePassed gameSettings * 0
 >{"conditional":true}
+ /scoreboard teams leave @a[x=1000,y=51,z=1000,r=100]
  /teleport @a[x=1000,y=51,z=1000,r=100] -1000 31 -1000
+>{"conditional":false}
+ /scoreboard players test teamsReady gameSettings 0 0
+>{"conditional":true}
+ /blockdata -992 33 -1006 {Text2:"[{\"text\":\"Red team is...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text3:"[{\"text\":\"Not Ready!\",\"color\":\"red\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=redReady] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -992 33 -994 {Text2:"[{\"text\":\"Blue team is...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text3:"[{\"text\":\"Not Ready!\",\"color\":\"red\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=blueReady] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
 >{"conditional":false}
 
 # ReadyCheck
