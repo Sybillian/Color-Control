@@ -70,15 +70,16 @@
  /clear @a
  /tp @a -1000 31 -1000
  /spawnpoint @a -1000 31 -1000
- /gamemode 2 @a
  /scoreboard teams leave @a
  /scoreboard players set Red Points 0
  /scoreboard players set Blue Points 0
  /scoreboard players set Red calcPoints 0
  /scoreboard players set Blue calcPoints 0
  /scoreboard objectives setdisplay sidebar
+ /fill -3 1 -7 -3 3 -7 minecraft:stained_glass color=red replace
+ /fill -3 1 -5 -3 3 -5 minecraft:stained_glass color=blue replace
  /tellraw @a {"text":"Thanks for playing!","color":"green"}
- /execute @e[type=minecraft:area_effect_cloud,name=TriggerCubes] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /gamemode 2 @a
  /execute @e[type=minecraft:area_effect_cloud,name=EndGameC] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
  /execute @e[type=minecraft:area_effect_cloud,name=EndGameB] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
 
@@ -86,4 +87,9 @@
 >{"type":"impulse-chain","conditional":false,"auto":false}
  /scoreboard players set teamsReady gameSettings 0
  /scoreboard players set #TimePassed gameSettings -1
+ /scoreboard players tag @a remove sentRed1
+ /scoreboard players tag @a remove sentRed2
+ /scoreboard players tag @a remove sentBlue1
+ /scoreboard players tag @a remove sentBlue2
+ /xp -1000L @a
  /execute @e[type=minecraft:area_effect_cloud,name=EndGameC] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}

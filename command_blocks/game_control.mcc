@@ -1,63 +1,3 @@
-# TriggerStart
->{"type":"repeating-chain","conditional":false,"auto":true}
- /scoreboard players test teamsReady gameSettings 0 1
->{"conditional":true}
- /scoreboard players set #StartGame gameSettings 0
->{"conditional":false}
- /scoreboard players test teamsReady gameSettings 2 2
->{"conditional":true}
- /scoreboard players add #StartGame gameSettings 1
- /scoreboard players test #StartGame gameSettings 20 20
- /summon minecraft:armor_stand 0 51 0 {CustomName:ChunkLoaderRed}
- /summon minecraft:armor_stand 0 51 0 {CustomName:ChunkLoaderBlue}
- /execute @a ~ ~ ~ /playsound minecraft:block.dispenser.dispense master @p ~ ~ ~ 1 1
->{"conditional":false}
- /scoreboard players test #StartGame gameSettings 40 40
->{"conditional":true}
- /title @a subtitle {"text":"Game beginning in...","color":"blue"}
- /title @a title {"text":"2","color":"yellow"}
- /execute @a ~ ~ ~ /playsound minecraft:block.dispenser.dispense master @p ~ ~ ~ 1 1
->{"conditional":false}
- /scoreboard players test #StartGame gameSettings 60 60
->{"conditional":true}
- /title @a subtitle {"text":"Game beginning in...","color":"blue"}
- /title @a title {"text":"1","color":"green"}
- /execute @a ~ ~ ~ /playsound minecraft:block.dispenser.dispense master @p ~ ~ ~ 1 1
->{"conditional":false}
- /scoreboard players test #StartGame gameSettings 80 80
->{"conditional":true}
- /title @a subtitle {"text":"Good luck!","color":"blue"}
- /title @a title {"text":"Begin!","color":"green"}
- /execute @a ~ ~ ~ /playsound minecraft:entity.experience_orb.pickup master @p ~ ~ ~ 1 1
- /scoreboard players set teamsReady gameSettings 0
- /teleport @a[team=!] 0 51 0
- /scoreboard players set #StartGame gameSettings 0
- /execute @e[type=area_effect_cloud,name=StartGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
-
-# StartGame
->{"type":"impulse-chain","conditional":false,"auto":false}
- /scoreboard scoreboard teams join Spectators @a[team=]
- /tp @a[team=Red] 970 51 970
- /tp @a[team=Blue] 1030 51 1030
- /tp @a[team=Spectators] 1000 60 1000
- /kill @e[type=minecraft:armor_stand,name=ChunkLoaderRed]
- /kill @e[type=minecraft:armor_stand,name=ChunkLoaderBlue]
- /spawnpoint @a[team=Red] 970 51 970
- /spawnpoint @a[team=Blue] 1030 51 1030
- /spawnpoint @a[team=Spectators] 1000 60 1000
- /gamemode 0 @a
- /gamemode 3 @a[team=Spectators]
- /give @a[team=!Spectators] minecraft:shears 1 0 {Unbreakable:1b}
- /scoreboard players operation #Timer rotateCubes = #TimerSetting rotateCubes
- /scoreboard players operation #TimePassed gameSettings = #gameLength gameSettings
- /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube] spawnTimer 0
- /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube] blocksBlue 0
- /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube] blocksRed 0
- /scoreboard objectives setdisplay sidebar Points
- /execute @e[type=area_effect_cloud,name=HandleGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=area_effect_cloud,name=TriggerCubes] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=area_effect_cloud,name=StartGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
-
 # HandleGame
 >{"type":"repeating-chain","conditional":false,"auto":false}
  /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~-2 ~2 minecraft:wool color=black
@@ -70,6 +10,8 @@
  /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~2 ~-2 ~-2 minecraft:wool color=black
  /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~-2 ~-2 ~2 minecraft:wool color=black
  /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~-2 ~2 minecraft:wool color=black
+ /effect @a[x=962,y=50,z=962,r=6,team=Blue] minecraft:mining_fatigue 1 1
+ /effect @a[x=1038,y=50,z=1038,r=6,team=Red] minecraft:mining_fatigue 1 1
  /execute @a[team=Blue,score_brokeWool=1,score_brokeWool_min=1] ~ ~ ~
  	execute @e[type=minecraft:area_effect_cloud,tag=cube,c=1] ~ ~ ~
  		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:wool color=blue replace minecraft:air
@@ -77,22 +19,22 @@
  	execute @e[type=minecraft:area_effect_cloud,tag=cube,c=1] ~ ~ ~
  		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:wool color=red replace minecraft:air
  /scoreboard players set @a[score_brokeWool_min=1] brokeWool 0
+ /execute @a ~ ~ ~ detect ~ ~0.1 ~ minecraft:wool -1 teleport @p ~ ~0.3 ~
  /tp @e[type=armor_stand,tag=display] ~ ~ ~ ~1 ~ // Rotate armor stands
- /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube] pointTimer 1
- /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimer=1200,score_pointTimer_min=1200,score_blocksRed=9,score_blocksRed_min=9] ~ ~ ~
+ /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube] pointTimer 1 // Points
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimer=900,score_pointTimer_min=900,score_blocksRed=9,score_blocksRed_min=9] ~ ~ ~
  	scoreboard players add Red Points 1
- /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimer=1200,score_pointTimer_min=1200,score_blocksBlue=9,score_blocksBlue_min=9] ~ ~ ~
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimer=900,score_pointTimer_min=900,score_blocksBlue=9,score_blocksBlue_min=9] ~ ~ ~
  	scoreboard players add Blue Points 1
- /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimer=1201,score_pointTimer_min=1201] pointTimer 0
+ /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimer=901,score_pointTimer_min=901] pointTimer 0
  /scoreboard players operation Red Points += @a[team=Red] Kills
+ /scoreboard players operation Red Points += @a[team=Red] Kills
+ /scoreboard players operation Blue Points += @a[team=Blue] Kills
  /scoreboard players operation Blue Points += @a[team=Blue] Kills
  /scoreboard players set @a Kills 0
  /scoreboard players operation Red Points -= @a[team=Red] Deaths
  /scoreboard players operation Blue Points -= @a[team=Blue] Deaths
  /scoreboard players set @a Deaths 0
- /scoreboard players operation Red brokeGlass += @a[team=Red] brokeGlass
- /scoreboard players operation Blue brokeGlass += @a[team=Blue] brokeGlass
- /scoreboard players set @a brokeGlass 0
  /scoreboard players test Blue Points * -1
 >{"conditional":true}
  /scoreboard players set Blue Points 0
@@ -100,7 +42,7 @@
  /scoreboard players test Red Points * -1
 >{"conditional":true}
  /scoreboard players set Red Points 0
->{"conditional":false}
+>{"conditional":false} // Protect spawn zones
  /execute @a[score_brokeClay=1,score_brokeClay_min=1] ~ ~ ~
  	setblock 961 45 961 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:0,mode:"LOAD",posY:1,sizeX:27,posZ:0,integrity:1.0f,showair:0b,x:961,name:"spawn_red",y:45,z:961,id:"minecraft:structure_block",sizeY:7,sizeZ:27,showboundingbox:0b}
 >{"conditional":true}
@@ -111,61 +53,9 @@
 >{"conditional":false}
  /setblock 961 45 961 minecraft:air
  /scoreboard players set @a[score_brokeClay_min=1] brokeClay 0
- /scoreboard teams join Spectators @a[x=-1000,y=31,z=-1000,r=50]
+ /scoreboard teams join Spectators @a[x=-1000,y=31,z=-1000,r=50] // Handle players joining midgame
 >{"conditional":true}
  /gamemode 3 @a[team=Spectators,x=-1000,y=31,z=-1000,r=50]
 >{"conditional":false}
  /teleport @a[x=-1000,y=31,z=-1000,r=50] 1000 60 1000
- /give @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] minecraft:shears 1 0 {Unbreakable:1b}
- /scoreboard players remove #TimePassed gameSettings 1
- /scoreboard players test #TimePassed gameSettings 17999 17999
->{"conditional":true}
- /tellraw @a {"text":"15 minutes remain!","color":"yellow"}
->{"conditional":false}
- /scoreboard players test #TimePassed gameSettings 11999 11999
->{"conditional":true}
- /tellraw @a {"text":"10 minutes remain!","color":"yellow"}
->{"conditional":false}
- /scoreboard players test #TimePassed gameSettings 5999 5999
->{"conditional":true}
- /tellraw @a {"text":"5 minutes remain!","color":"yellow"}
->{"conditional":false}
- /scoreboard players test #TimePassed gameSettings 1200 1200
->{"conditional":true}
- /tellraw @a {"text":"1 minute remains!","color":"yellow"}
->{"conditional":false}
- /scoreboard players test #TimePassed gameSettings 0 0
->{"conditional":true}
- /setblock 993 45 993 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-32,mode:"LOAD",posY:1,sizeX:32,posZ:-32,integrity:1.0f,showair:0b,x:993,name:"map_standard",y:45,z:993,id:"minecraft:structure_block",sizeY:7,sizeZ:32,showboundingbox:0b}
- /setblock 993 46 993 minecraft:redstone_block 0 replace
- /fill 993 45 993 993 45 993 minecraft:air 0 replace
- /teleport @a 0 51 0
- /scoreboard players operation Red calcPoints = Red Points
- /scoreboard players operation Blue calcPoints = Blue Points
- /execute @e[type=minecraft:area_effect_cloud,name=EndGameA] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=minecraft:area_effect_cloud,name=TriggerCubes] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
- /execute @e[type=minecraft:area_effect_cloud,name=HandleGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
->{"conditional":false}
- /scoreboard players test Red brokeGlass 3 3
->{"conditional":true}
- /setblock 993 45 993 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-32,mode:"LOAD",posY:1,sizeX:32,posZ:-32,integrity:1.0f,showair:0b,x:993,name:"map_standard",y:45,z:993,id:"minecraft:structure_block",sizeY:7,sizeZ:32,showboundingbox:0b}
- /setblock 993 46 993 minecraft:redstone_block 0 replace
- /fill 993 45 993 993 45 993 minecraft:air 0 replace
- /teleport @a 0 51 0
- /execute @e[type=minecraft:area_effect_cloud,name=RedWinElimination] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=minecraft:area_effect_cloud,name=TriggerCubes] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
- /execute @e[type=minecraft:area_effect_cloud,name=HandleGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
->{"conditional":false}
- /scoreboard players test Blue brokeGlass 3 3
->{"conditional":true}
- /setblock 993 45 993 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-32,mode:"LOAD",posY:1,sizeX:32,posZ:-32,integrity:1.0f,showair:0b,x:993,name:"map_standard",y:45,z:993,id:"minecraft:structure_block",sizeY:7,sizeZ:32,showboundingbox:0b}
- /setblock 993 46 993 minecraft:redstone_block 0 replace
- /fill 993 45 993 993 45 993 minecraft:air 0 replace
- /teleport @a 0 51 0
- /execute @e[type=minecraft:area_effect_cloud,name=BlueWinElimination] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=minecraft:area_effect_cloud,name=HandleGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
-
- //testforblocks 962 50 962 962 52 962 -3 1 -7 masked // Red Glass
- //stats block ~ ~-1 ~ set AffectedBlocks RedGlass glassCheck
- //testforblocks 1038 50 1038 1038 52 1038 -3 1 -5 masked // Blue Glass
- //stats block ~1 ~ ~ set AffectedBlocks BlueGlass glassCheck
+ /give @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] minecraft:shears 1 0 {Unbreakable:1b,ench:[{id:16,lvl:2},{id:71,lvl:1}]}

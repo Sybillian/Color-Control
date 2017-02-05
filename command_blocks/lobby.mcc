@@ -1,5 +1,6 @@
 # LobbyControl
 >{"type":"repeating-chain","conditional":false,"auto":true}
+ /effect @a[x=-1000,y=31,z=-1000,r=30] minecraft:weakness 1 5 true
  /effect @a minecraft:saturation 10 5 true
  /scoreboard players add @a regenTimer 1
  /scoreboard players set @a[score_regenTimer_min=31] regenTimer 0
@@ -7,12 +8,14 @@
  /scoreboard players tag @e[type=minecraft:item] add killItem {Item:{id:"minecraft:wool"}}
  /scoreboard players tag @e[type=minecraft:item] add killItem {Item:{id:"minecraft:stained_hardened_clay"}}
  /kill @e[type=minecraft:item,tag=killItem]
- /execute @a[x=-1000,y=30,z=-1000,r=50] ~ ~ ~ detect ~ ~-1 ~ minecraft:wool color=red
- 	scoreboard teams join Red @p
- /execute @a[x=-1000,y=30,z=-1000,r=50] ~ ~ ~ detect ~ ~-1 ~ minecraft:wool color=blue
- 	scoreboard teams join Blue @p
- /execute @a[x=-1000,y=30,z=-1000,r=50] ~ ~ ~ detect ~ ~-1 ~ minecraft:wool color=silver
- 	scoreboard teams join Spectators @p
+ /tellraw @a[team=!Red,x=-996,y=33,z=-1008,dx=4,dy=3,dz=4] {"text":"You have joined Red team!","color":"red"}
+ /scoreboard teams join Red @a[team=!Red,x=-996,y=33,z=-1008,dx=4,dy=3,dz=4]
+ /tellraw @a[team=!Blue,x=-996,y=33,z=-996,dx=4,dy=3,dz=4] {"text":"You have joined Blue team!","color":"blue"}
+ /scoreboard teams join Blue @a[team=!Blue,x=-996,y=33,z=-996,dx=4,dy=3,dz=4]
+ /tellraw @a[team=!Spectators,x=-1008,y=33,z=-996,dx=4,dy=3,dz=4] {"text":"You are now a Spectator!","color":"gray"}
+ /scoreboard teams join Spectators @a[team=!Spectators,x=-1008,y=33,z=-996,dx=4,dy=3,dz=4]
+ /tellraw @a[team=!Spectators,x=-1008,y=33,z=-1008,dx=4,dy=3,dz=4] {"text":"You are now a Spectator!","color":"gray"}
+ /scoreboard teams join Spectators @a[team=!Spectators,x=-1008,y=33,z=-1008,dx=4,dy=3,dz=4]
  /scoreboard players test #TimePassed gameSettings * 0
 >{"conditional":true}
  /scoreboard teams leave @a[x=1000,y=51,z=1000,r=100]
@@ -100,6 +103,12 @@
 >{"type":"impulse-chain","markerTag":"rotate2m","auto":false,"conditional":false}
  /tellraw @a [{"text":"The cubes will rotate every","color":"green"},{"text":" 2 ","color":"green","italic":"true"},{"text":"minutes.","color":"green"}]
 >{"markerTag":"","conditional":true}
- /blockdata -1000 33 -992 {Text1:"[{\"text\":\"The cubes will\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"rotate every...\"}]",Text4:"[{\"text\":\"2 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=rotate5m] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -1000 33 -992 {Text1:"[{\"text\":\"The cubes will\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"rotate every...\"}]",Text4:"[{\"text\":\"2 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=rotate1m] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set #TimerSetting rotateCubes 2400
  /execute @e[type=minecraft:area_effect_cloud,tag=rotate2m] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+>{"type":"impulse-chain","markerTag":"rotate1m","auto":false,"conditional":false}
+ /tellraw @a [{"text":"The cubes will rotate every","color":"green"},{"text":" 1.5 ","color":"green","italic":"true"},{"text":"minutes.","color":"green"}]
+>{"markerTag":"","conditional":true}
+ /blockdata -1000 33 -992 {Text1:"[{\"text\":\"The cubes will\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"rotate every...\"}]",Text4:"[{\"text\":\"1.5 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=rotate5m] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /scoreboard players set #TimerSetting rotateCubes 1800
+ /execute @e[type=minecraft:area_effect_cloud,tag=rotate1m] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
