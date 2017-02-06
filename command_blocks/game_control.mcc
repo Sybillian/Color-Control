@@ -43,19 +43,17 @@
 >{"conditional":true}
  /scoreboard players set Red Points 0
 >{"conditional":false} // Protect spawn zones
- /execute @a[score_brokeClay=1,score_brokeClay_min=1] ~ ~ ~
- 	setblock 961 45 961 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:0,mode:"LOAD",posY:1,sizeX:27,posZ:0,integrity:1.0f,showair:0b,x:961,name:"spawn_red",y:45,z:961,id:"minecraft:structure_block",sizeY:7,sizeZ:27,showboundingbox:0b}
->{"conditional":true}
- /setblock 1039 45 1039 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-26,mode:"LOAD",posY:1,sizeX:27,posZ:-26,integrity:1.0f,showair:0b,x:1039,name:"spawn_blue",y:45,z:1039,id:"minecraft:structure_block",sizeY:7,sizeZ:27,showboundingbox:0b}
+ /setblock 961 45 961 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:0,mode:"LOAD",posY:1,sizeX:27,posZ:0,integrity:1.0f,showair:0b,x:961,name:"spawn_red",y:45,z:961,id:"minecraft:structure_block",sizeY:7,sizeZ:27,showboundingbox:0b}
+ /setblock 1030 47 1030 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-17,mode:"LOAD",posY:-1,sizeX:27,posZ:-17,integrity:1.0f,showair:0b,x:1030,name:"spawn_blue",y:47,z:1030,id:"minecraft:structure_block",sizeY:8,sizeZ:27,showboundingbox:0b}
  /setblock 961 46 961 minecraft:redstone_block
- /setblock 1039 46 1039 minecraft:redstone_block
- /setblock 1039 45 1039 minecraft:air
->{"conditional":false}
+ /setblock 1030 48 1030 minecraft:redstone_block
+ /setblock 1030 47 1030 minecraft:air
  /setblock 961 45 961 minecraft:air
- /scoreboard players set @a[score_brokeClay_min=1] brokeClay 0
+ /title @a[x=961,y=50,z=961,dx=2,dy=3,dz=2] actionbar {"text":"You cannot build on the glass cube.","color":"gold"}
+ /title @a[x=1037,y=50,z=1037,dx=2,dy=3,dz=2] actionbar {"text":"You cannot build on the glass cube.","color":"gold"}
  /scoreboard teams join Spectators @a[x=-1000,y=31,z=-1000,r=50] // Handle players joining midgame
->{"conditional":true}
  /gamemode 3 @a[team=Spectators,x=-1000,y=31,z=-1000,r=50]
->{"conditional":false}
  /teleport @a[x=-1000,y=31,z=-1000,r=50] 1000 60 1000
  /give @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] minecraft:shears 1 0 {Unbreakable:1b,ench:[{id:16,lvl:2},{id:71,lvl:1}]}
+ /replaceitem entity @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] slot.armor.feet minecraft:iron_boots 1 0 {HideFlags:63,AttributeModifiers:[{AttributeName:"generic.knockbackResistance",Name:"generic.knockbackResistance",Amount:100,Operation:1,UUIDLeast:548037,UUIDMost:36657,Slot:"feet"}],display:{Name:"Spawn Boots",Lore:["Protects from knockback and damage.","Removed after 5 seconds."]},ench:[{id:0,lvl:100},{id:71,lvl:1}]}
+ /clear @a[score_respawnTrack=100,score_respawnTrack_min=100] minecraft:iron_boots 0 1 {HideFlags:63}

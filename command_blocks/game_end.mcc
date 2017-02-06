@@ -70,7 +70,9 @@
  /clear @a
  /tp @a -1000 31 -1000
  /spawnpoint @a -1000 31 -1000
- /scoreboard teams leave @a
+ /scoreboard teams leave * Red
+ /scoreboard teams leave * Blue
+ /scoreboard teams leave * Spectators
  /scoreboard players set Red Points 0
  /scoreboard players set Blue Points 0
  /scoreboard players set Red calcPoints 0
@@ -78,6 +80,8 @@
  /scoreboard objectives setdisplay sidebar
  /fill -3 1 -7 -3 3 -7 minecraft:stained_glass color=red replace
  /fill -3 1 -5 -3 3 -5 minecraft:stained_glass color=blue replace
+ /fill 962 50 962 962 52 962 minecraft:stained_glass color=red replace
+ /fill 1038 50 1038 1038 52 1038 minecraft:stained_glass color=blue replace
  /tellraw @a {"text":"Thanks for playing!","color":"green"}
  /gamemode 2 @a
  /execute @e[type=minecraft:area_effect_cloud,name=EndGameC] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
