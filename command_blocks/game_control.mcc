@@ -1,25 +1,25 @@
 # HandleGame
 >{"type":"repeating-chain","conditional":false,"auto":false}
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~-2 ~2 minecraft:stained_hardened_clay color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~2 ~-2 ~-2 minecraft:stained_hardened_clay color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~2 ~-2 ~-2 ~2 ~2 minecraft:stained_hardened_clay color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~2 ~-2 ~2 ~2 ~-2 minecraft:stained_hardened_clay color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~2 ~-2 minecraft:stained_hardened_clay color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~2 ~-2 minecraft:stained_hardened_clay color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~-2 ~2 ~2 minecraft:stained_hardened_clay color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~2 ~-2 ~-2 minecraft:stained_hardened_clay color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~-2 ~-2 ~2 minecraft:stained_hardened_clay color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~-2 ~2 minecraft:stained_hardened_clay color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~-2 ~2 minecraft:concrete color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~2 ~-2 ~-2 minecraft:concrete color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~2 ~-2 ~-2 ~2 ~2 minecraft:concrete color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~2 ~-2 ~2 ~2 ~-2 minecraft:concrete color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~2 ~-2 minecraft:concrete color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~2 ~-2 minecraft:concrete color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~-2 ~2 ~2 minecraft:concrete color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~2 ~-2 ~-2 minecraft:concrete color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~-2 ~-2 ~2 minecraft:concrete color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~-2 ~2 minecraft:concrete color=black
  /effect @a[x=962,y=50,z=962,r=6,team=Blue] minecraft:mining_fatigue 1 1
  /effect @a[x=1038,y=50,z=1038,r=6,team=Red] minecraft:mining_fatigue 1 1
- /execute @a[team=Blue,score_brokeClay=1,score_brokeClay_min=1] ~ ~ ~
+ /execute @a[team=Blue,score_brokeConcrete=1,score_brokeConcrete_min=1] ~ ~ ~
  	execute @e[type=minecraft:area_effect_cloud,tag=cube,c=1] ~ ~ ~
- 		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:stained_hardened_clay color=blue replace minecraft:air
- /execute @a[team=Red,score_brokeClay=1,score_brokeClay_min=1] ~ ~ ~
+ 		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=blue replace minecraft:air
+ /execute @a[team=Red,score_brokeConcrete=1,score_brokeConcrete_min=1] ~ ~ ~
  	execute @e[type=minecraft:area_effect_cloud,tag=cube,c=1] ~ ~ ~
- 		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:stained_hardened_clay color=red replace minecraft:air
- /scoreboard players set @a[score_brokeClay_min=1] brokeClay 0
- /execute @a ~ ~ ~ detect ~ ~0.1 ~ minecraft:stained_hardened_clay -1 teleport @p ~ ~0.3 ~
+ 		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=red replace minecraft:air
+ /scoreboard players set @a[score_brokeConcrete_min=1] brokeConcrete 0
+ /execute @a ~ ~ ~ detect ~ ~0.1 ~ minecraft:concrete -1 teleport @p ~ ~0.3 ~
  /tp @e[type=armor_stand,tag=display] ~ ~ ~ ~1 ~ // Rotate armor stands
  /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube] pointTimer 1 // Points
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimer=900,score_pointTimer_min=900,score_blocksRed=9,score_blocksRed_min=9] ~ ~ ~

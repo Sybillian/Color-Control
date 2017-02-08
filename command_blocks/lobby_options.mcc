@@ -122,6 +122,7 @@
 >{"conditional":true}
  /scoreboard players tag @a remove ran
  /execute @e[type=minecraft:area_effect_cloud,name=RanCheck] ~1 ~ ~ blockdata ~ ~ ~ {auto:0b}
+>{"conditional":false}
  /execute @e[type=minecraft:area_effect_cloud,name=TeamRandomizer] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
 
 # TeamRandomizer
