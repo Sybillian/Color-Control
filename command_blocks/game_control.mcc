@@ -1,25 +1,25 @@
 # HandleGame
 >{"type":"repeating-chain","conditional":false,"auto":false}
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~-2 ~2 minecraft:wool color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~2 ~-2 ~-2 minecraft:wool color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~2 ~-2 ~-2 ~2 ~2 minecraft:wool color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~2 ~-2 ~2 ~2 ~-2 minecraft:wool color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~2 ~-2 minecraft:wool color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~2 ~-2 minecraft:wool color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~-2 ~2 ~2 minecraft:wool color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~2 ~-2 ~-2 minecraft:wool color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~-2 ~-2 ~2 minecraft:wool color=black
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~-2 ~2 minecraft:wool color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~-2 ~2 minecraft:stained_hardened_clay color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~2 ~-2 ~-2 minecraft:stained_hardened_clay color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~2 ~-2 ~-2 ~2 ~2 minecraft:stained_hardened_clay color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~2 ~-2 ~2 ~2 ~-2 minecraft:stained_hardened_clay color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~2 ~-2 minecraft:stained_hardened_clay color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~2 ~-2 minecraft:stained_hardened_clay color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~-2 ~2 ~2 minecraft:stained_hardened_clay color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~2 ~-2 ~-2 minecraft:stained_hardened_clay color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~-2 ~-2 ~2 minecraft:stained_hardened_clay color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~-2 ~2 minecraft:stained_hardened_clay color=black
  /effect @a[x=962,y=50,z=962,r=6,team=Blue] minecraft:mining_fatigue 1 1
  /effect @a[x=1038,y=50,z=1038,r=6,team=Red] minecraft:mining_fatigue 1 1
- /execute @a[team=Blue,score_brokeWool=1,score_brokeWool_min=1] ~ ~ ~
+ /execute @a[team=Blue,score_brokeClay=1,score_brokeClay_min=1] ~ ~ ~
  	execute @e[type=minecraft:area_effect_cloud,tag=cube,c=1] ~ ~ ~
- 		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:wool color=blue replace minecraft:air
- /execute @a[team=Red,score_brokeWool=1,score_brokeWool_min=1] ~ ~ ~
+ 		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:stained_hardened_clay color=blue replace minecraft:air
+ /execute @a[team=Red,score_brokeClay=1,score_brokeClay_min=1] ~ ~ ~
  	execute @e[type=minecraft:area_effect_cloud,tag=cube,c=1] ~ ~ ~
- 		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:wool color=red replace minecraft:air
- /scoreboard players set @a[score_brokeWool_min=1] brokeWool 0
- /execute @a ~ ~ ~ detect ~ ~0.1 ~ minecraft:wool -1 teleport @p ~ ~0.3 ~
+ 		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:stained_hardened_clay color=red replace minecraft:air
+ /scoreboard players set @a[score_brokeClay_min=1] brokeClay 0
+ /execute @a ~ ~ ~ detect ~ ~0.1 ~ minecraft:stained_hardened_clay -1 teleport @p ~ ~0.3 ~
  /tp @e[type=armor_stand,tag=display] ~ ~ ~ ~1 ~ // Rotate armor stands
  /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube] pointTimer 1 // Points
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimer=900,score_pointTimer_min=900,score_blocksRed=9,score_blocksRed_min=9] ~ ~ ~
@@ -55,5 +55,5 @@
  /gamemode 3 @a[team=Spectators,x=-1000,y=31,z=-1000,r=50]
  /teleport @a[x=-1000,y=31,z=-1000,r=50] 1000 60 1000
  /give @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] minecraft:shears 1 0 {Unbreakable:1b,ench:[{id:16,lvl:2},{id:71,lvl:1}]}
- /replaceitem entity @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] slot.armor.feet minecraft:iron_boots 1 0 {HideFlags:63,AttributeModifiers:[{AttributeName:"generic.knockbackResistance",Name:"generic.knockbackResistance",Amount:100,Operation:1,UUIDLeast:548037,UUIDMost:36657,Slot:"feet"}],display:{Name:"Spawn Boots",Lore:["Protects from knockback and damage.","Removed after 5 seconds."]},ench:[{id:0,lvl:100},{id:71,lvl:1}]}
- /clear @a[score_respawnTrack=100,score_respawnTrack_min=100] minecraft:iron_boots 0 1 {HideFlags:63}
+ /replaceitem entity @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] slot.armor.feet minecraft:iron_boots 1 0 {HideFlags:63,Unbreakable:1b,AttributeModifiers:[{AttributeName:"generic.knockbackResistance",Name:"generic.knockbackResistance",Amount:100,Operation:1,UUIDLeast:548037,UUIDMost:36657,Slot:"feet"}],display:{Name:"Spawn Boots",Lore:["Protects from knockback and damage.","Removed after 5 seconds."]},ench:[{id:0,lvl:100},{id:71,lvl:1}]}
+ /clear @a[score_respawnTrack=100,score_respawnTrack_min=100] minecraft:iron_boots 0 1 {Unbreakable:1b}

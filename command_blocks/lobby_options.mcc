@@ -3,103 +3,134 @@
 >{"markerTag":"redReady","auto":false}
  /title @a actionbar {"text":"Red team is ready!","color":"red"}
 >{"markerTag":"","conditional":true}
- /blockdata -992 33 -1006 {Text2:"[{\"text\":\"Red team is...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text3:"[{\"text\":\"Ready!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=redUnready] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -992 33 -1006 {Text2:"[{\"text\":\"Red team is...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text3:"[{\"text\":\"Ready!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=redUnready] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players add teamsReady gameSettings 1
- /execute @e[type=minecraft:area_effect_cloud,tag=redReady] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /clone -5 1 -32 -1 2 -28 -996 32 -1008 masked
+ /execute @e[type=minecraft:area_effect_cloud,tag=redReady] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"markerTag":"redUnready","type":"impulse-chain","auto":false,"conditional":false}
  /title @a actionbar {"text":"Red team is no longer ready!","color":"red"}
 >{"markerTag":"","conditional":true}
- /blockdata -992 33 -1006 {Text2:"[{\"text\":\"Red team is...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text3:"[{\"text\":\"Not Ready!\",\"color\":\"red\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=redReady] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -992 33 -1006 {Text2:"[{\"text\":\"Red team is...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text3:"[{\"text\":\"Not Ready!\",\"color\":\"red\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=redReady] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players remove teamsReady gameSettings 1
- /execute @e[type=minecraft:area_effect_cloud,tag=redUnready] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /fill -996 32 -1008 -992 33 -1004 minecraft:air 0 replace minecraft:barrier
+ /fill -996 32 -1008 -992 33 -1004 minecraft:air 0 replace minecraft:stained_glass
+ /execute @e[type=minecraft:area_effect_cloud,tag=redUnready] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"markerTag":"blueReady","type":"impulse-chain","auto":false,"conditional":false}
  /title @a actionbar {"text":"Blue team is ready!","color":"blue"}
 >{"markerTag":"","conditional":true}
- /blockdata -992 33 -994 {Text2:"[{\"text\":\"Blue team is...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text3:"[{\"text\":\"Ready!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=blueUnready] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -992 33 -994 {Text2:"[{\"text\":\"Blue team is...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text3:"[{\"text\":\"Ready!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=blueUnready] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players add teamsReady gameSettings 1
- /execute @e[type=minecraft:area_effect_cloud,tag=blueReady] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /clone -5 1 -26 -1 2 -22 -996 32 -996 masked
+ /execute @e[type=minecraft:area_effect_cloud,tag=blueReady] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"markerTag":"blueUnready","type":"impulse-chain","auto":false,"conditional":false}
  /title @a actionbar {"text":"Blue team is no longer ready!","color":"blue"}
 >{"markerTag":"","conditional":true}
- /blockdata -992 33 -994 {Text2:"[{\"text\":\"Blue team is...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text3:"[{\"text\":\"Not Ready!\",\"color\":\"red\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=blueReady] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -992 33 -994 {Text2:"[{\"text\":\"Blue team is...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text3:"[{\"text\":\"Not Ready!\",\"color\":\"red\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=blueReady] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players remove teamsReady gameSettings 1
- /execute @e[type=minecraft:area_effect_cloud,tag=blueUnready] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /fill -996 32 -996 -992 33 -992 minecraft:air 0 replace minecraft:barrier
+ /fill -996 32 -996 -992 33 -992 minecraft:air 0 replace minecraft:stained_glass
+ /execute @e[type=minecraft:area_effect_cloud,tag=blueUnready] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"conditional":false}
 
 # GameTime
 >{"type":"impulse-chain","markerTag":"time25m","auto":false,"conditional":false}
  /title @a actionbar [{"text":"The game will last for","color":"dark_green"},{"text":" 25 ","italic":"true"},{"text":"minutes."}]
 >{"markerTag":"","conditional":true}
- /blockdata -999 33 -992 {Text1:"[{\"text\":\"The game will last\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"for...\"}]",Text4:"[{\"text\":\"25 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=time20m] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -999 33 -992 {Text1:"[{\"text\":\"The game will last\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"for...\"}]",Text4:"[{\"text\":\"25 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=time20m] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set #gameLength gameSettings 30000
- /execute @e[type=minecraft:area_effect_cloud,tag=time25m] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=time25m] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"type":"impulse-chain","markerTag":"time20m","auto":false,"conditional":false}
  /title @a actionbar [{"text":"The game will last for","color":"dark_green"},{"text":" 20 ","italic":"true"},{"text":"minutes."}]
 >{"markerTag":"","conditional":true}
- /blockdata -999 33 -992 {Text1:"[{\"text\":\"The game will last\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"for...\"}]",Text4:"[{\"text\":\"20 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=time15m] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -999 33 -992 {Text1:"[{\"text\":\"The game will last\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"for...\"}]",Text4:"[{\"text\":\"20 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=time15m] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set #gameLength gameSettings 24000
- /execute @e[type=minecraft:area_effect_cloud,tag=time20m] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=time20m] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"type":"impulse-chain","markerTag":"time15m","auto":false,"conditional":false}
  /title @a actionbar [{"text":"The game will last for","color":"dark_green"},{"text":" 15 ","italic":"true"},{"text":"minutes."}]
 >{"markerTag":"","conditional":true}
- /blockdata -999 33 -992 {Text1:"[{\"text\":\"The game will last\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"for...\"}]",Text4:"[{\"text\":\"15 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=time10m] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -999 33 -992 {Text1:"[{\"text\":\"The game will last\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"for...\"}]",Text4:"[{\"text\":\"15 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=time10m] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set #gameLength gameSettings 18000
- /execute @e[type=minecraft:area_effect_cloud,tag=time15m] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=time15m] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"type":"impulse-chain","markerTag":"time10m","auto":false,"conditional":false}
  /title @a actionbar [{"text":"The game will last for","color":"dark_green"},{"text":" 10 ","italic":"true"},{"text":"minutes."}]
 >{"markerTag":"","conditional":true}
- /blockdata -999 33 -992 {Text1:"[{\"text\":\"The game will last\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"for...\"}]",Text4:"[{\"text\":\"10 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=time25m] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -999 33 -992 {Text1:"[{\"text\":\"The game will last\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"for...\"}]",Text4:"[{\"text\":\"10 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=time25m] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set #gameLength gameSettings 12000
- /execute @e[type=minecraft:area_effect_cloud,tag=time10m] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=time10m] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 
 # RotationTime
 >{"type":"impulse-chain","markerTag":"rotate5m","auto":false,"conditional":false}
  /title @a actionbar [{"text":"The cubes will rotate every","color":"dark_green"},{"text":" 5 ","italic":"true"},{"text":"minutes."}]
 >{"markerTag":"","conditional":true}
- /blockdata -1000 33 -992 {Text1:"[{\"text\":\"The cubes will\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"rotate every...\"}]",Text4:"[{\"text\":\"5 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=rotate4m] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -1000 33 -992 {Text1:"[{\"text\":\"The cubes will\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"rotate every...\"}]",Text4:"[{\"text\":\"5 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=rotate4m] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set #TimerSetting rotateCubes 6000
- /execute @e[type=minecraft:area_effect_cloud,tag=rotate5m] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=rotate5m] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"type":"impulse-chain","markerTag":"rotate4m","auto":false,"conditional":false}
  /title @a actionbar [{"text":"The cubes will rotate every","color":"dark_green"},{"text":" 4 ","italic":"true"},{"text":"minutes."}]
 >{"markerTag":"","conditional":true}
- /blockdata -1000 33 -992 {Text1:"[{\"text\":\"The cubes will\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"rotate every...\"}]",Text4:"[{\"text\":\"4 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=rotate3m] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -1000 33 -992 {Text1:"[{\"text\":\"The cubes will\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"rotate every...\"}]",Text4:"[{\"text\":\"4 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=rotate3m] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set #TimerSetting rotateCubes 4800
- /execute @e[type=minecraft:area_effect_cloud,tag=rotate4m] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=rotate4m] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"type":"impulse-chain","markerTag":"rotate3m","auto":false,"conditional":false}
  /title @a actionbar [{"text":"The cubes will rotate every","color":"dark_green"},{"text":" 3 ","italic":"true"},{"text":"minutes."}]
 >{"markerTag":"","conditional":true}
- /blockdata -1000 33 -992 {Text1:"[{\"text\":\"The cubes will\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"rotate every...\"}]",Text4:"[{\"text\":\"3 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=rotate2m] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -1000 33 -992 {Text1:"[{\"text\":\"The cubes will\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"rotate every...\"}]",Text4:"[{\"text\":\"3 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=rotate2m] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set #TimerSetting rotateCubes 3600
- /execute @e[type=minecraft:area_effect_cloud,tag=rotate3m] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=rotate3m] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"type":"impulse-chain","markerTag":"rotate2m","auto":false,"conditional":false}
  /title @a actionbar [{"text":"The cubes will rotate every","color":"dark_green"},{"text":" 2 ","italic":"true"},{"text":"minutes."}]
 >{"markerTag":"","conditional":true}
- /blockdata -1000 33 -992 {Text1:"[{\"text\":\"The cubes will\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"rotate every...\"}]",Text4:"[{\"text\":\"2 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=rotate1m] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -1000 33 -992 {Text1:"[{\"text\":\"The cubes will\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"rotate every...\"}]",Text4:"[{\"text\":\"2 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=rotate1m] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set #TimerSetting rotateCubes 2400
- /execute @e[type=minecraft:area_effect_cloud,tag=rotate2m] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=rotate2m] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"type":"impulse-chain","markerTag":"rotate1m","auto":false,"conditional":false}
  /title @a actionbar [{"text":"The cubes will rotate every","color":"dark_green"},{"text":" 1.5 ","italic":"true"},{"text":"minutes."}]
 >{"markerTag":"","conditional":true}
- /blockdata -1000 33 -992 {Text1:"[{\"text\":\"The cubes will\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"rotate every...\"}]",Text4:"[{\"text\":\"1.5 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=rotate5m] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -1000 33 -992 {Text1:"[{\"text\":\"The cubes will\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"rotate every...\"}]",Text4:"[{\"text\":\"1.5 Minutes!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=rotate5m] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set #TimerSetting rotateCubes 1800
- /execute @e[type=minecraft:area_effect_cloud,tag=rotate1m] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=rotate1m] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 
 # GameType
 >{"type":"impulse-chain","markerTag":"modeBoth","auto":false,"conditional":false}
  /title @a actionbar [{"text":"The game can be won by","color":"dark_green"},{"text":" points ","color":"yellow","italic":"true"},{"text":"or by","color":"dark_green"},{"text":" elimination!","color":"red","italic":"true"}]
 >{"markerTag":"","conditional":true}
- /blockdata -1001 33 -992 {Text1:"[{\"text\":\"The game can be\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"won by...\"}]",Text4:"[{\"text\":\"Elimination/Time!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=modeTime] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -1001 33 -992 {Text1:"[{\"text\":\"The game can be\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"won by...\"}]",Text4:"[{\"text\":\"Elimination/Time!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=modeTime] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set GameMode gameSettings 1
- /execute @e[type=minecraft:area_effect_cloud,tag=modeBoth] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=modeBoth] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"type":"impulse-chain","markerTag":"modeTime","auto":false,"conditional":false}
  /title @a actionbar [{"text":"The game can be won by","color":"dark_green"},{"text":" points ","color":"yellow","italic":"true"},{"text":"only!","color":"dark_green","italic":"false"}]
 >{"markerTag":"","conditional":true}
- /blockdata -1001 33 -992 {Text1:"[{\"text\":\"The game can be\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"won by...\"}]",Text4:"[{\"text\":\"Time Only!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=modeElim] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -1001 33 -992 {Text1:"[{\"text\":\"The game can be\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"won by...\"}]",Text4:"[{\"text\":\"Time Only!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=modeElim] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set GameMode gameSettings 2
- /execute @e[type=minecraft:area_effect_cloud,tag=modeTime] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=modeTime] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"type":"impulse-chain","markerTag":"modeElim","auto":false,"conditional":false}
  /title @a actionbar [{"text":"The game can be won by","color":"dark_green"},{"text":" elimination ","color":"red","italic":"true"},{"text":"only!","color":"dark_green","italic":"false"}]
 >{"markerTag":"","conditional":true}
- /blockdata -1001 33 -992 {Text1:"[{\"text\":\"The game can be\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"won by...\"}]",Text4:"[{\"text\":\"Elimination Only!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=modeBoth] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -1001 33 -992 {Text1:"[{\"text\":\"The game can be\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text2:"[{\"text\":\"won by...\"}]",Text4:"[{\"text\":\"Elimination Only!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=modeBoth] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set GameMode gameSettings 3
- /execute @e[type=minecraft:area_effect_cloud,tag=modeElim] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=modeElim] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
+
+# RanCheck
+>{"type":"impulse-chain","conditional":false,"auto":false}
+ /scoreboard players test teamsReady gameSettings 1 2
+>{"conditional":true}
+ /tellraw @a {"text":"Teams cannot be randomized while a team is ready!","color":"red"}
+ /execute @a[tag=ran] ~ ~ ~ /playsound minecraft:entity.blaze.hurt block @a[tag=ran] ~ ~ ~ 1 1.5
+ /execute @e[type=minecraft:area_effect_cloud,name=RanCheck] ~1 ~ ~ blockdata ~ ~ ~ {auto:0b}
+>{"conditional":false}
+ /scoreboard players test teamsReady gameSettings 0 0
+>{"conditional":true}
+ /scoreboard players tag @a remove ran
+ /execute @e[type=minecraft:area_effect_cloud,name=RanCheck] ~1 ~ ~ blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,name=TeamRandomizer] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
+
+# TeamRandomizer
+>{"type":"repeating-chain","conditional":false,"auto":false}
+ /spreadplayers -1000 -1000 0 1 false @a
+ /scoreboard teams leave @a
+ /scoreboard teams join Red @r[team=]
+ /scoreboard teams join Blue @r[team=]
+ /testfor @a[team=]
+ /testforblock ~-1 ~ ~ minecraft:chain_command_block -1 {SuccessCount:0}
+>{"conditional":true}
+ /execute @e[type=minecraft:area_effect_cloud,name=TeamRandomizer] ~1 ~ ~ blockdata ~ ~ ~ {auto:0b}

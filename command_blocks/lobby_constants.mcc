@@ -17,6 +17,7 @@
  /scoreboard teams join Spectators @a[team=!Spectators,x=-1008,y=33,z=-996,dx=4,dy=3,dz=4]
  /tellraw @a[team=!Spectators,x=-1008,y=33,z=-1008,dx=4,dy=3,dz=4] {"text":"You are now a Spectator!","color":"gray"}
  /scoreboard teams join Spectators @a[team=!Spectators,x=-1008,y=33,z=-1008,dx=4,dy=3,dz=4]
+ /clear @a[m=2]
  /scoreboard players test #TimePassed gameSettings * 0
 >{"conditional":true}
  /scoreboard teams leave @a[x=1000,y=51,z=1000,r=100]
@@ -32,3 +33,20 @@
  /blockdata -992 33 -1006 {Text2:"[{\"text\":\"Red team is...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text3:"[{\"text\":\"Not Ready!\",\"color\":\"red\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=redReady] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /blockdata -992 33 -994 {Text2:"[{\"text\":\"Blue team is...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:entity.slime.attack block @a ~ ~ ~ 1 1.5\"}}]",Text3:"[{\"text\":\"Not Ready!\",\"color\":\"red\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=blueReady] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}\"}}]"}
 >{"conditional":false}
+ /testforblock -996 32 -996 minecraft:stained_glass color=blue
+>{"conditional":true}
+ /teleport @a[team=Blue,x=-1008,y=30,z=-1008,dx=16,dy=4,dz=12] -994 32 -994
+>{"conditional":false}
+ /testforblock -996 32 -996 minecraft:stained_glass color=blue
+>{"conditional":true}
+ /teleport @a[team=Blue,x=-1008,y=30,z=-1008,dx=12,dy=4,dz=16] -994 32 -994
+>{"conditional":false}
+ /testforblock -996 32 -1004 minecraft:stained_glass color=red
+>{"conditional":true}
+ /teleport @a[team=Red,x=-1008,y=30,z=-992,dx=16,dy=4,dz=-12] -994 32 -1006
+>{"conditional":false}
+ /testforblock -996 32 -1004 minecraft:stained_glass color=red
+>{"conditional":true}
+ /teleport @a[team=Red,x=-1008,y=30,z=-992,dx=12,dy=4,dz=-16] -994 32 -1006
+
+-1008 30 -1008
