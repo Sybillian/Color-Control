@@ -58,6 +58,8 @@
  /title @a title {"text":"Begin!","color":"green"}
  /execute @a ~ ~ ~ /playsound minecraft:entity.experience_orb.pickup master @p ~ ~ ~ 1 1
  /scoreboard players set teamsReady gameSettings 0
+ /fill -996 32 -1008 -992 33 -992 minecraft:air 0 replace minecraft:barrier
+ /fill -996 32 -1008 -992 33 -992 minecraft:air 0 replace minecraft:stained_glass
  /teleport @a[team=!] 0 51 0
  /scoreboard players set #StartGame gameSettings 0
  /execute @e[type=area_effect_cloud,name=StartGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
@@ -93,7 +95,7 @@
  /scoreboard teams join B_Display Blue
  /execute @e[type=area_effect_cloud,name=HandleGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
  /execute @e[type=area_effect_cloud,name=TriggerCubes] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /scoreboard players test GameType gameSettings 1 1 // Mode: Elimination or Time
+ /scoreboard players test GameMode gameSettings 1 1 // Mode: Elimination or Time
  >{"conditional":true}
  /execute @e[type=area_effect_cloud,name=DetectTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
  /execute @e[type=area_effect_cloud,name=DetectGlass] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
@@ -104,7 +106,7 @@
  /tellraw @p {"text":" minutes have passed.","color":"blue"}
  /tellraw @p {"text":"Alternatively, the game can be won by destroying the opposing team's glass tower before the game ends.","color":"blue"}
  >{"conditional":false}
- /scoreboard players test GameType gameSettings 2 2 // Mode: Time Only
+ /scoreboard players test GameMode gameSettings 2 2 // Mode: Time Only
  >{"conditional":true}
  /execute @e[type=area_effect_cloud,name=DetectTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
  /execute @e[type=area_effect_cloud,name=DetectGlass] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
@@ -114,7 +116,7 @@
  /tellraw @p [{"text":"The game can be won only by having the most points after ","color":"blue"},{"score":{"name":"TimeSeconds","objective":"gameSettings"},"color":"dark_blue"}]
  /tellraw @p {"text":" minutes have passed.","color":"blue"}
  >{"conditional":false}
- /scoreboard players test GameType gameSettings 3 3 // Mode: Elimination Only
+ /scoreboard players test GameMode gameSettings 3 3 // Mode: Elimination Only
  >{"conditional":true}
  /execute @e[type=area_effect_cloud,name=DetectTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
  /execute @e[type=area_effect_cloud,name=DetectGlass] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}

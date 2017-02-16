@@ -94,7 +94,7 @@
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=8,score_cloudType_min=8,score_blocksBlue=9,score_blocksBlue_min=9] ~ ~3 ~
 	effect @a[team=Blue,r=3] minecraft:strength 30 0 // Strength Effect
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=9,score_cloudType_min=9,score_blocksBlue=9,score_blocksBlue_min=9] ~ ~3 ~
-	effect @a[team=Blue,r=3] minecraft:jump_boost 30 1 // Strength Effect
+	effect @a[team=Blue,r=3] minecraft:jump_boost 30 1 // Jumping Effect
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=10,score_cloudType_min=10,score_blocksBlue=9,score_blocksBlue_min=9] ~ ~3 ~
 	give @a[team=Blue,r=3] minecraft:diamond 1 0 // Diamonds
  /execute @a[team=Blue] ~ ~-3 ~
