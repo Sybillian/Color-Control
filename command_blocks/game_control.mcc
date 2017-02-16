@@ -1,6 +1,8 @@
+// Actived whenever a game is running, independent of game mode.
+
 # HandleGame
 >{"type":"repeating-chain","conditional":false,"auto":false}
- /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~-2 ~2 minecraft:concrete color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~-2 ~2 minecraft:concrete color=black // Prevent players from breaking cube borders
  /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~2 ~-2 ~-2 minecraft:concrete color=black
  /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~2 ~-2 ~-2 ~2 ~2 minecraft:concrete color=black
  /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~2 ~-2 ~2 ~2 ~-2 minecraft:concrete color=black
@@ -10,50 +12,29 @@
  /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~2 ~-2 ~-2 minecraft:concrete color=black
  /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~-2 ~2 ~-2 ~-2 ~2 minecraft:concrete color=black
  /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~-2 ~2 minecraft:concrete color=black
- /effect @a[x=962,y=50,z=962,r=6,team=Blue] minecraft:mining_fatigue 1 1
- /effect @a[x=1038,y=50,z=1038,r=6,team=Red] minecraft:mining_fatigue 1 1
- /execute @a[team=Blue,score_brokeConcrete=1,score_brokeConcrete_min=1] ~ ~ ~
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /fill ~2 ~2 ~-2 ~2 ~-2 ~-2 minecraft:concrete color=black
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /fill ~-2 ~2 ~2 ~-2 ~-2 ~2 minecraft:concrete color=black
+ /fill 1030 51 1030 1030 52 1030 minecraft:air 0 destroy // Prevent players from blocking spawn locations
+ /fill 970 51 970 970 52 970 minecraft:air 0 destroy
+ /execute @a[team=Blue,score_brokeConcrete=1,score_brokeConcrete_min=1] ~ ~ ~ // Block capturing mechanic
  	execute @e[type=minecraft:area_effect_cloud,tag=cube,c=1] ~ ~ ~
  		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=blue replace minecraft:air
  /execute @a[team=Red,score_brokeConcrete=1,score_brokeConcrete_min=1] ~ ~ ~
  	execute @e[type=minecraft:area_effect_cloud,tag=cube,c=1] ~ ~ ~
  		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=red replace minecraft:air
  /scoreboard players set @a[score_brokeConcrete_min=1] brokeConcrete 0
- /execute @a ~ ~ ~ detect ~ ~0.1 ~ minecraft:concrete -1 teleport @p ~ ~0.3 ~
- /tp @e[type=armor_stand,tag=display] ~ ~ ~ ~1 ~ // Rotate armor stands
- /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube] pointTimer 1 // Points
- /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimer=900,score_pointTimer_min=900,score_blocksRed=9,score_blocksRed_min=9] ~ ~ ~
- 	scoreboard players add Red Points 1
- /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimer=900,score_pointTimer_min=900,score_blocksBlue=9,score_blocksBlue_min=9] ~ ~ ~
- 	scoreboard players add Blue Points 1
- /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimer=901,score_pointTimer_min=901] pointTimer 0
- /scoreboard players operation Red Points += @a[team=Red] Kills
- /scoreboard players operation Red Points += @a[team=Red] Kills
- /scoreboard players operation Blue Points += @a[team=Blue] Kills
- /scoreboard players operation Blue Points += @a[team=Blue] Kills
- /scoreboard players set @a Kills 0
- /scoreboard players operation Red Points -= @a[team=Red] Deaths
- /scoreboard players operation Blue Points -= @a[team=Blue] Deaths
- /scoreboard players set @a Deaths 0
- /scoreboard players test Blue Points * -1
->{"conditional":true}
- /scoreboard players set Blue Points 0
->{"conditional":false}
- /scoreboard players test Red Points * -1
->{"conditional":true}
- /scoreboard players set Red Points 0
->{"conditional":false} // Protect spawn zones
+ /execute @a[m=0,r=0] ~ ~ ~ detect ~ ~0.1 ~ minecraft:concrete -1 teleport @p[m=0,r=0] ~ ~0.3 ~ // Prevent players from falling into blocks
+ /tp @e[type=armor_stand,tag=display] ~ ~ ~ ~0.2 ~ // Rotate display armor stands
+ // The following 6 lines constantly reset the spawn cubes to prevent them from being damaged
  /setblock 961 45 961 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:0,mode:"LOAD",posY:1,sizeX:27,posZ:0,integrity:1.0f,showair:0b,x:961,name:"spawn_red",y:45,z:961,id:"minecraft:structure_block",sizeY:7,sizeZ:27,showboundingbox:0b}
  /setblock 1030 47 1030 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-17,mode:"LOAD",posY:-1,sizeX:27,posZ:-17,integrity:1.0f,showair:0b,x:1030,name:"spawn_blue",y:47,z:1030,id:"minecraft:structure_block",sizeY:8,sizeZ:27,showboundingbox:0b}
  /setblock 961 46 961 minecraft:redstone_block
  /setblock 1030 48 1030 minecraft:redstone_block
  /setblock 1030 47 1030 minecraft:air
  /setblock 961 45 961 minecraft:air
- /title @a[x=961,y=50,z=961,dx=2,dy=3,dz=2] actionbar {"text":"You cannot build on the glass cube.","color":"gold"}
- /title @a[x=1037,y=50,z=1037,dx=2,dy=3,dz=2] actionbar {"text":"You cannot build on the glass cube.","color":"gold"}
  /scoreboard teams join Spectators @a[x=-1000,y=31,z=-1000,r=50] // Handle players joining midgame
  /gamemode 3 @a[team=Spectators,x=-1000,y=31,z=-1000,r=50]
  /teleport @a[x=-1000,y=31,z=-1000,r=50] 1000 60 1000
- /give @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] minecraft:shears 1 0 {Unbreakable:1b,ench:[{id:16,lvl:2},{id:71,lvl:1}]}
+ /give @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] minecraft:wooden_pickaxe 1 0 {Unbreakable:1b,ench:[{id:71,lvl:1}]} // Give respawning players thier items
  /replaceitem entity @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] slot.armor.feet minecraft:iron_boots 1 0 {HideFlags:63,Unbreakable:1b,AttributeModifiers:[{AttributeName:"generic.knockbackResistance",Name:"generic.knockbackResistance",Amount:100,Operation:1,UUIDLeast:548037,UUIDMost:36657,Slot:"feet"}],display:{Name:"Spawn Boots",Lore:["Protects from knockback and damage.","Removed after 5 seconds."]},ench:[{id:0,lvl:100},{id:71,lvl:1}]}
- /clear @a[score_respawnTrack=100,score_respawnTrack_min=100] minecraft:iron_boots 0 1 {Unbreakable:1b}
+ /clear @a[score_respawnTrack=100,score_respawnTrack_min=100,score_respawnTrack=100] minecraft:iron_boots 0 1 {Unbreakable:1b} // Remove spawn protection boots

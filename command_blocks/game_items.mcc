@@ -1,0 +1,150 @@
+# ItemControl
+>{"type":"repeating-chain","conditional":false,"auto":true}
+ /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube] spawnItemS 1 // Advance spawn timer
+ /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube] spawnItem 1
+ /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube] spawnItemL 1
+ /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=redSpawnCloud] spawnItemS 1
+ /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=blueSpawnCloud] spawnItemS 1
+ /scoreboard players tag @e[type=minecraft:area_effect_cloud,score_spawnItemS=10,score_spawnItemS_min=10] add trySpawn // Starts spawn process
+ /scoreboard players tag @e[type=minecraft:area_effect_cloud,score_spawnItem=20,score_spawnItem_min=20] add trySpawn
+ /scoreboard players tag @e[type=minecraft:area_effect_cloud,score_spawnItemL=40,score_spawnItemL_min=40] add trySpawn
+ /execute @e[type=minecraft:area_effect_cloud,tag=trySpawn] ~ ~ ~
+	testforblocks -4 1 -15 -2 1 -13 ~-1 ~2 ~-1 // Test for claimed blocks
+ /execute @e[type=minecraft:area_effect_cloud,tag=trySpawn] ~ ~ ~
+	stats entity @e[type=minecraft:area_effect_cloud,tag=trySpawn,r=0,c=1] set AffectedBlocks @e[type=minecraft:area_effect_cloud,tag=trySpawn,r=0,c=1] blocksBlue
+ /execute @e[type=minecraft:area_effect_cloud,tag=trySpawn] ~ ~ ~
+	testforblocks -4 1 -11 -2 1 -9 ~-1 ~2 ~-1 // Test for claimed blocks
+ /execute @e[type=minecraft:area_effect_cloud,tag=trySpawn] ~ ~ ~
+	stats entity @e[type=minecraft:area_effect_cloud,tag=trySpawn,r=0,c=1] set AffectedBlocks @e[type=minecraft:area_effect_cloud,tag=trySpawn,r=0,c=1] blocksRed
+ /scoreboard players set @e[type=minecraft:area_effect_cloud,score_spawnItemS=11,score_spawnItemS_min=11] spawnItemS 0 // Reset spawn timer
+ /scoreboard players set @e[type=minecraft:area_effect_cloud,score_spawnItem=21,score_spawnItem_min=21] spawnItem 0
+ /scoreboard players set @e[type=minecraft:area_effect_cloud,score_spawnItemL=41,score_spawnItemL_min=41] spawnItemL 0
+ /scoreboard players tag @e[type=minecraft:area_effect_cloud,tag=trySpawn] remove trySpawn
+ /tp @e[type=armor_stand,tag=display] ~ ~ ~ ~1 ~
+
+# SpawnItem
+>{"type":"repeating-chain","conditional":false,"auto":true}
+ /execute @e[type=minecraft:area_effect_cloud,tag=redSpawnCloud,score_spawnItemS=10,score_spawnItemS_min=10,score_cloudType=1,score_cloudType_min=1] ~-2 ~3 ~-2
+	give @a[team=Red,dx=4,dy=0,dz=4] minecraft:planks 1 0 // Planks
+ /execute @e[type=minecraft:area_effect_cloud,tag=redSpawnCloud,score_spawnItemS=10,score_spawnItemS_min=10,score_cloudType=2,score_cloudType_min=2] ~-2 ~3 ~-2
+	give @a[team=Red,dx=4,dy=0,dz=4] minecraft:cobblestone 1 0 // Cobble
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=3,score_cloudType_min=3,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	give @a[team=Red,dx=4,dy=0,dz=4] minecraft:iron_ingot 1 0 // Iron
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=4,score_cloudType_min=4,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	give @a[team=Red,dx=4,dy=0,dz=4] minecraft:string 1 0 // String
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=5,score_cloudType_min=5,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	give @a[team=Red,dx=4,dy=0,dz=4] minecraft:arrow 1 0 // Arrows
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=6,score_cloudType_min=6,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	give @a[team=Red,dx=4,dy=0,dz=4] minecraft:dye 1 4 // Lapis
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=7,score_cloudType_min=7,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	give @a[team=Red,dx=4,dy=0,dz=4] minecraft:golden_apple 1 0 // GApples
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemS=10,score_spawnItemS_min=10,score_cloudType=11,score_cloudType_min=11,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	xp 2 @a[team=Red,dx=4,dy=0,dz=4] // XP
+>{"conditional":true}
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemS=10,score_spawnItemS_min=10,score_cloudType=11,score_cloudType_min=11,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+ 	playsound minecraft:entity.experience_orb.pickup player @a ~ ~ ~
+>{"conditional":false}
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=8,score_cloudType_min=8,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	effect @a[team=Red,dx=4,dy=0,dz=4] minecraft:strength 30 0 // Strength Effect
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=9,score_cloudType_min=9,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	effect @a[team=Red,dx=4,dy=0,dz=4] minecraft:speed 30 0 // Speed Effect
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=8,score_cloudType_min=8,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	effect @a[team=Blue,dx=4,dy=0,dz=4] minecraft:weakness 15 0 // Weakness Effect
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=9,score_cloudType_min=9,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	effect @a[team=Blue,dx=4,dy=0,dz=4] minecraft:slowness 15 0 // Slowness Effect
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=10,score_cloudType_min=10,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	give @a[team=Red,dx=4,dy=0,dz=4] minecraft:diamond 1 0 // Diamonds
+ /execute @a[team=Red] ~ ~-3 ~
+	execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=11,score_cloudType_min=11,score_blocksRed=9,score_blocksRed_min=9,r=5] ~-2 ~3 ~-2
+		scoreboard players tag @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=11,score_cloudType_min=11,c=1] add redPresent
+/execute @e[type=minecraft:area_effect_cloud,tag=redPresent,score_cloudType=11,score_cloudType_min=11,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	setblock ~ ~ ~ minecraft:enchanting_table 0 replace
+/execute @e[type=minecraft:area_effect_cloud,tag=!redPresent,score_cloudType=11,score_cloudType_min=11,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	fill ~ ~ ~ ~ ~ ~ minecraft:air 0 replace minecraft:enchanting_table
+/execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=11,score_cloudType_min=11,score_blocksRed=0,score_blocksRed_min=0,score_blocksBlue=0,score_blocksBlue_min=0] ~-2 ~3 ~-2
+	fill ~ ~ ~ ~ ~ ~ minecraft:air 0 replace minecraft:enchanting_table
+/scoreboard players tag @e[type=minecraft:area_effect_cloud,tag=redPresent] remove redPresent
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemS=10,score_spawnItemS_min=10,score_cloudType=12,score_cloudType_min=12,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	teleport @a[team=Red,r=1] 971 50 1029 // TP1
+>{"conditional":true} 
+ /playsound minecraft:block.enderchest.open block @a 971 50 1029 1 1.5
+>{"conditional":false}
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemS=10,score_spawnItemS_min=10,score_cloudType=13,score_cloudType_min=13,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	teleport @a[team=Red,r=1] 1029 50 971 // TP2
+>{"conditional":true}
+ /playsound minecraft:block.enderchest.open block @a 1029 50 971 1 1.5
+>{"conditional":false}
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=14,score_cloudType_min=14,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	give @a[team=Red,dx=4,dy=0,dz=4] minecraft:ender_pearl 1 0 // Ender Pearls
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=15,score_cloudType_min=15,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	give @a[team=Red,dx=4,dy=0,dz=4] minecraft:tnt 1 0 // TNT
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=16,score_cloudType_min=16,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	give @a[team=Red,dx=4,dy=0,dz=4] minecraft:flint 1 0 // Flint
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=17,score_cloudType_min=17,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
+	give @a[team=Red,dx=4,dy=0,dz=4] minecraft:gold_ingot 1 0 // Gold
+
+// Blue items 
+ /execute @e[type=minecraft:area_effect_cloud,tag=blueSpawnCloud,score_spawnItemS=10,score_spawnItemS_min=10,score_cloudType=1,score_cloudType_min=1] ~-2 ~3 ~-2
+	give @a[team=Blue,dx=4,dy=0,dz=4] minecraft:planks 1 0 // Planks
+ /execute @e[type=minecraft:area_effect_cloud,tag=blueSpawnCloud,score_spawnItemS=10,score_spawnItemS_min=10,score_cloudType=2,score_cloudType_min=2] ~-2 ~3 ~-2
+	give @a[team=Blue,dx=4,dy=0,dz=4] minecraft:cobblestone 1 0 // Cobble
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=3,score_cloudType_min=3,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	give @a[team=Blue,dx=4,dy=0,dz=4] minecraft:iron_ingot 1 0 // Iron
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=4,score_cloudType_min=4,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	give @a[team=Blue,dx=4,dy=0,dz=4] minecraft:string 1 0 // String
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=5,score_cloudType_min=5,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	give @a[team=Blue,dx=4,dy=0,dz=4] minecraft:arrow 1 0 // Arrows
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=6,score_cloudType_min=6,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	give @a[team=Blue,dx=4,dy=0,dz=4] minecraft:dye 1 4 // Lapis
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=7,score_cloudType_min=7,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	give @a[team=Blue,dx=4,dy=0,dz=4] minecraft:golden_apple 1 0 // GApples
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemS=10,score_spawnItemS_min=10,score_cloudType=11,score_cloudType_min=11,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	xp 2 @a[team=Blue,dx=4,dy=0,dz=4] // XP
+>{"conditional":true}
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemS=10,score_spawnItemS_min=10,score_cloudType=11,score_cloudType_min=11,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+ 	playsound minecraft:entity.experience_orb.pickup player @a ~ ~ ~
+>{"conditional":false}
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=8,score_cloudType_min=8,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	effect @a[team=Blue,dx=4,dy=0,dz=4] minecraft:strength 30 0 // Strength Effect
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=9,score_cloudType_min=9,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	effect @a[team=Blue,dx=4,dy=0,dz=4] minecraft:speed 30 0 // Speed Effect
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=8,score_cloudType_min=8,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	effect @a[team=Red,dx=4,dy=0,dz=4] minecraft:weakness 15 0 // Weakness Effect
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=9,score_cloudType_min=9,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	effect @a[team=Red,dx=4,dy=0,dz=4] minecraft:slowness 15 0 // Slowness Effect
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=10,score_cloudType_min=10,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	give @a[team=Blue,dx=4,dy=0,dz=4] minecraft:diamond 1 0 // Diamonds
+ /execute @a[team=Blue] ~ ~-3 ~
+	execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=11,score_cloudType_min=11,score_blocksBlue=9,score_blocksBlue_min=9,r=5] ~-2 ~3 ~-2
+		scoreboard players tag @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=11,score_cloudType_min=11,c=1] add bluePresent
+ /execute @e[type=minecraft:area_effect_cloud,tag=bluePresent,score_cloudType=11,score_cloudType_min=11,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	setblock ~ ~ ~ minecraft:enchanting_table 0 replace
+ /execute @e[type=minecraft:area_effect_cloud,tag=!bluePresent,score_cloudType=11,score_cloudType_min=11,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	fill ~ ~ ~ ~ ~ ~ minecraft:air 0 replace minecraft:enchanting_table
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=11,score_cloudType_min=11,score_blocksRed=0,score_blocksRed_min=0,score_blocksBlue=0,score_blocksBlue_min=0] ~-2 ~3 ~-2
+	fill ~ ~ ~ ~ ~ ~ minecraft:air 0 replace minecraft:enchanting_table
+ /scoreboard players tag @e[type=minecraft:area_effect_cloud,tag=bluePresent] remove bluePresent
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemS=10,score_spawnItemS_min=10,score_cloudType=12,score_cloudType_min=12,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	teleport @a[team=Blue,r=1] 971 50 1029 // TP1
+>{"conditional":true} 
+ /playsound minecraft:block.enderchest.open block @a 971 50 1029 1 1.5
+>{"conditional":false}
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemS=10,score_spawnItemS_min=10,score_cloudType=13,score_cloudType_min=13,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	teleport @a[team=Blue,r=1] 1029 50 971 // TP2
+>{"conditional":true}
+ /playsound minecraft:block.enderchest.open block @a 1029 50 971 1 1.5
+>{"conditional":false}
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=14,score_cloudType_min=14,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	give @a[team=Blue,dx=4,dy=0,dz=4] minecraft:ender_pearl 1 0 // Ender Pearls
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=15,score_cloudType_min=15,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	give @a[team=Blue,dx=4,dy=0,dz=4] minecraft:tnt 1 0 // TNT
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=16,score_cloudType_min=16,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	give @a[team=Blue,dx=4,dy=0,dz=4] minecraft:flint 1 0 // Flint
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=17,score_cloudType_min=17,score_blocksBlue=9,score_blocksBlue_min=9] ~-2 ~3 ~-2
+	give @a[team=Blue,dx=4,dy=0,dz=4] minecraft:gold_ingot 1 0 // Gold
+ 
+// Universals
+ /execute @e[score_cloudType_min=12,score_cloudType=13] ~ ~4 ~ // Portal particles
+ 	/particle portal ~ ~ ~ 0 2 0 1 10 force @a
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_cloudType=10,score_cloudType_min=10] ~-2 ~3 ~-2
+	effect @a[team=!Spectators,dx=4,dy=0,dz=4] minecraft:glowing 1 0 // Diamond glowing

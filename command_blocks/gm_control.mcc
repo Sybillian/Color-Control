@@ -1,0 +1,49 @@
+# ModePoints
+>{"type":"repeating-chain","conditional":false,"auto":false}
+ /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube,score_blocksRed=9,score_blocksRed_min=9] pointTimerRed 1 // Controls points gained from cubes
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerRed=900,score_pointTimerRed_min=900] ~ ~ ~
+ 	scoreboard players add Red Points 1
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerRed=900,score_pointTimerRed_min=900] ~ ~3 ~
+ 	summon minecraft:area_effect_cloud ~ ~1.1 ~ {Tags:["PointDisplayRed"],CustomName:"+1 Points!",Duration:100000}
+ /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=PointDisplayRed] age 1
+ /execute @e[type=minecraft:area_effect_cloud,tag=PointDisplayRed] ~ ~ ~
+ 	teleport @e[type=minecraft:area_effect_cloud,tag=PointDisplayRed,r=0,score_age=40] ~ ~0.03 ~
+ /tp @e[type=minecraft:area_effect_cloud,tag=PointDisplayRed,score_age_min=60] ~ ~-100 ~
+ /entitydata @e[tag=PointDisplayRed] {Air:1b} // Required to make the AEC visually update
+ /entitydata @e[tag=PointDisplayRed] {Air:0b}
+ /entitydata @e[tag=PointDisplayRed] {CustomNameVisible:1b} // Must be after team assignment to avoid color flicker
+ /scoreboard teams join R_Display @e[tag=PointDisplayRed]
+ /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube,score_blocksBlue=9,score_blocksBlue_min=9] pointTimerBlue 1
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerBlue=900,score_pointTimerBlue_min=900] ~ ~ ~
+ 	scoreboard players add Blue Points 1
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerBlue=900,score_pointTimerBlue_min=900] ~ ~3 ~
+ 	summon minecraft:area_effect_cloud ~ ~1.1 ~ {Tags:["PointDisplayBlue"],CustomName:"+1 Points!",Duration:100000}
+ /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=PointDisplayBlue] age 1
+ /execute @e[type=minecraft:area_effect_cloud,tag=PointDisplayBlue] ~ ~ ~
+ 	teleport @e[type=minecraft:area_effect_cloud,tag=PointDisplayBlue,r=0,score_age=40] ~ ~0.03 ~
+ /tp @e[type=minecraft:area_effect_cloud,tag=PointDisplayBlue,score_age_min=60] ~ ~-100 ~
+ /entitydata @e[tag=PointDisplayBlue] {Air:1b}
+ /entitydata @e[tag=PointDisplayBlue] {Air:0b}
+ /entitydata @e[tag=PointDisplayBlue] {CustomNameVisible:1b}
+ /scoreboard teams join B_Display @e[tag=PointDisplayBlue]
+ /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerRed=901,score_pointTimerRed_min=901] pointTimerRed 0
+ /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerBlue=901,score_pointTimerBlue_min=901] pointTimerBlue 0
+ /execute @a[team=Red,score_Kills_min=1] ~ ~ ~ // Give points when a player gets a kill
+ 	/scoreboard players add Red Points 2
+ /execute @a[team=Blue,score_Kills_min=1] ~ ~ ~
+ 	/scoreboard players add Blue Points 2
+ /scoreboard players set @a Kills 0
+ /scoreboard players operation Red Points -= @a[team=Red] Deaths // Remove a point when a player dies
+ /scoreboard players operation Blue Points -= @a[team=Blue] Deaths
+ /scoreboard players set @a Deaths 0
+ /scoreboard players test Blue Points * -1 // Prevent teams from having negative points
+>{"conditional":true}
+ /scoreboard players set Blue Points 0
+>{"conditional":false}
+ /scoreboard players test Red Points * -1
+>{"conditional":true}
+ /scoreboard players set Red Points 0
+>{"conditional":false}
+ /scoreboard players test Red Points 1 // Point Display
+>{"conditional":true}
+ /title @a actionbar [{"text":"Control: ","color":"gold","bold":"true"}{"text":"","color":"dark_red"},{"text":"","color":"dark_blue"}
