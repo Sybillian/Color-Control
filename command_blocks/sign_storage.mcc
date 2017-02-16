@@ -1,0 +1,32 @@
+// This file is for the sole purpose of referencing JSON signs for editing and reuse. It won't compile to anything useful.
+
+// Sybillian
+/blockdata ~ ~-1 ~ {Text1:"[{\"text\":\"Click here to\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",
+Text2:"[{\"text\":\"learn about...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p {\\\"text\\\":\\\"Sybillian - Mapmaker\\\",\\\"color\\\":\\\"green\\\",\\\"bold\\\":\\\"true\\\"}\"}}]",
+Text4:"[{\"text\":\"Sybillian!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p [\\\"\\\",{\\\"text\\\":\\\"GitHub\\\",\\\"color\\\":\\\"dark_green\\\",\\\"clickEvent\\\":{\\\"action\\\":\\\"open_url\\\",\\\"value\\\":\\\"http://www.github.com/sybillian/color-control/\\\"},\\\"hoverEvent\\\":{\\\"action\\\":\\\"show_text\\\",\\\"value\\\":{\\\"text\\\":\\\"\\\",\\\"extra\\\":[{\\\"text\\\":\\\"http://www.github.com/sybillian/color-control\\\",\\\"color\\\":\\\"white\\\"}]}}},{\\\"text\\\":\\\" | \\\",\\\"color\\\":\\\"white\\\"},{\\\"text\\\":\\\"Twitter\\\",\\\"color\\\":\\\"aqua\\\",\\\"clickEvent\\\":{\\\"action\\\":\\\"open_url\\\",\\\"value\\\":\\\"https://twitter.com/Sybillian_\\\"},\\\"hoverEvent\\\":{\\\"action\\\":\\\"show_text\\\",\\\"value\\\":{\\\"text\\\":\\\"\\\",\\\"extra\\\":[{\\\"text\\\":\\\"@Sybillian_\\\",\\\"color\\\":\\\"white\\\"}]}}},{\\\"text\\\":\\\" | \\\",\\\"color\\\":\\\"white\\\"},{\\\"text\\\":\\\"YouTube\\\",\\\"color\\\":\\\"red\\\",\\\"clickEvent\\\":{\\\"action\\\":\\\"open_url\\\",\\\"value\\\":\\\"https://www.youtube.com/channel/UCkXvQ-RUQIDCJtQzP6Fc2Ag\\\"},\\\"hoverEvent\\\":{\\\"action\\\":\\\"show_text\\\",\\\"value\\\":{\\\"text\\\":\\\"\\\",\\\"extra\\\":[{\\\"text\\\":\\\"https://www.youtube.com/channel/UCkXvQ-RUQIDCJtQzP6Fc2Ag\\\",\\\"color\\\":\\\"white\\\"}]}}}]\"}}]"}
+
+// Alpha Testers
+
+
+// Beta Testers
+
+
+// Tutorial: Cubes
+/blockdata ~ ~1 ~ {Text1:"[{\"text\":\"Click here to\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",
+Text2:"[{\"text\":\"learn about...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p {\\\"text\\\":\\\"Cubes, How Do They Work?\\\",\\\"color\\\":\\\"green\\\",\\\"bold\\\":\\\"true\\\"}\"}}]",
+Text4:"[{\"text\":\"Cubes\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p {\\\"text\\\":\\\"The map is made up of a 5x5 grid of cubes. These cubes can be captured by mining the white concrete blocks they're made of, and once captured, will provide your team with points and items. Every set interval (default 1.5 minutes), all of the cubes will rotate. Items will only be spawned on top of a cube, so be sure to keep it captured as it rotates!\\\",\\\"color\\\":\\\"yellow\\\"}\"}}]"}
+
+// Tutorial: Points
+/blockdata ~ ~1 ~ {Text1:"[{\"text\":\"Click here to\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",
+Text2:"[{\"text\":\"learn about...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p {\\\"text\\\":\\\"Getting Points for Your Team\\\",\\\"color\\\":\\\"green\\\",\\\"bold\\\":\\\"true\\\"}\"}}]",
+Text4:"[{\"text\":\"Earning Points\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p [{\\\"text\\\":\\\"Having a cube captured for a cumulative 45 seconds will grant 1 point for your team; this is the main way of getting points. Killing a player will also award two points \\\",\\\"color\\\":\\\"yellow\\\"},{\\\"text\\\":\\\"as long as they don't fall into the void.\\\",\\\"italic\\\":\\\"true\\\"},{\\\"text\\\":\\\" If you die, however, your team will have one point deducted.\\\",\\\"italic\\\":\\\"false\\\"}]\"}}]"}
+
+// Tutorial: Winning
+/blockdata ~ ~1 ~ {Text1:"[{\"text\":\"Click here to\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",
+Text2:"[{\"text\":\"learn about...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p {\\\"text\\\":\\\"Winning and Not Losing\\\",\\\"color\\\":\\\"green\\\",\\\"bold\\\":\\\"true\\\"}\"}}]",
+Text4:"[{\"text\":\"Winning the Game\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p {\\\"text\\\":\\\"After a certain amount of time has passed (default 20 minutes), the game will end, and whichever team has the most points will be victorious. The game can also be won by breaking the glass tower located behind the opposing team's spawn, but take caution; your own tower is just as vulnerable!\\\",\\\"color\\\":\\\"yellow\\\"}\"}}]"}
+
+// Randomize Teams
+/blockdata ~ ~1 ~ {Text1:"[{\"text\":\"Click here to...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",
+Text3:"[{\"text\":\"Clear and\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/scoreboard players tag @p add ran\"}}]",
+Text4:"[{\"text\":\"Randomize Teams\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p [\\\"\\\",{\\\"text\\\":\\\"This will remove everyone from their teams. \\\",\\\"color\\\":\\\"red\\\"},{\\\"text\\\":\\\"[Randomize]\\\",\\\"color\\\":\\\"white\\\",\\\"clickEvent\\\":{\\\"action\\\":\\\"run_command\\\",\\\"value\\\":\\\"/execute @e[tag=oc_marker,name=RanCheck] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1b}\\\"},\\\"hoverEvent\\\":{\\\"action\\\":\\\"show_text\\\",\\\"value\\\":{\\\"text\\\":\\\"\\\",\\\"extra\\\":[{\\\"text\\\":\\\"Click me to confirm!\\\",\\\"color\\\":\\\"white\\\"}]}}}]\"}}]"}

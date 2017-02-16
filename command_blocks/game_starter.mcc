@@ -6,13 +6,13 @@
  /stats block ~-1 ~ ~ set AffectedEntities BluePlayers gameSettings
  /scoreboard players test teamsReady gameSettings 0 1
 >{"conditional":true}
- /scoreboard players set #StartGame gameSettings 0
+ /scoreboard players set StartGame gameSettings 0
 >{"conditional":false}
  /scoreboard players test teamsReady gameSettings 2 2
 >{"conditional":true}
  /scoreboard players test RedPlayers gameSettings 1 *
  /scoreboard players test BluePlayers gameSettings 1 *
- /scoreboard players add #StartGame gameSettings 1
+ /scoreboard players add StartGame gameSettings 1
 >{"conditional":false}
  /scoreboard players test teamsReady gameSettings 2 2
 >{"conditional":true}
@@ -34,60 +34,57 @@
 
 # TriggerStart
 >{"type":"repeating-chain","conditional":false,"auto":true}
- /scoreboard players test #StartGame gameSettings 20 20
+ /scoreboard players test StartGame gameSettings 20 20
 >{"conditional":true}
  /title @a subtitle {"text":"Game beginning in...","color":"blue"}
  /title @a title {"text":"3","color":"red"}
  /execute @a ~ ~ ~ /playsound minecraft:block.dispenser.dispense master @p ~ ~ ~ 1 1
 >{"conditional":false}
- /scoreboard players test #StartGame gameSettings 40 40
+ /scoreboard players test StartGame gameSettings 40 40
 >{"conditional":true}
  /title @a subtitle {"text":"Game beginning in...","color":"blue"}
  /title @a title {"text":"2","color":"yellow"}
  /execute @a ~ ~ ~ /playsound minecraft:block.dispenser.dispense master @p ~ ~ ~ 1 1
 >{"conditional":false}
- /scoreboard players test #StartGame gameSettings 60 60
+ /scoreboard players test StartGame gameSettings 60 60
 >{"conditional":true}
  /title @a subtitle {"text":"Game beginning in...","color":"blue"}
  /title @a title {"text":"1","color":"green"}
  /execute @a ~ ~ ~ /playsound minecraft:block.dispenser.dispense master @p ~ ~ ~ 1 1
 >{"conditional":false}
- /scoreboard players test #StartGame gameSettings 80 80
+ /scoreboard players test StartGame gameSettings 80 80
 >{"conditional":true}
  /title @a subtitle {"text":"Good luck!","color":"blue"}
  /title @a title {"text":"Begin!","color":"green"}
  /execute @a ~ ~ ~ /playsound minecraft:entity.experience_orb.pickup master @p ~ ~ ~ 1 1
  /scoreboard players set teamsReady gameSettings 0
  /fill -996 32 -1008 -992 33 -992 minecraft:air 0 replace minecraft:barrier
- /fill -996 32 -1008 -992 33 -992 minecraft:air 0 replace minecraft:stained_glass
  /teleport @a[team=!] 0 51 0
- /scoreboard players set #StartGame gameSettings 0
+ /scoreboard players set StartGame gameSettings 0
  /execute @e[type=area_effect_cloud,name=StartGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
 
 # StartGame
 >{"type":"impulse-chain","conditional":false,"auto":false}
  /scoreboard players set TickDivide gameSettings 20
- /scoreboard players operation RotationSeconds gameSettings = #TimerSetting rotateCubes
+ /scoreboard players operation RotationSeconds gameSettings = TimerSetting rotateCubes
  /scoreboard players operation RotationSeconds gameSettings /= TickDivide gameSettings
  /scoreboard players set MinuteDivide gameSettings 1200
- /scoreboard players operation TimeSeconds gameSettings = #gameLength gameSettings
+ /scoreboard players operation TimeSeconds gameSettings = GameLength gameSettings
  /scoreboard players operation TimeSeconds gameSettings /= MinuteDivide gameSettings
  /scoreboard scoreboard teams join Spectators @a[team=]
  /tp @a[team=Spectators] 1000 60 1000
  /tp @a[team=Red] 970 51 970
  /tp @a[team=Blue] 1030 51 1030
- /fill -3 1 -7 -3 3 -7 minecraft:stained_glass color=red replace
- /fill -3 1 -5 -3 3 -5 minecraft:stained_glass color=blue replace
- /fill 962 50 962 962 52 962 minecraft:stained_glass color=red replace
- /fill 1038 50 1038 1038 52 1038 minecraft:stained_glass color=blue replace
  /spawnpoint @a[team=Red] 970 51 970
  /spawnpoint @a[team=Blue] 1030 51 1030
  /spawnpoint @a[team=Spectators] 1000 60 1000
  /gamemode 0 @a
  /gamemode 3 @a[team=Spectators]
- /give @a[team=!Spectators] minecraft:shears 1 0 {Unbreakable:1b,ench:[{id:16,lvl:2},{id:71,lvl:1}]}
- /scoreboard players operation #Timer rotateCubes = #TimerSetting rotateCubes
- /scoreboard players operation #TimePassed gameSettings = #gameLength gameSettings
+ /give @a[team=!Spectators] minecraft:wooden_pickaxe 1 0 {Unbreakable:1b,ench:[{id:71,lvl:1}]}
+ /worldborder set 150.5
+ /scoreboard players operation Timer rotateCubes = TimerSetting rotateCubes
+ /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube] pointTimerBlue 0
+ /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube] pointTimerRed 0
  /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube] spawnTimer 0
  /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube] blocksBlue 0
  /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube] blocksRed 0
@@ -97,31 +94,29 @@
  /execute @e[type=area_effect_cloud,name=TriggerCubes] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
  /scoreboard players test GameMode gameSettings 1 1 // Mode: Elimination or Time
  >{"conditional":true}
- /execute @e[type=area_effect_cloud,name=DetectTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=area_effect_cloud,name=DetectGlass] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=area_effect_cloud,name=ModePoints] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
  /scoreboard objectives setdisplay sidebar Points
- /tellraw @p {"text":"Begin!","color":"green","bold":"true"}
- /tellraw @p [{"text":"Every ","color":"blue"},{"score":{"name":"RotationSeconds","objective":"gameSettings"},"color":"dark_blue"},{"text":" seconds, the cubes making up the map will rotate.","color":"blue"}]
- /tellraw @p [{"text":"The game can be won by having the most points after ","color":"blue"},{"score":{"name":"TimeSeconds","objective":"gameSettings"},"color":"dark_blue"}]
- /tellraw @p {"text":" minutes have passed.","color":"blue"}
- /tellraw @p {"text":"Alternatively, the game can be won by destroying the opposing team's glass tower before the game ends.","color":"blue"}
+ /scoreboard players operation TimePassed gameSettings = GameLength gameSettings
+ /tellraw @a {"text":"Begin!","color":"green","bold":"true"}
+ /tellraw @a [{"text":"Every ","color":"yellow"},{"score":{"name":"RotationSeconds","objective":"gameSettings"},"color":"gold"},{"text":" seconds, the cubes making up the map will rotate.","color":"yellow"}]
+ /tellraw @a [{"text":"The game can be won by having the most points after ","color":"yellow"},{"score":{"name":"TimeSeconds","objective":"gameSettings"},"color":"gold"}]
+ /tellraw @a {"text":" minutes have passed.","color":"yellow"}
+ /tellraw @a {"text":"Alternatively, the game can be won by destroying the opposing team's glass tower before the game ends.","color":"yellow"}
  >{"conditional":false}
  /scoreboard players test GameMode gameSettings 2 2 // Mode: Time Only
  >{"conditional":true}
- /execute @e[type=area_effect_cloud,name=DetectTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=area_effect_cloud,name=DetectGlass] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=area_effect_cloud,name=ModeControl] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
  /scoreboard objectives setdisplay sidebar Points
- /tellraw @p {"text":"Begin!","color":"green","bold":"true"}
- /tellraw @p [{"text":"Every ","color":"blue"},{"score":{"name":"RotationSeconds","objective":"gameSettings"},"color":"dark_blue"},{"text":" seconds, the cubes making up the map will rotate.","color":"blue"}]
- /tellraw @p [{"text":"The game can be won only by having the most points after ","color":"blue"},{"score":{"name":"TimeSeconds","objective":"gameSettings"},"color":"dark_blue"}]
- /tellraw @p {"text":" minutes have passed.","color":"blue"}
+ /tellraw @a {"text":"Begin!","color":"green","bold":"true"}
+ /tellraw @a [{"text":"Every ","color":"yellow"},{"score":{"name":"RotationSeconds","objective":"gameSettings"},"color":"gold"},{"text":" seconds, the cubes making up the map will rotate.","color":"yellow"}]
+ /tellraw @a [{"text":"The game can be won only by having the most points after ","color":"yellow"},{"score":{"name":"TimeSeconds","objective":"gameSettings"},"color":"gold"}]
+ /tellraw @a {"text":" minutes have passed.","color":"yellow"}
  >{"conditional":false}
  /scoreboard players test GameMode gameSettings 3 3 // Mode: Elimination Only
  >{"conditional":true}
- /execute @e[type=area_effect_cloud,name=DetectTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
- /execute @e[type=area_effect_cloud,name=DetectGlass] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /tellraw @p {"text":"Begin!","color":"green","bold":"true"}
- /tellraw @p [{"text":"Every ","color":"blue"},{"score":{"name":"RotationSeconds","objective":"gameSettings"},"color":"dark_blue"},{"text":" seconds, the cubes making up the map will rotate.","color":"blue"}]
- /tellraw @p {"text":"The game can be won only by destroying the opposing team's glass tower, located behind their spawn.","color":"blue"}
+ /execute @e[type=area_effect_cloud,name=ModeAttrition] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /tellraw @a {"text":"Begin!","color":"green","bold":"true"}
+ /tellraw @a [{"text":"Every ","color":"yellow"},{"score":{"name":"RotationSeconds","objective":"gameSettings"},"color":"gold"},{"text":" seconds, the cubes making up the map will rotate.","color":"yellow"}]
+ /tellraw @a {"text":"The game can be won only by destroying the opposing team's glass tower, located behind their spawn.","color":"yellow"}
  >{"conditional":false}
  /execute @e[type=area_effect_cloud,name=StartGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
