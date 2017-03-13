@@ -58,20 +58,20 @@
 
 # GameType
 >{"type":"impulse-chain","markerTag":"modeBoth","auto":false,"conditional":false}
- /title @a actionbar [{"text":"The game can be won by","color":"dark_green"},{"text":" points ","color":"yellow","italic":"true"},{"text":"or by","color":"dark_green"},{"text":" elimination!","color":"red","italic":"true"}]
+ /title @a actionbar [{"text":"The game can be won by","color":"dark_green"},{"text":" Points","color":"yellow","italic":"true"},{"text":"!","color":"dark_green"}]
 >{"markerTag":"","conditional":true}
- /blockdata -1001 33 -992 {Text1:"[{\"text\":\"The game can be\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",Text2:"[{\"text\":\"won by...\"}]",Text4:"[{\"text\":\"Elimination/Time!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=modeTime] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -1001 33 -992 {Text1:"[{\"text\":\"The game can be\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",Text2:"[{\"text\":\"won by...\"}]",Text4:"[{\"text\":\"Points!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=modeTime] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set GameMode gameSettings 1
  /execute @e[type=minecraft:area_effect_cloud,tag=modeBoth] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"type":"impulse-chain","markerTag":"modeTime","auto":false,"conditional":false}
- /title @a actionbar [{"text":"The game can be won by","color":"dark_green"},{"text":" points ","color":"yellow","italic":"true"},{"text":"only!","color":"dark_green","italic":"false"}]
+ /title @a actionbar [{"text":"The game can be won by","color":"dark_green"},{"text":" Kills","color":"red","italic":"true"},{"text":"!","color":"dark_green"}]
 >{"markerTag":"","conditional":true}
- /blockdata -1001 33 -992 {Text1:"[{\"text\":\"The game can be\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",Text2:"[{\"text\":\"won by...\"}]",Text4:"[{\"text\":\"Time Only!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=modeElim] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -1001 33 -992 {Text1:"[{\"text\":\"The game can be\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",Text2:"[{\"text\":\"won by...\"}]",Text4:"[{\"text\":\"Deathmatch!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=modeElim] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set GameMode gameSettings 2
  /execute @e[type=minecraft:area_effect_cloud,tag=modeTime] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"type":"impulse-chain","markerTag":"modeElim","auto":false,"conditional":false}
- /title @a actionbar [{"text":"The game can be won by","color":"dark_green"},{"text":" elimination ","color":"red","italic":"true"},{"text":"only!","color":"dark_green","italic":"false"}]
+ /title @a actionbar [{"text":"The game cannot be played!","color":"dark_green"}]
 >{"markerTag":"","conditional":true}
- /blockdata -1001 33 -992 {Text1:"[{\"text\":\"The game can be\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",Text2:"[{\"text\":\"won by...\"}]",Text4:"[{\"text\":\"Elimination Only!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=modeBoth] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
+ /blockdata -1001 33 -992 {Text1:"[{\"text\":\"The game can be\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",Text2:"[{\"text\":\"won by...\"}]",Text4:"[{\"text\":\"no\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=minecraft:area_effect_cloud,tag=modeBoth] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}\"}}]"}
  /scoreboard players set GameMode gameSettings 3
  /execute @e[type=minecraft:area_effect_cloud,tag=modeElim] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}

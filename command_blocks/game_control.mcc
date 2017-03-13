@@ -23,18 +23,26 @@
  	execute @e[type=minecraft:area_effect_cloud,tag=cube,c=1] ~ ~ ~
  		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=red replace minecraft:air
  /scoreboard players set @a[score_brokeConcrete_min=1] brokeConcrete 0
- /execute @a[m=0,r=0] ~ ~ ~ detect ~ ~0.1 ~ minecraft:concrete -1 teleport @p[m=0,r=0] ~ ~0.3 ~ // Prevent players from falling into blocks
+ /execute @a[m=0,r=0] ~ ~ ~ detect ~ ~ ~ minecraft:concrete -1
+ 	teleport @p[m=0,r=0] ~ ~0.3 ~ // Prevent players from falling into blocks
  /tp @e[type=armor_stand,tag=display] ~ ~ ~ ~0.2 ~ // Rotate display armor stands
  // The following 6 lines constantly reset the spawn cubes to prevent them from being damaged
- /setblock 961 45 961 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:0,mode:"LOAD",posY:1,sizeX:27,posZ:0,integrity:1.0f,showair:0b,x:961,name:"spawn_red",y:45,z:961,id:"minecraft:structure_block",sizeY:7,sizeZ:27,showboundingbox:0b}
- /setblock 1030 47 1030 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-17,mode:"LOAD",posY:-1,sizeX:27,posZ:-17,integrity:1.0f,showair:0b,x:1030,name:"spawn_blue",y:47,z:1030,id:"minecraft:structure_block",sizeY:8,sizeZ:27,showboundingbox:0b}
- /setblock 961 46 961 minecraft:redstone_block
+ /setblock 970 47 970 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-2,mode:"LOAD",posY:-1,sizeX:20,posZ:-2,integrity:1.0f,showair:0b,name:"spawn_red",id:"minecraft:structure_block",sizeY:5,sizeZ:20,showboundingbox:0b}
+ /setblock 1030 47 1030 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-17,mode:"LOAD",posY:-1,sizeX:27,posZ:-17,integrity:1.0f,showair:0b,name:"spawn_blue",id:"minecraft:structure_block",sizeY:8,sizeZ:27,showboundingbox:0b}
+ /setblock 970 48 970 minecraft:redstone_block
  /setblock 1030 48 1030 minecraft:redstone_block
- /setblock 1030 47 1030 minecraft:air
- /setblock 961 45 961 minecraft:air
+ /setblock 1030 47 1030 minecraft:concrete color=gray
+ /setblock 970 47 970 minecraft:concrete color=gray
  /scoreboard teams join Spectators @a[x=-1000,y=31,z=-1000,r=50] // Handle players joining midgame
  /gamemode 3 @a[team=Spectators,x=-1000,y=31,z=-1000,r=50]
  /teleport @a[x=-1000,y=31,z=-1000,r=50] 1000 60 1000
- /give @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] minecraft:wooden_pickaxe 1 0 {Unbreakable:1b,ench:[{id:71,lvl:1}]} // Give respawning players thier items
+ /give @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] minecraft:wooden_pickaxe 1 0 {Unbreakable:1b,AttributeModifiers:[{AttributeName:"generic.attackDamage",Name:"generic.attackDamage",Amount:4,Operation:0,UUIDLeast:211354,UUIDMost:771025,Slot:"mainhand"},{AttributeName:"generic.attackSpeed",Name:"generic.attackSpeed",Amount:-0.5,Operation:1,UUIDLeast:445289,UUIDMost:45367,Slot:"mainhand"}],ench:[{id:71,lvl:1}]} // Give respawning players thier items
  /replaceitem entity @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] slot.armor.feet minecraft:iron_boots 1 0 {HideFlags:63,Unbreakable:1b,AttributeModifiers:[{AttributeName:"generic.knockbackResistance",Name:"generic.knockbackResistance",Amount:100,Operation:1,UUIDLeast:548037,UUIDMost:36657,Slot:"feet"}],display:{Name:"Spawn Boots",Lore:["Protects from knockback and damage.","Removed after 5 seconds."]},ench:[{id:0,lvl:100},{id:71,lvl:1}]}
- /clear @a[score_respawnTrack=100,score_respawnTrack_min=100,score_respawnTrack=100] minecraft:iron_boots 0 1 {Unbreakable:1b} // Remove spawn protection boots
+ /clear @a[score_respawnTrack_min=100] minecraft:iron_boots 0 1 {Unbreakable:1b}
+ /testfor @e[type=tnt] {Fuse:1s}
+>{"conditional":true}
+ /summon minecraft:area_effect_cloud ~ ~ ~ {Duration:20s,Tags:["tntDelay"]}
+>{"conditional":false}
+ /testfor @e[type=area_effect_cloud,tag=tntDelay] {Age:1}
+>{"conditional":true}
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube] ~ ~ ~ /clone ~-1002 ~-2 ~-1002 ~-998 ~2 ~-998 ~-2 ~-2 ~-2

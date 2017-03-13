@@ -1,4 +1,4 @@
-# ModePoints
+# ModeControl
 >{"type":"repeating-chain","conditional":false,"auto":false}
  /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube,score_blocksRed=9,score_blocksRed_min=9] pointTimerRed 1 // Controls points gained from cubes
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerRed=900,score_pointTimerRed_min=900] ~ ~ ~
@@ -29,9 +29,9 @@
  /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerRed=901,score_pointTimerRed_min=901] pointTimerRed 0
  /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerBlue=901,score_pointTimerBlue_min=901] pointTimerBlue 0
  /execute @a[team=Red,score_Kills_min=1] ~ ~ ~ // Give points when a player gets a kill
- 	/scoreboard players add Red Points 2
+ 	scoreboard players add Red Points 2
  /execute @a[team=Blue,score_Kills_min=1] ~ ~ ~
- 	/scoreboard players add Blue Points 2
+ 	scoreboard players add Blue Points 2
  /scoreboard players set @a Kills 0
  /scoreboard players operation Red Points -= @a[team=Red] Deaths // Remove a point when a player dies
  /scoreboard players operation Blue Points -= @a[team=Blue] Deaths

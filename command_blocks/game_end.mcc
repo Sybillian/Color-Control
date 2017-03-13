@@ -1,56 +1,57 @@
 # PointCalc
->{"type":"repeating-chain","conditional":false,"auto":false}
- /scoreboard players remove Red calcPoints 1
- /scoreboard players remove Blue calcPoints 1
- /scoreboard players test Red calcPoints 1 // Test for red victory
->{"conditional":true}
- /scoreboard players test Blue calcPoints * 0
- /execute @e[type=minecraft:area_effect_cloud,name=RedWinTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=minecraft:area_effect_cloud,name=EndGameA] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
->{"conditional":false}
- /scoreboard players test Blue calcPoints 1 // Test for blue victory
->{"conditional":true}
- /scoreboard players test Red calcPoints * 0
- /execute @e[type=minecraft:area_effect_cloud,name=BlueWinTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=minecraft:area_effect_cloud,name=EndGameA] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
->{"conditional":false}
- /scoreboard players test Blue calcPoints 0 0 // Test for tie
->{"conditional":true}
- /scoreboard players test Red calcPoints 0 0
- /execute @e[type=minecraft:area_effect_cloud,name=DrawTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=minecraft:area_effect_cloud,name=EndGameA] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
->{"conditional":false}
-
-# RedWinPoints
 >{"type":"impulse-chain","conditional":false,"auto":false}
+ /scoreboard players operation @e[type=area_effect_cloud,tag=storage,name=Red] calcPoints = Red Points
+ /scoreboard players operation @e[type=area_effect_cloud,tag=storage,name=Blue] calcPoints = Blue Points
+ /scoreboard players operation Winner calcPoints > @e[type=area_effect_cloud,tag=storage] calcPoints
+ /scoreboard players operation @e[type=area_effect_cloud,tag=storage] calcPoints -= Winner calcPoints
+ /execute @e[type=area_effect_cloud,tag=storage,name=Red,score_calcPoints=0,score_calcPoints_min=0] ~ ~ ~
+ 	execute @e[type=area_effect_cloud,tag=RedWinPoints] ~ ~ ~
+ 		blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=area_effect_cloud,tag=storage,name=Blue,score_calcPoints=0,score_calcPoints_min=0] ~ ~ ~
+ 	execute @e[type=area_effect_cloud,tag=BlueWinPoints] ~ ~ ~
+ 		blockdata ~ ~ ~ {auto:1b}
+ /scoreboard players reset * calcPoints
+ /execute @e[type=area_effect_cloud,name=PointCalc] ~1 ~ ~ blockdata ~ ~ ~ {auto:0b}
+>{"type":"impulse-chain","auto":false,"markerTag":"RedWinPoints"}
  /tellraw @a {"text":"Red team wins!","color":"red","bold":"true"}
+>{"markerTag":""}
  /tellraw @a [{"text":"Red Points","color":"red"},{"text":" | ","color":"white"},{"score":{"name":"Red","objective":"Points"},"color":"green"}]
  /tellraw @a [{"text":"Blue Points","color":"blue"},{"text":" | ","color":"white"},{"score":{"name":"Blue","objective":"Points"},"color":"yellow"}]
- /execute @e[type=minecraft:area_effect_cloud,name=EndGameB] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=minecraft:area_effect_cloud,name=RedWinTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
-
-# BlueWinPoints
->{"type":"impulse-chain","conditional":false,"auto":false}
+ /execute @e[type=minecraft:area_effect_cloud,tag=EndCleanup] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=RedWinPoints] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+>{"type":"impulse-chain","auto":false,"markerTag":"BlueWinPoints"}
  /tellraw @a {"text":"Blue team wins!","color":"blue","bold":"true"}
+>{"markerTag":""}
  /tellraw @a [{"text":"Blue Points","color":"blue"},{"text":" | ","color":"white"},{"score":{"name":"Blue","objective":"Points"},"color":"green"}]
  /tellraw @a [{"text":"Red Points","color":"red"},{"text":" | ","color":"white"},{"score":{"name":"Red","objective":"Points"},"color":"yellow"}]
- /execute @e[type=minecraft:area_effect_cloud,name=EndGameB] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=minecraft:area_effect_cloud,name=BlueWinTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
-
-# DrawPoints
->{"type":"impulse-chain","conditional":false,"auto":false}
+ /execute @e[type=minecraft:area_effect_cloud,tag=EndCleanup] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=BlueWinPoints] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+>{"type":"impulse-chain","auto":false,"markerTag":"DrawPoints"}
  /tellraw @a {"text":"The game has ended in a draw!","color":"yellow","bold":"true"}
+>{"markerTag":""}
  /tellraw @a [{"text":"Red Points","color":"red"},{"text":" | ","color":"white"},{"score":{"name":"Red","objective":"Points"},"color":"yellow"}]
  /tellraw @a [{"text":"Blue Points","color":"blue"},{"text":" | ","color":"white"},{"score":{"name":"Blue","objective":"Points"},"color":"yellow"}]
- /execute @e[type=minecraft:area_effect_cloud,name=EndGameB] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=minecraft:area_effect_cloud,name=DrawTime] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
-
-# EndCleanup
->{"type":"impulse-chain","conditional":false,"auto":false}
+ /execute @e[type=minecraft:area_effect_cloud,tag=EndCleanup] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=DrawPoints] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+>{"type":"impulse-chain","auto":false,"markerTag":"BlueWinDM"}
+ /tellraw @a {"text":"Blue team wins!","color":"blue","bold":"true"}
+>{"markerTag":""}
+ /tellraw @a [{"text":"Blue Points","color":"blue"},{"text":" | ","color":"white"},{"score":{"name":"Blue","objective":"Points"},"color":"green"}]
+ /tellraw @a [{"text":"Game Length:","color":"blue"},{"text":" | ","color":"white"},{"text":"Not yet functional","color":"dark_red"}]
+ /execute @e[type=minecraft:area_effect_cloud,tag=EndCleanup] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=BlueWinDM] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+>{"type":"impulse-chain","auto":false,"markerTag":"RedWinDM"}
+ /tellraw @a {"text":"Red team wins!","color":"red","bold":"true"}
+>{"markerTag":""}
+ /tellraw @a [{"text":"Red Points","color":"red"},{"text":" | ","color":"white"},{"score":{"name":"Red","objective":"Points"},"color":"green"}]
+ /tellraw @a [{"text":"Game Length:","color":"red"},{"text":" | ","color":"white"},{"text":"Not yet functional","color":"dark_red"}]
+ /execute @e[type=minecraft:area_effect_cloud,tag=EndCleanup] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=RedWinDM] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+>{"type":"impulse-chain","auto":false,"markerTag":"EndCleanup"}
  /clear @a
+>{"markerTag":""}
  /tp @a -1000 31 -1000
  /worldborder set 10000
- /effect @a clear
  /spawnpoint @a -1000 31 -1000
  /scoreboard teams leave * Red
  /scoreboard teams leave * Blue
@@ -65,4 +66,4 @@
  /scoreboard players set TeamsReady gameSettings 0
  /scoreboard players set TimePassed gameSettings -1
  /xp -1000L @a
- /execute @e[type=minecraft:area_effect_cloud,name=EndGameB] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=EndCleanup] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}

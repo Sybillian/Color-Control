@@ -6,7 +6,9 @@
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerRed=900,score_pointTimerRed_min=900] ~ ~ ~
  	scoreboard players add Red Points 1
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerRed=900,score_pointTimerRed_min=900] ~ ~3 ~
- 	summon minecraft:area_effect_cloud ~ ~1.1 ~ {Tags:["PointDisplayRed"],CustomName:"+1 Points!",Duration:100000}
+ 	summon minecraft:area_effect_cloud ~ ~1.1 ~ {Tags:["PointDisplayRed"],CustomName:"+1 Points!",Duration:100000,Radius:0.5,Particle:happyVillager}
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerRed=900,score_pointTimerRed_min=900] ~ ~3 ~
+ 	playsound minecraft:entity.player.levelup master @a ~ ~ ~ 1 1.5
  /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=PointDisplayRed] age 1
  /execute @e[type=minecraft:area_effect_cloud,tag=PointDisplayRed] ~ ~ ~
  	teleport @e[type=minecraft:area_effect_cloud,tag=PointDisplayRed,r=0,score_age=40] ~ ~0.03 ~
@@ -19,7 +21,9 @@
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerBlue=900,score_pointTimerBlue_min=900] ~ ~ ~
  	scoreboard players add Blue Points 1
  /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerBlue=900,score_pointTimerBlue_min=900] ~ ~3 ~
- 	summon minecraft:area_effect_cloud ~ ~1.1 ~ {Tags:["PointDisplayBlue"],CustomName:"+1 Points!",Duration:100000}
+ 	summon minecraft:area_effect_cloud ~ ~1.1 ~ {Tags:["PointDisplayBlue"],CustomName:"+1 Points!",Duration:100000,Radius:0.5,Particle:happyVillager}
+ /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerBlue=900,score_pointTimerBlue_min=900] ~ ~3 ~
+ 	playsound minecraft:entity.player.levelup master @a ~ ~ ~ 1 1.5
  /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=PointDisplayBlue] age 1
  /execute @e[type=minecraft:area_effect_cloud,tag=PointDisplayBlue] ~ ~ ~
  	teleport @e[type=minecraft:area_effect_cloud,tag=PointDisplayBlue,r=0,score_age=40] ~ ~0.03 ~
@@ -31,9 +35,9 @@
  /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerRed=901,score_pointTimerRed_min=901] pointTimerRed 0
  /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerBlue=901,score_pointTimerBlue_min=901] pointTimerBlue 0
  /execute @a[team=Red,score_Kills_min=1] ~ ~ ~ // Give points when a player gets a kill
- 	/scoreboard players add Red Points 2
+ 	scoreboard players add Red Points 2
  /execute @a[team=Blue,score_Kills_min=1] ~ ~ ~
- 	/scoreboard players add Blue Points 2
+ 	scoreboard players add Blue Points 2
  /scoreboard players set @a Kills 0
  /scoreboard players operation Red Points -= @a[team=Red] Deaths // Remove a point when a player dies
  /scoreboard players operation Blue Points -= @a[team=Blue] Deaths
@@ -97,16 +101,13 @@
 >{"conditional":false}
  /scoreboard players test TimePassed gameSettings 0 0
 >{"conditional":true}
- /setblock 960 45 961 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:0,mode:"LOAD",posY:1,sizeX:80,posZ:0,integrity:1.0f,showair:0b,x:960,name:"map_standard",y:45,z:961,id:"minecraft:structure_block",sizeY:7,sizeZ:79,showboundingbox:0b}
- /setblock 960 46 961 minecraft:redstone_block 0 replace
- /fill 960 45 961 960 45 961 minecraft:air 0 replace
- /setblock 961 52 961 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:0,mode:"LOAD",posY:1,sizeX:32,posZ:0,integrity:1.0f,showair:0b,x:961,name:"emptyair",y:52,z:961,id:"minecraft:structure_block",sizeY:13,sizeZ:32,showboundingbox:1b}
- /setblock 961 53 961 minecraft:redstone_block 0 replace
- /fill 961 52 961 961 52 961 minecraft:air 0 replace
+ /setblock 957 51 957 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-32,mode:"LOAD",posY:-11,sizeX:32,posZ:-32,integrity:1.0f,showair:0b,name:"map_standard",id:"minecraft:structure_block",sizeY:32,sizeZ:32,showboundingbox:0b}
+ /setblock 957 52 957 minecraft:redstone_block 0 replace
  /summon minecraft:item 961 52 961 {Item:{id:"minecraft:stone",Count:1b}}
  /summon minecraft:arrow 961 52 961
  /kill @e[type=minecraft:item]
  /kill @e[type=minecraft:arrow]
+ /effect @a clear
  /teleport @a 0 51 0
  /scoreboard players operation Red calcPoints = Red Points
  /scoreboard players operation Blue calcPoints = Blue Points

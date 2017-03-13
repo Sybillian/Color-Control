@@ -11,6 +11,11 @@ Text4:"[{\"text\":\"Sybillian!\",\"color\":\"green\",\"clickEvent\":{\"action\":
 // Beta Testers
 
 
+// Other Helpers
+/blockdata ~ ~1 ~ {Text1:"[{\"text\":\"Click here to\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",
+Text2:"[{\"text\":\"learn about...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p {\\\"text\\\":\\\"Other Helpers\\\",\\\"color\\\":\\\"green\\\",\\\"bold\\\":\\\"true\\\"}\"}}]",
+Text4:"[{\"text\":\"Other Helpers!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p [{\\\"text\\\":\\\"MonkeyNinja01\\\",\\\"color\\\":\\\"blue\\\"},{\\\"text\\\":\\\" - \\\",\\\"color\\\":\\\"white\\\"},{\\\"text\\\":\\\"Deathmatch Gamemode\\\",\\\"color\\\":\\\"green\\\"}]\"}}]"}
+
 // Tutorial: Cubes
 /blockdata ~ ~1 ~ {Text1:"[{\"text\":\"Click here to\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",
 Text2:"[{\"text\":\"learn about...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p {\\\"text\\\":\\\"Cubes, How Do They Work?\\\",\\\"color\\\":\\\"green\\\",\\\"bold\\\":\\\"true\\\"}\"}}]",
@@ -30,3 +35,4 @@ Text4:"[{\"text\":\"Winning the Game\",\"color\":\"green\",\"clickEvent\":{\"act
 /blockdata ~ ~1 ~ {Text1:"[{\"text\":\"Click here to...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",
 Text3:"[{\"text\":\"Clear and\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/scoreboard players tag @p add ran\"}}]",
 Text4:"[{\"text\":\"Randomize Teams\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p [\\\"\\\",{\\\"text\\\":\\\"This will remove everyone from their teams. \\\",\\\"color\\\":\\\"red\\\"},{\\\"text\\\":\\\"[Randomize]\\\",\\\"color\\\":\\\"white\\\",\\\"clickEvent\\\":{\\\"action\\\":\\\"run_command\\\",\\\"value\\\":\\\"/execute @e[tag=oc_marker,name=RanCheck] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1b}\\\"},\\\"hoverEvent\\\":{\\\"action\\\":\\\"show_text\\\",\\\"value\\\":{\\\"text\\\":\\\"\\\",\\\"extra\\\":[{\\\"text\\\":\\\"Click me to confirm!\\\",\\\"color\\\":\\\"white\\\"}]}}}]\"}}]"}
+

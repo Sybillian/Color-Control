@@ -25,12 +25,13 @@
  /scoreboard players test TimePassed gameSettings * 0
 >{"conditional":true}
  /scoreboard teams join Spectators @a[x=1000,y=51,z=1000,r=100,tag=!op]
- /scoreboard teams leave @a[x=1000,y=51,z=1000,r=100]
- /teleport @a[x=1000,y=51,z=1000,r=100] -1000 31 -1000
+ /scoreboard teams leave @a[x=1000,y=51,z=1000,r=100,tag=!op]
+ /teleport @a[team=Spectators,x=1000,y=51,z=1000,r=100,tag=!op] 0 51 0
+ /teleport @a[team=Spectators,x=0,y=51,z=0,r=100,tag=!op] -1000 31 -1000
 >{"conditional":false}
  /teleport @a[tag=!joined] -1000 31 -1000
  /spawnpoint @a[tag=!joined] -1000 31 -1000
- /tellraw @a[tag=!joined] {"text":"Welcome to Color Control!"}
+ /tellraw @a[tag=!joined] [{"text":"Welcome to ","color":"yellow"},{"text":"Color","color":"red","bold":"true"},{"text":" Control","color":"blue","bold":"true"},{"text":", a minigame by ","color":"yellow","bold":"false"},{"text":"Sybillian!","color":"green"}]
  /gamemode 2 @a[tag=!joined]
  /scoreboard players tag @a[tag=!joined] add joined
  /scoreboard players test TeamsReady gameSettings 0 0
