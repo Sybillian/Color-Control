@@ -1,0 +1,138 @@
+/*
+ testfor player having placed gold
+ set nearest AEC's goldProcess to 1
+ if AEC has goldPresent:
+ 	remove gold block with /fill destroy
+ 	set placer's goldPlace to 0
+
+ if blocksRed and blockBlue=0:
+ 	tag AEC as goldCapture
+ 	remove gold block
+ 	fill side with placer's color
+ 	set placer's goldPlace to 0
+ 	remove tag goldCapture
+ if blocksRed or blocksBlue=9:
+ 	tag AEC as goldUpgrade
+ 	remove gold block
+ 	add gold block to top center of cube
+ 	remove tag goldUpgrade
+ 	add tag goldPresent
+ */
+// 8 9 11 12 13 18
+/execute @e[type=area_effect_cloud,tag=goldPresent] ~ ~ ~ 
+	fill ~3 ~3 ~3 ~-3 ~3 ~-3 minecraft:air 0 replace minecraft:gold_block//up
+>{"conditional":true}
+/execute @e[type=area_effect_cloud,tag=goldPresent] ~ ~ ~ 
+	give @a[score_goldPlace_min=1] minecraft:gold_block
+>{"conditional":false}
+/execute @e[type=area_effect_cloud,tag=goldPresent] ~ ~ ~ 
+	fill ~3 ~-3 ~3 ~-3 ~-3 ~-3 minecraft:air 0 replace minecraft:gold_block//down
+>{"conditional":true}
+/execute @e[type=area_effect_cloud,tag=goldPresent] ~ ~ ~ 
+	give @a[score_goldPlace_min=1] minecraft:gold_block
+>{"conditional":false}
+/execute @e[type=area_effect_cloud,tag=goldPresent] ~ ~ ~ 
+	fill ~-3 ~3 ~-3 ~-3 ~-3 ~-3 minecraft:air 0 replace minecraft:gold_block//-xz
+>{"conditional":true}
+/execute @e[type=area_effect_cloud,tag=goldPresent] ~ ~ ~ 
+	give @a[score_goldPlace_min=1] minecraft:gold_block
+>{"conditional":false}
+/execute @e[type=area_effect_cloud,tag=goldPresent] ~ ~ ~ 
+	fill ~3 ~3 ~3 ~3 ~-3 ~3 minecraft:air 0 replace minecraft:gold_block//+xz
+>{"conditional":true}
+/execute @e[type=area_effect_cloud,tag=goldPresent] ~ ~ ~ 
+	give @a[score_goldPlace_min=1] minecraft:gold_block
+>{"conditional":false}
+/execute @e[type=area_effect_cloud,tag=goldPresent] ~ ~ ~ 
+	fill ~-3 ~3 ~3 ~-3 ~-3 ~3 minecraft:air 0 replace minecraft:gold_block//-x +z
+>{"conditional":true}
+/execute @e[type=area_effect_cloud,tag=goldPresent] ~ ~ ~ 
+	give @a[score_goldPlace_min=1] minecraft:gold_block
+>{"conditional":false}
+/execute @e[type=area_effect_cloud,tag=goldPresent] ~ ~ ~ 
+	fill ~3 ~3 ~3 ~3 ~-3 ~-3 minecraft:air 0 replace minecraft:gold_block//+x -z
+>{"conditional":true}
+/execute @e[type=area_effect_cloud,tag=goldPresent] ~ ~ ~ 
+	give @a[score_goldPlace_min=1] minecraft:gold_block
+>{"conditional":false}
+
+/execute @e[type=area_effect_cloud,tag=cube] ~ ~ ~
+	detect ~ ~2 ~ minecraft:concrete *
+		scoreboard players tag @e[type=area_effect_cloud,tag=cube,c=1] remove goldPresent
+/execute @e[type=area_effect_cloud,tag=cube] ~ ~ ~
+	detect ~ ~2 ~ minecraft:gold_block *
+		scoreboard players tag @e[type=area_effect_cloud,tag=cube,c=1] add goldPresent
+
+/execute @a[score_goldPlace_min=1,team=Red] ~ ~ ~
+	scoreboard players set @e[type=area_effect_cloud,tag=cube,c=1] goldProcess 1
+/execute @a[score_goldPlace_min=1,team=Blue] ~ ~ ~
+	scoreboard players set @e[type=area_effect_cloud,tag=cube,c=1] goldProcess 2
+
+/execute @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=1,tag=goldPresent] ~ ~ ~
+	fill ~3 ~3 ~3 ~-3 ~3 ~-3 minecraft:air 0 replace minecraft:gold_block
+>{"conditional":true}
+/execute @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=1,tag=goldPresent] ~ ~ ~
+	give @p[score_goldPlace_min=1] minecraft:gold_block
+/scoreboard players set @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=1,tag=goldPresent] goldProcess 0
+>{"conditional":false}
+
+/execute @e[type=area_effect_cloud,score_goldProcess=1,score_goldProcess_min=1,tag=!goldPresent,score_blocksRed=0] ~ ~ ~ 
+	fill ~3 ~3 ~3 ~-3 ~3 ~-3 minecraft:air 0 replace minecraft:gold_block//up
+/execute @e[type=area_effect_cloud,score_goldProcess=1,score_goldProcess_min=1,tag=!goldPresent,score_blocksRed=0] ~ ~ ~ 
+	fill ~3 ~-3 ~3 ~-3 ~-3 ~-3 minecraft:air 0 replace minecraft:gold_block//down
+/execute @e[type=area_effect_cloud,score_goldProcess=1,score_goldProcess_min=1,tag=!goldPresent,score_blocksRed=0] ~ ~ ~ 
+	fill ~-3 ~3 ~-3 ~-3 ~-3 ~-3 minecraft:air 0 replace minecraft:gold_block//-xz
+/execute @e[type=area_effect_cloud,score_goldProcess=1,score_goldProcess_min=1,tag=!goldPresent,score_blocksRed=0] ~ ~ ~ 
+	fill ~3 ~3 ~3 ~3 ~-3 ~3 minecraft:air 0 replace minecraft:gold_block//+xz
+/execute @e[type=area_effect_cloud,score_goldProcess=1,score_goldProcess_min=1,tag=!goldPresent,score_blocksRed=0] ~ ~ ~ 
+	fill ~-3 ~3 ~3 ~-3 ~-3 ~3 minecraft:air 0 replace minecraft:gold_block//-x +z
+/execute @e[type=area_effect_cloud,score_goldProcess=1,score_goldProcess_min=1,tag=!goldPresent,score_blocksRed=0] ~ ~ ~ 
+	fill ~3 ~3 ~3 ~3 ~-3 ~-3 minecraft:air 0 replace minecraft:gold_block//+x -z
+/execute @e[type=area_effect_cloud,score_goldProcess=1,score_goldProcess_min=1,tag=!goldPresent,score_blocksRed=0] ~ ~ ~
+	fill ~-1 ~2 ~-1 ~1 ~2 ~1 minecraft:concrete color=red
+>{"conditional":true}
+/scoreboard players set @e[type=area_effect_cloud,score_goldProcess=1,score_goldProcess_min=1,tag=!goldPresent,score_blocksRed=0] goldProcess 0
+>{"conditional":false}
+
+/execute @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=2,tag=!goldPresent,score_blocksBlue=0] ~ ~ ~ 
+	fill ~3 ~3 ~3 ~-3 ~3 ~-3 minecraft:air 0 replace minecraft:gold_block//up
+/execute @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=2,tag=!goldPresent,score_blocksBlue=0] ~ ~ ~ 
+	fill ~3 ~-3 ~3 ~-3 ~-3 ~-3 minecraft:air 0 replace minecraft:gold_block//down
+/execute @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=2,tag=!goldPresent,score_blocksBlue=0] ~ ~ ~ 
+	fill ~-3 ~3 ~-3 ~-3 ~-3 ~-3 minecraft:air 0 replace minecraft:gold_block//-xz
+/execute @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=2,tag=!goldPresent,score_blocksBlue=0] ~ ~ ~ 
+	fill ~3 ~3 ~3 ~3 ~-3 ~3 minecraft:air 0 replace minecraft:gold_block//+xz
+/execute @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=2,tag=!goldPresent,score_blocksBlue=0] ~ ~ ~ 
+	fill ~-3 ~3 ~3 ~-3 ~-3 ~3 minecraft:air 0 replace minecraft:gold_block//-x +z
+/execute @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=2,tag=!goldPresent,score_blocksBlue=0] ~ ~ ~ 
+	fill ~3 ~3 ~3 ~3 ~-3 ~-3 minecraft:air 0 replace minecraft:gold_block//+x -z
+/execute @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=2,tag=!goldPresent,score_blocksBlue=0] ~ ~ ~
+	fill ~-1 ~2 ~-1 ~1 ~2 ~1 minecraft:concrete color=blue
+>{"conditional":true}
+/scoreboard players set @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=2,tag=!goldPresent,score_blocksBlue=0] goldProcess 0
+>{"conditional":false}
+
+/scoreboard players tag @e[type=area_effect_cloud,score_goldProcess=1,score_goldProcess_min=1,tag=!goldPresent,score_blocksRed=9] add goldUpgrade
+>{"conditional":true}
+/execute @e[type=area_effect_cloud,score_goldProcess=1,score_goldProcess_min=1,tag=goldUpgrade] ~ ~ ~
+	fill ~3 ~3 ~3 ~-3 ~-3 ~-3 minecraft:air 0 replace minecraft:gold_block
+/execute @e[type=area_effect_cloud,score_goldProcess=1,score_goldProcess_min=1,tag=goldUpgrade] ~ ~ ~
+	setblock ~ ~2 ~ minecraft:gold_block
+>{"conditional":false}
+/scoreboard players tag @e[type=area_effect_cloud,score_goldProcess=1,score_goldProcess_min=1,tag=goldUpgrade,score_blocksRed=9] add goldPresent
+/scoreboard players tag @e[type=area_effect_cloud,score_goldProcess=1,score_goldProcess_min=1,tag=goldUpgrade,score_blocksRed=9] remove goldUpgrade
+
+/scoreboard players tag @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=2,tag=!goldPresent,score_blocksBlue=9] add goldUpgrade
+>{"conditional":true}
+/execute @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=2,tag=goldUpgrade] ~ ~ ~
+	fill ~3 ~3 ~3 ~-3 ~-3 ~-3 minecraft:air 0 replace minecraft:gold_block
+/execute @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=2,tag=goldUpgrade] ~ ~ ~
+	setblock ~ ~2 ~ minecraft:gold_block
+>{"conditional":false}
+/scoreboard players tag @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=2,tag=goldUpgrade,score_blocksBlue=9] add goldPresent
+/scoreboard players tag @e[type=area_effect_cloud,score_goldProcess=2,score_goldProcess_min=2,tag=goldUpgrade,score_blocksBlue=9] remove goldUpgrade
+/scoreboard players set @a[score_goldPlace_min=1] goldPlace 0
+
+/execute @e[tag=goldPresent] ~ ~ ~
+	detect ~ ~2 ~ minecraft:air
+		setblock ~ ~2 ~ minecraft:gold_block

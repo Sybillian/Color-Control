@@ -14,7 +14,7 @@ Text4:"[{\"text\":\"Sybillian!\",\"color\":\"green\",\"clickEvent\":{\"action\":
 // Other Helpers
 /blockdata ~ ~1 ~ {Text1:"[{\"text\":\"Click here to\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",
 Text2:"[{\"text\":\"learn about...\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p {\\\"text\\\":\\\"Other Helpers\\\",\\\"color\\\":\\\"green\\\",\\\"bold\\\":\\\"true\\\"}\"}}]",
-Text4:"[{\"text\":\"Other Helpers!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p [{\\\"text\\\":\\\"MonkeyNinja01\\\",\\\"color\\\":\\\"blue\\\"},{\\\"text\\\":\\\" - \\\",\\\"color\\\":\\\"white\\\"},{\\\"text\\\":\\\"Deathmatch Gamemode\\\",\\\"color\\\":\\\"green\\\"}]\"}}]"}
+Text4:"[{\"text\":\"Other Helpers!\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p [{\\\"text\\\":\\\"MonkeyNinja01\\\",\\\"color\\\":\\\"blue\\\"},{\\\"text\\\":\\\" - \\\",\\\"color\\\":\\\"white\\\"},{\\\"text\\\":\\\"Deathmatch Gamemode Inspiration\\\",\\\"color\\\":\\\"green\\\"}]\"}}]"}
 
 // Tutorial: Cubes
 /blockdata ~ ~1 ~ {Text1:"[{\"text\":\"Click here to\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/playsound minecraft:ui.button.click block @p ~ ~ ~ 1 1\"}}]",
@@ -36,3 +36,8 @@ Text4:"[{\"text\":\"Winning the Game\",\"color\":\"green\",\"clickEvent\":{\"act
 Text3:"[{\"text\":\"Clear and\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/scoreboard players tag @p add ran\"}}]",
 Text4:"[{\"text\":\"Randomize Teams\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/tellraw @p [\\\"\\\",{\\\"text\\\":\\\"This will remove everyone from their teams. \\\",\\\"color\\\":\\\"red\\\"},{\\\"text\\\":\\\"[Randomize]\\\",\\\"color\\\":\\\"white\\\",\\\"clickEvent\\\":{\\\"action\\\":\\\"run_command\\\",\\\"value\\\":\\\"/execute @e[tag=oc_marker,name=RanCheck] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1b}\\\"},\\\"hoverEvent\\\":{\\\"action\\\":\\\"show_text\\\",\\\"value\\\":{\\\"text\\\":\\\"\\\",\\\"extra\\\":[{\\\"text\\\":\\\"Click me to confirm!\\\",\\\"color\\\":\\\"white\\\"}]}}}]\"}}]"}
 
+
+
+/playsound minecraft:entity.slime.attack block @p ~ ~ ~ 1 1.5
+ /tellraw @p {"text":"Alpha Testers","color":"green","bold":"true"}
+ /tellraw @p [{"text":"rolo_","color":"blue"},{"text":" | ","color":"white"},{"text":"Burn_E99","color":"blue"},{"text":" | ","color":"white"},{"text":"MonkeyNinja01","color":"blue"},{"text":" | ","color":"white"},{"text":"ZeviVoid","color":"blue"},{"text":" | ","color":"white"},{"text":"MasterVio","color":"blue"},{"text":" | ","color":"white"},{"text":"_Pande_","color":"blue"},{"text":" | ","color":"white"},{"text":"20JPorter","color":"blue"},{"text":" | ","color":"white"},{"text":"scorpionwarrior","color":"blue"},{"text":" | ","color":"white"},{"text":"danified","color":"blue"},{"text":" | ","color":"white"},{"text":"Soul_Blade_Aegis","color":"blue"},{"text":" | ","color":"white"},{"text":"Funnygymb","color":"blue"},{"text":" | ","color":"white"},{"text":"DauntlessFive513","color":"blue"},{"text":" | ","color":"white"},{"text":"DefendPopPunk","color":"blue"}]

@@ -2,38 +2,38 @@
 
 # ModePoints
 >{"type":"repeating-chain","conditional":false,"auto":false}
- /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube,score_blocksRed=9,score_blocksRed_min=9] pointTimerRed 1 // Controls points gained from cubes
- /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerRed=900,score_pointTimerRed_min=900] ~ ~ ~
+ /scoreboard players add @e[type=area_effect_cloud,tag=cube,score_blocksRed=9,score_blocksRed_min=9] pointTimerRed 1 // Controls points gained from cubes
+ /execute @e[type=area_effect_cloud,tag=cube,score_pointTimerRed=900,score_pointTimerRed_min=900] ~ ~ ~
  	scoreboard players add Red Points 1
- /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerRed=900,score_pointTimerRed_min=900] ~ ~3 ~
+ /execute @e[type=area_effect_cloud,tag=cube,score_pointTimerRed=900,score_pointTimerRed_min=900] ~ ~3 ~
  	summon minecraft:area_effect_cloud ~ ~1.1 ~ {Tags:["PointDisplayRed"],CustomName:"+1 Points!",Duration:100000,Radius:0.5,Particle:happyVillager}
- /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerRed=900,score_pointTimerRed_min=900] ~ ~3 ~
+ /execute @e[type=area_effect_cloud,tag=cube,score_pointTimerRed=900,score_pointTimerRed_min=900] ~ ~3 ~
  	playsound minecraft:entity.player.levelup master @a ~ ~ ~ 1 1.5
- /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=PointDisplayRed] age 1
- /execute @e[type=minecraft:area_effect_cloud,tag=PointDisplayRed] ~ ~ ~
- 	teleport @e[type=minecraft:area_effect_cloud,tag=PointDisplayRed,r=0,score_age=40] ~ ~0.03 ~
- /tp @e[type=minecraft:area_effect_cloud,tag=PointDisplayRed,score_age_min=60] ~ ~-100 ~
+ /scoreboard players add @e[type=area_effect_cloud,tag=PointDisplayRed] age 1
+ /execute @e[type=area_effect_cloud,tag=PointDisplayRed] ~ ~ ~
+ 	teleport @e[type=area_effect_cloud,tag=PointDisplayRed,r=0,score_age=40] ~ ~0.03 ~
+ /tp @e[type=area_effect_cloud,tag=PointDisplayRed,score_age_min=60] ~ ~-100 ~
  /entitydata @e[tag=PointDisplayRed] {Air:1b} // Required to make the AEC visually update
  /entitydata @e[tag=PointDisplayRed] {Air:0b}
  /entitydata @e[tag=PointDisplayRed] {CustomNameVisible:1b} // Must be after team assignment to avoid color flicker
  /scoreboard teams join R_Display @e[tag=PointDisplayRed]
- /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=cube,score_blocksBlue=9,score_blocksBlue_min=9] pointTimerBlue 1
- /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerBlue=900,score_pointTimerBlue_min=900] ~ ~ ~
+ /scoreboard players add @e[type=area_effect_cloud,tag=cube,score_blocksBlue=9,score_blocksBlue_min=9] pointTimerBlue 1
+ /execute @e[type=area_effect_cloud,tag=cube,score_pointTimerBlue=900,score_pointTimerBlue_min=900] ~ ~ ~
  	scoreboard players add Blue Points 1
- /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerBlue=900,score_pointTimerBlue_min=900] ~ ~3 ~
+ /execute @e[type=area_effect_cloud,tag=cube,score_pointTimerBlue=900,score_pointTimerBlue_min=900] ~ ~3 ~
  	summon minecraft:area_effect_cloud ~ ~1.1 ~ {Tags:["PointDisplayBlue"],CustomName:"+1 Points!",Duration:100000,Radius:0.5,Particle:happyVillager}
- /execute @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerBlue=900,score_pointTimerBlue_min=900] ~ ~3 ~
+ /execute @e[type=area_effect_cloud,tag=cube,score_pointTimerBlue=900,score_pointTimerBlue_min=900] ~ ~3 ~
  	playsound minecraft:entity.player.levelup master @a ~ ~ ~ 1 1.5
- /scoreboard players add @e[type=minecraft:area_effect_cloud,tag=PointDisplayBlue] age 1
- /execute @e[type=minecraft:area_effect_cloud,tag=PointDisplayBlue] ~ ~ ~
- 	teleport @e[type=minecraft:area_effect_cloud,tag=PointDisplayBlue,r=0,score_age=40] ~ ~0.03 ~
- /tp @e[type=minecraft:area_effect_cloud,tag=PointDisplayBlue,score_age_min=60] ~ ~-100 ~
+ /scoreboard players add @e[type=area_effect_cloud,tag=PointDisplayBlue] age 1
+ /execute @e[type=area_effect_cloud,tag=PointDisplayBlue] ~ ~ ~
+ 	teleport @e[type=area_effect_cloud,tag=PointDisplayBlue,r=0,score_age=40] ~ ~0.03 ~
+ /tp @e[type=area_effect_cloud,tag=PointDisplayBlue,score_age_min=60] ~ ~-100 ~
  /entitydata @e[tag=PointDisplayBlue] {Air:1b}
  /entitydata @e[tag=PointDisplayBlue] {Air:0b}
  /entitydata @e[tag=PointDisplayBlue] {CustomNameVisible:1b}
  /scoreboard teams join B_Display @e[tag=PointDisplayBlue]
- /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerRed=901,score_pointTimerRed_min=901] pointTimerRed 0
- /scoreboard players set @e[type=minecraft:area_effect_cloud,tag=cube,score_pointTimerBlue=901,score_pointTimerBlue_min=901] pointTimerBlue 0
+ /scoreboard players set @e[type=area_effect_cloud,tag=cube,score_pointTimerRed=900,score_pointTimerRed_min=900] pointTimerRed 0
+ /scoreboard players set @e[type=area_effect_cloud,tag=cube,score_pointTimerBlue=900,score_pointTimerBlue_min=900] pointTimerBlue 0
  /execute @a[team=Red,score_Kills_min=1] ~ ~ ~ // Give points when a player gets a kill
  	scoreboard players add Red Points 2
  /execute @a[team=Blue,score_Kills_min=1] ~ ~ ~
@@ -105,13 +105,13 @@
  /setblock 957 52 957 minecraft:redstone_block 0 replace
  /summon minecraft:item 961 52 961 {Item:{id:"minecraft:stone",Count:1b}}
  /summon minecraft:arrow 961 52 961
- /kill @e[type=minecraft:item]
- /kill @e[type=minecraft:arrow]
+ /kill @e[type=item]
+ /kill @e[type=arrow]
  /effect @a clear
  /teleport @a 0 51 0
  /scoreboard players operation Red calcPoints = Red Points
  /scoreboard players operation Blue calcPoints = Blue Points
- /execute @e[type=minecraft:area_effect_cloud,name=HandleGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
- /execute @e[type=minecraft:area_effect_cloud,name=TriggerCubes] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
- /execute @e[type=minecraft:area_effect_cloud,name=PointCalc] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=minecraft:area_effect_cloud,name=ModePoints] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=area_effect_cloud,name=HandleGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=area_effect_cloud,name=TriggerCubes] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=area_effect_cloud,name=PointCalc] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=area_effect_cloud,name=ModePoints] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
