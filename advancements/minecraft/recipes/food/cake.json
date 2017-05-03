@@ -1,0 +1,11 @@
+{
+  "rewards": {
+    "recipes": [
+      "minecraft:cake"
+    ]
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+}

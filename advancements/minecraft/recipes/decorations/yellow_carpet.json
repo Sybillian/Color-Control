@@ -1,0 +1,11 @@
+{
+  "rewards": {
+    "recipes": [
+      "minecraft:yellow_carpet"
+    ]
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+}

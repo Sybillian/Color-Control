@@ -1,0 +1,11 @@
+{
+  "rewards": {
+    "recipes": [
+      "minecraft:black_concrete_powder"
+    ]
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+}

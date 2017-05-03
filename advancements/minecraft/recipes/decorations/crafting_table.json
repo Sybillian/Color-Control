@@ -1,0 +1,11 @@
+{
+  "rewards": {
+    "recipes": [
+      "minecraft:crafting_table"
+    ]
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+}

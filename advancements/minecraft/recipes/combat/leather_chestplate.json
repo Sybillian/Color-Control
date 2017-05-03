@@ -1,0 +1,11 @@
+{
+  "rewards": {
+    "recipes": [
+      "minecraft:leather_chestplate"
+    ]
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+}

@@ -1,0 +1,35 @@
+// Teams start with 15 lives. Cubes don't give points.
+// The first team to 0 lives loses.
+
+# ModeDeathmatch
+>{"type":"repeating-chain","conditional":false,"auto":false}
+ /scoreboard players add DMTime gameSettings 1
+ /scoreboard players operation Red Lives -= @a[team=Red] Deaths // Remove a point when a player dies
+ /scoreboard players operation Blue Lives -= @a[team=Blue] Deaths
+ /scoreboard players set @a Deaths 0
+ /scoreboard players test Blue Lives * 0 // Detect game end
+>{"conditional":true}
+ /setblock 957 51 957 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-32,mode:"LOAD",posY:-11,sizeX:32,posZ:-32,integrity:1.0f,showair:0b,name:"map_standard",id:"minecraft:structure_block",sizeY:32,sizeZ:32,showboundingbox:0b}
+ /setblock 957 52 957 minecraft:redstone_block 0 replace
+ /summon minecraft:item 961 52 961 {Item:{id:"minecraft:stone",Count:1b}}
+ /summon minecraft:arrow 961 52 961
+ /kill @e[type=minecraft:item]
+ /kill @e[type=minecraft:arrow]
+ /teleport @a 0 51 0
+ /execute @e[type=minecraft:area_effect_cloud,tag=RedWinDM] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,name=ModeDeathmatch] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,name=HandleGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,name=TriggerCubes] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+>{"conditional":false}
+ /scoreboard players test Red Lives * 0
+>{"conditional":true}
+ /setblock 957 51 957 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-32,mode:"LOAD",posY:-11,sizeX:32,posZ:-32,integrity:1.0f,showair:0b,name:"map_standard",id:"minecraft:structure_block",sizeY:32,sizeZ:32,showboundingbox:0b}
+ /setblock 957 52 957 minecraft:redstone_block 0 replace
+ /summon minecraft:item 961 52 961 {Item:{id:"minecraft:stone",Count:1b}}
+ /kill @e[type=!player,tag=!permanent,x=1000,y=50,z=1000,r=100]
+ /teleport @a 0 51 0
+ /scoreboard players operation DMTime gameSettings /= MinuteDivide gameSettings
+ /execute @e[type=minecraft:area_effect_cloud,name=HandleGame] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,name=TriggerCubes] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=minecraft:area_effect_cloud,tag=BlueWinDM] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=minecraft:area_effect_cloud,name=ModeDeathmatch] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}

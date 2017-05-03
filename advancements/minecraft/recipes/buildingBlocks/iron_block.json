@@ -1,0 +1,12 @@
+{
+  "rewards": {
+    "recipes": [
+      "minecraft:iron_block",
+      "minecraft:iron_ingot_from_block"
+    ]
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+}

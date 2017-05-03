@@ -1,0 +1,12 @@
+{
+  "rewards": {
+    "recipes": [
+      "minecraft:coal_block",
+      "minecraft:coal"
+    ]
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+}

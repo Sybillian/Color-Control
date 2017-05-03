@@ -1,0 +1,12 @@
+{
+  "rewards": {
+    "recipes": [
+      "minecraft:melon_block"
+    ]
+  },
+  "criteria": {
+    
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+}

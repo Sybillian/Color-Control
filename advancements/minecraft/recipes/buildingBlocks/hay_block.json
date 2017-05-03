@@ -1,0 +1,13 @@
+{
+  "rewards": {
+    "recipes": [
+      "minecraft:hay_block",
+      "minecraft:wheat"
+    ]
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+}
+

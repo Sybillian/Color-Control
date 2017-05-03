@@ -1,0 +1,12 @@
+{
+  "rewards": {
+    "recipes": [
+      "minecraft:lime_concrete_powder"
+    ]
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+}
+

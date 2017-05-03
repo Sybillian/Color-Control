@@ -1,0 +1,145 @@
+/*Active whenever a game is running, independent of game mode.
+Keeps cubes intact and handles capturing, as well as a number of
+various 
+*/
+/*
++X=1047
+-X=953
++Z=1047
+-Z=953
++Y=52
+*/
+
+
+
+// This chain controls the physical environment/level and keeps it intact.
+# HandleGame
+>{"type":"repeating-chain","conditional":false,"auto":false}
+// Prevents players from breaking black concrete.
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~-2 ~2 minecraft:concrete color=black
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~-2 ~-2 ~-2 ~2 ~-2 ~-2 minecraft:concrete color=black
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~-2 ~2 ~-2 ~-2 ~2 ~2 minecraft:concrete color=black
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~-2 ~2 ~-2 ~2 ~2 ~-2 minecraft:concrete color=black
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~2 ~-2 minecraft:concrete color=black
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~2 ~-2 minecraft:concrete color=black
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~2 ~2 ~2 ~-2 ~2 ~2 minecraft:concrete color=black
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~2 ~-2 ~2 ~2 ~-2 ~-2 minecraft:concrete color=black
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~2 ~-2 ~2 ~-2 ~-2 ~2 minecraft:concrete color=black
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~-2 ~2 minecraft:concrete color=black
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~2 ~2 ~-2 ~2 ~-2 ~-2 minecraft:concrete color=black
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~-2 ~2 ~2 ~-2 ~-2 ~2 minecraft:concrete color=black
+// Prevents players from breaking spawn locations.
+ /fill 1030 51 1030 1030 52 1030 minecraft:air 0 destroy
+ /fill 970 51 970 970 52 970 minecraft:air 0 destroy
+// Controls block capturing.
+ /execute @a[team=Blue,score_brokeConcrete=1,score_brokeConcrete_min=1] ~ ~ ~
+ 	execute @e[type=area_effect_cloud,tag=cube,c=1] ~ ~ ~
+ 		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=blue replace minecraft:air
+ /execute @a[team=Red,score_brokeConcrete=1,score_brokeConcrete_min=1] ~ ~ ~
+ 	execute @e[type=area_effect_cloud,tag=cube,c=1] ~ ~ ~
+ 		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=red replace minecraft:air
+ /scoreboard players set @a[score_brokeConcrete_min=1] brokeConcrete 0
+// Prevents players from falling into cubes when they break blocks beneath them.
+ /execute @a[m=0,r=0] ~ ~ ~ detect ~ ~ ~ minecraft:concrete -1
+ 	teleport @p[m=0,r=0] ~ ~0.3 ~
+// Rotates armor stands.
+ /tp @e[type=armor_stand,tag=display] ~ ~ ~ ~0.2 ~
+// Constantly resets the spawn cubes to prevent them from being damaged, and gives players resistance while on their own spawn cubes.
+ /setblock 970 47 970 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-2,mode:"LOAD",posY:-1,sizeX:20,posZ:-2,integrity:1.0f,showair:0b,name:"spawn_red",id:"minecraft:structure_block",sizeY:5,sizeZ:20,showboundingbox:0b}
+ /setblock 1030 47 1030 minecraft:structure_block mode=load replace {metadata:"",mirror:"NONE",ignoreEntities:1b,powered:0b,seed:0L,author:"Sybillian",rotation:"NONE",posX:-17,mode:"LOAD",posY:-1,sizeX:27,posZ:-17,integrity:1.0f,showair:0b,name:"spawn_blue",id:"minecraft:structure_block",sizeY:8,sizeZ:27,showboundingbox:0b}
+ /setblock 970 48 970 minecraft:redstone_block
+ /setblock 1030 48 1030 minecraft:redstone_block
+ /setblock 1030 47 1030 minecraft:concrete color=gray
+ /setblock 970 47 970 minecraft:concrete color=gray
+ /effect @a[team=Blue,x=1013,y=46,z=1028,dx=19,dy=6,dz=4] minecraft:resistance 1 1 true
+ /effect @a[team=Blue,x=1028,y=46,z=1013,dx=4,dy=6,dz=19] minecraft:resistance 1 1 true
+ /effect @a[team=Red,x=968,y=46,z=968,dx=19,dy=6,dz=4] minecraft:resistance 1 1 true
+ /effect @a[team=Red,x=968,y=46,z=968,dx=4,dy=6,dz=19] minecraft:resistance 1 1 true
+ /title @a[team=Blue,x=968,y=46,z=968,dx=19,dy=6,dz=4,score_tpDelay_min=40] title {"text":""}
+ /title @a[team=Blue,x=968,y=46,z=968,dx=19,dy=6,dz=4,score_tpDelay_min=40] subtitle {"text":"You are in a forbidden area.","color":"red"}
+ /effect @a[team=Blue,x=968,y=46,z=968,dx=19,dy=6,dz=4,score_tpDelay_min=40] minecraft:poison 3 1
+ /title @a[team=Blue,x=968,y=46,z=968,dx=4,dy=6,dz=19,score_tpDelay_min=40] title {"text":""}
+ /title @a[team=Blue,x=968,y=46,z=968,dx=4,dy=6,dz=19,score_tpDelay_min=40] subtitle {"text":"You are in a forbidden area.","color":"red"}
+ /effect @a[team=Blue,x=968,y=46,z=968,dx=4,dy=6,dz=19,score_tpDelay_min=40] minecraft:poison 3 1
+ /title @a[team=Red,x=1013,y=46,z=1028,dx=19,dy=6,dz=4,score_tpDelay_min=40] title {"text":""}
+ /title @a[team=Red,x=1013,y=46,z=1028,dx=19,dy=6,dz=4,score_tpDelay_min=40] subtitle {"text":"You are in a forbidden area.","color":"red"}
+ /effect @a[team=Red,x=1013,y=46,z=1028,dx=19,dy=6,dz=4,score_tpDelay_min=40] minecraft:poison 3 1
+ /title @a[team=Red,x=1028,y=46,z=1013,dx=4,dy=6,dz=19,score_tpDelay_min=40] title {"text":""}
+ /title @a[team=Red,x=1028,y=46,z=1013,dx=4,dy=6,dz=19,score_tpDelay_min=40] subtitle {"text":"You are in a forbidden area.","color":"red"}
+ /effect @a[team=Red,x=1028,y=46,z=1013,dx=4,dy=6,dz=19,score_tpDelay_min=40] minecraft:poison 3 1
+// Handles players joining while a game is going on.
+ /scoreboard teams join Spectators @a[x=-1000,y=31,z=-1000,r=50]
+ /gamemode 3 @a[team=Spectators,x=-1000,y=31,z=-1000,r=50]
+ /teleport @a[x=-1000,y=31,z=-1000,r=50] 1000 60 1000
+// Gives players a wooden pickaxe upon spawning, as well as iron boots which are removed after 5 seconds.
+ /give @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] minecraft:wooden_pickaxe 1 0 {Unbreakable:1b,AttributeModifiers:[{AttributeName:"generic.attackDamage",Name:"generic.attackDamage",Amount:4,Operation:0,UUIDLeast:211354,UUIDMost:771025,Slot:"mainhand"},{AttributeName:"generic.attackSpeed",Name:"generic.attackSpeed",Amount:-0.5,Operation:1,UUIDLeast:445289,UUIDMost:45367,Slot:"mainhand"}],ench:[{id:71,lvl:1}]} // Give respawning players thier items
+ /replaceitem entity @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] slot.armor.feet minecraft:iron_boots 1 0 {HideFlags:63,Unbreakable:1b,AttributeModifiers:[{AttributeName:"generic.knockbackResistance",Name:"generic.knockbackResistance",Amount:100,Operation:1,UUIDLeast:548037,UUIDMost:36657,Slot:"feet"}],display:{Name:"Spawn Boots",Lore:["Protects from knockback and damage.","Removed after 5 seconds."]},ench:[{id:0,lvl:100},{id:71,lvl:1}]}
+ /clear @a[score_respawnTrack_min=100] minecraft:iron_boots 0 1 {Unbreakable:1b}
+// Prevents TNT from destroying cubes.
+ /scoreboard players tag @e[type=tnt] add exploding {Fuse:1s}
+ /execute @e[type=tnt,tag=exploding] ~ ~ ~
+ 	scoreboard players tag @e[type=area_effect_cloud,tag=cube,c=1] add tntProt
+>{"conditional":true}
+ /execute @e[type=area_effect_cloud,tag=tntProt] ~ ~ ~
+ 		clone ~-2 ~-2 ~-2 ~2 ~2 ~2 ~-1002 ~-2 ~-1002
+ /summon minecraft:area_effect_cloud ~ ~ ~ {Duration:1,Tags:["tntDelay"]}
+>{"conditional":false}
+ /testfor @e[type=area_effect_cloud,tag=tntDelay] {Age:1}
+>{"conditional":true}
+ /execute @e[type=area_effect_cloud,tag=tntProt] ~ ~ ~
+ 	clone ~-1002 ~-2 ~-1002 ~-998 ~2 ~-998 ~-2 ~-2 ~-2 replace force
+ /scoreboard players tag @e[type=area_effect_cloud,tag=tntProt] remove tntProt
+>{"conditional":false}
+// Advancements
+ /execute @a ~ ~ ~ scoreboard players tag @p[y=20,dy=10] add testCD
+ /execute @a ~ ~ ~ advancement grant @p[y=49,dy=10,tag=testCD] only cc:cheat_death
+ /scoreboard players tag @a remove testCD {Health:0f}
+ /execute @a ~ ~ ~ scoreboard players tag @p[y=-10,dy=10] add advDia {Inventory:[{id:"minecraft:diamond_helmet"},{id:"minecraft:diamond_chestplate"},{id:"minecraft:diamond_leggings"},{id:"minecraft:diamond_boots"}]}
+ /execute @a ~ ~ ~ advancement grant @p[tag=advDia] only cc:fall_dia
+ /execute @a ~ ~ ~ detect ~ ~0.1 ~ minecraft:concrete * teleport @s ~ ~0.4 ~
+ /execute @a ~ ~ ~ kill @p[y=-60,dy=1]
+ 
+//+X
+ /execute @a ~ ~ ~ title @p[x=1055,dx=25,score_tpDelay_min=40] title {"text":""}
+>{"conditional":true}
+ /execute @a ~ ~ ~ title @p[x=1055,dx=25,score_tpDelay_min=40] subtitle {"text":"You are exiting the map!","color":"red"}
+ /execute @a ~ ~ ~ playsound minecraft:block.anvil.land master @p[x=1055,dx=3,score_tpDelay_min=40] ~ ~ ~ 1 1.5
+>{"conditional":false}
+ /execute @a ~ ~ ~ effect @p[x=1060,dx=5] minecraft:wither 2 10
+ /execute @a ~ ~ ~ effect @p[x=1065,dx=2] minecraft:instant_damage 1 0
+
+//-X
+ /execute @a ~ ~ ~ title @p[x=945,dx=-25,score_tpDelay_min=40] title {"text":""}
+ >{"conditional":true}
+ /execute @a ~ ~ ~ title @p[x=945,dx=-25,score_tpDelay_min=40] subtitle {"text":"You are exiting the map!","color":"red"}
+ /execute @a ~ ~ ~ playsound minecraft:block.anvil.land master @p[x=945,dx=-3,score_tpDelay_min=40] ~ ~ ~ 1 1.5
+>{"conditional":false}
+ /execute @a ~ ~ ~ effect @p[x=940,dx=-5] minecraft:wither 2 10
+ /execute @a ~ ~ ~ effect @p[x=935,dx=-2] minecraft:instant_damage 1 0
+
+//+Z
+ /execute @a ~ ~ ~ title @p[z=1055,dz=25,score_tpDelay_min=40] title {"text":""}
+>{"conditional":true}
+ /execute @a ~ ~ ~ title @p[z=1055,dz=25,score_tpDelay_min=40] subtitle {"text":"You are exiting the map!","color":"red"}
+ /execute @a ~ ~ ~ playsound minecraft:block.anvil.land master @p[z=1055,dz=3,score_tpDelay_min=40] ~ ~ ~ 1 1.5
+>{"conditional":false}
+ /execute @a ~ ~ ~ effect @p[z=1060,dz=5] minecraft:wither 2 10
+ /execute @a ~ ~ ~ effect @p[z=1065,dz=2] minecraft:instant_damage 1 0
+
+//-Z
+ /execute @a ~ ~ ~ title @p[z=945,dz=-25,score_tpDelay_min=40] title {"text":""}
+>{"conditional":true}
+ /execute @a ~ ~ ~ title @p[z=945,dz=-25,score_tpDelay_min=40] subtitle {"text":"You are exiting the map!","color":"red"}
+ /execute @a ~ ~ ~ playsound minecraft:block.anvil.land master @p[z=945,dz=-3,score_tpDelay_min=40] ~ ~ ~ 1 1.5
+>{"conditional":false}
+ /execute @a ~ ~ ~ effect @p[z=940,dz=-5] minecraft:wither 2 10
+ /execute @a ~ ~ ~ effect @p[z=935,dz=-2] minecraft:instant_damage 1 0
+
+//+Y
+ /execute @a ~ ~ ~ title @p[y=60,dy=25,score_tpDelay_min=40] title {"text":""}
+>{"conditional":true}
+ /execute @a ~ ~ ~ title @p[y=60,dy=25,score_tpDelay_min=40] subtitle {"text":"You are exiting the map!","color":"red"}
+ /execute @a ~ ~ ~ playsound minecraft:block.anvil.land master @p[y=60,dy=3,score_tpDelay_min=40] ~ ~ ~ 1 1.5
+>{"conditional":false}
+ /execute @a ~ ~ ~ effect @p[y=65,dy=5] minecraft:wither 2 10
+ /execute @a ~ ~ ~ effect @p[y=70,dy=2] minecraft:instant_damage 1 0
