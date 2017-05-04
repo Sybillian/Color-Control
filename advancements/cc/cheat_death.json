@@ -5,7 +5,7 @@
         },
         "title": {"text":"Cheat Death","color":"yellow"},
         "frame": "task",
-        "description": "You fell into the void... and then came back!"
+        "description": [{"text":"You fell into the void... and then came back!"}]
     },
 	"parent": "cc:fall_entro",
     "criteria": {

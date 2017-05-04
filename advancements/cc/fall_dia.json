@@ -5,7 +5,7 @@
         },
         "title": {"text":"Expensive Falling","color":"yellow"},
         "frame": "task",
-        "description": "You learned the risk involved in having a full suit of diamond armor on your person the hard way."
+        "description": [{"text":"You learned the risk involved in having a full suit of diamond armor on your person the hard way."}]
     },
     "parent": "cc:root",
     "criteria": {

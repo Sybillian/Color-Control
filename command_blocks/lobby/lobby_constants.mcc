@@ -1,11 +1,8 @@
 # LobbyControl
 >{"type":"repeating-chain","conditional":false,"auto":true}
- /scoreboard players tag @a[x=-1000,y=31,z=-1000,r=30] remove sentRed1
- /scoreboard players tag @a[x=-1000,y=31,z=-1000,r=30] remove sentRed2
- /scoreboard players tag @a[x=-1000,y=31,z=-1000,r=30] remove sentBlue1
- /scoreboard players tag @a[x=-1000,y=31,z=-1000,r=30] remove sentBlue2
- /effect @a[x=-1000,y=31,z=-1000,r=30] minecraft:weakness 1 5 true
- /effect @a[x=-1000,y=31,z=-1000,r=30] minecraft:resistance 1 4 true
+ /effect @a[x=-1000,y=31,z=-1000,r=30] minecraft:weakness 10 5 true
+ /effect @a[x=-1000,y=31,z=-1000,r=30] minecraft:resistance 10 4 true
+ /effect @a[x=-1000,y=31,z=-1000,r=30] minecraft:regeneration 10 4 true
  /effect @a minecraft:saturation 10 5 true
  /scoreboard players add @a regenTimer 1
  /scoreboard players set @a[score_regenTimer_min=31] regenTimer 0

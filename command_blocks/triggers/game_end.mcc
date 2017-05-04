@@ -124,6 +124,26 @@
  /execute @e[type=area_effect_cloud,tag=EndCleanup] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}
  /execute @e[type=area_effect_cloud,tag=RedWinDM] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
 
+>{"type":"impulse-chain","auto":false,"markerTag":"RedWinForfeit"}
+ /tellraw @a {"text":"Red team wins!","color":"red","bold":"true"}
+ /tellraw @a {"text":"The Blue team forfeited by leaving!","color":"yellow","bold":"true"}
+>{"markerTag":""}
+ /tellraw @a [{"text":"Red Points","color":"red"},{"text":" | ","color":"white"},{"score":{"name":"Red","objective":"Points"},"color":"green"}]
+ /tellraw @a [{"text":"Blue Points","color":"blue"},{"text":" | ","color":"white"},{"score":{"name":"Blue","objective":"Points"},"color":"yellow"}]
+ /scoreboard players add @a[team=Red] winStreak 1
+ /scoreboard players set @a[team=Blue] winStreak 0
+ /execute @e[type=area_effect_cloud,tag=EndCleanup] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=area_effect_cloud,tag=RedWinForfeit] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+
+>{"type":"impulse-chain","auto":false,"markerTag":"BlueWinForfeit"}
+ /tellraw @a {"text":"Blue team wins!","color":"blue","bold":"true"}
+ /tellraw @a {"text":"The Red team forfeited by leaving!","color":"yellow","bold":"true"}
+>{"markerTag":""}
+ /tellraw @a [{"text":"Blue Points","color":"blue"},{"text":" | ","color":"white"},{"score":{"name":"Red","objective":"Points"},"color":"green"}]
+ /tellraw @a [{"text":"Red Points","color":"red"},{"text":" | ","color":"white"},{"score":{"name":"Red","objective":"Points"},"color":"yellow"}]
+ /execute @e[type=area_effect_cloud,tag=EndCleanup] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=area_effect_cloud,tag=BlueWinForfeit] ~ ~ ~ /blockdata ~ ~ ~ {auto:0b}
+
 >{"type":"impulse-chain","auto":false,"markerTag":"EndCleanup"}
  /clear @a
 >{"markerTag":""}

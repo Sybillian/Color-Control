@@ -5,7 +5,7 @@
         },
         "title": {"text":"Unshakeable","color":"blue"},
         "frame": "challenge",
-        "description": "Your team won a Deathmatch game with at least half of your lives remaining; your rivals never stood a chance!"
+        "description": [{"text":"Your team won a Deathmatch game with at least half of your lives remaining; your rivals never stood a chance!"}]
     },
 	"parent": "cc:win_dm",
     "criteria": {
