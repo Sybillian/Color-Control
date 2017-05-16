@@ -8,18 +8,7 @@ various
 >{"type":"repeating-chain","conditional":false,"auto":false}
 // Cube stuff
 	// Prevents players from breaking black concrete.
- /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~-2 ~2 minecraft:concrete color=black
- /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~-2 ~-2 ~-2 ~2 ~-2 ~-2 minecraft:concrete color=black
- /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~-2 ~2 ~-2 ~-2 ~2 ~2 minecraft:concrete color=black
- /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~-2 ~2 ~-2 ~2 ~2 ~-2 minecraft:concrete color=black
- /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~-2 ~-2 ~-2 ~-2 ~2 ~-2 minecraft:concrete color=black
- /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~2 ~-2 minecraft:concrete color=black
- /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~2 ~2 ~2 ~-2 ~2 ~2 minecraft:concrete color=black
- /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~2 ~-2 ~2 ~2 ~-2 ~-2 minecraft:concrete color=black
- /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~2 ~-2 ~2 ~-2 ~-2 ~2 minecraft:concrete color=black
- /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~2 ~2 ~2 ~2 ~-2 ~2 minecraft:concrete color=black
- /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~2 ~2 ~-2 ~2 ~-2 ~-2 minecraft:concrete color=black
- /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ fill ~-2 ~2 ~2 ~-2 ~-2 ~2 minecraft:concrete color=black
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ function loops:border
 	// Controls block capturing.
  /execute @a[team=Blue,score_brokeConcrete=1,score_brokeConcrete_min=1] ~ ~ ~
  	execute @e[type=area_effect_cloud,tag=cube,c=1] ~ ~ ~
@@ -28,6 +17,8 @@ various
  	execute @e[type=area_effect_cloud,tag=cube,c=1] ~ ~ ~
  		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=red replace minecraft:air
  /scoreboard players set @a[score_brokeConcrete_min=1] brokeConcrete 0
+ /execute @e[type=area_effect_cloud,tag=cube] ~ ~ ~
+ 		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=white replace minecraft:air
 
 // Arena preservation
 	// Prevents players from placing blocks on spawn locations.
@@ -41,20 +32,20 @@ various
  /setblock 1030 47 1030 minecraft:concrete color=gray
  /setblock 970 47 970 minecraft:concrete color=gray
  	// Prevents TNT from destroying cubes.
- /scoreboard players tag @e[type=tnt] add exploding {Fuse:1s}
- /execute @e[type=tnt,tag=exploding] ~ ~ ~
- 	scoreboard players tag @e[type=area_effect_cloud,tag=cube,c=1] add tntProt
->{"conditional":true}
- /execute @e[type=area_effect_cloud,tag=tntProt] ~ ~ ~
- 		clone ~-2 ~-2 ~-2 ~2 ~2 ~2 ~-1002 ~-2 ~-1002
- /summon minecraft:area_effect_cloud ~ ~ ~ {Duration:1,Tags:["tntDelay"]}
->{"conditional":false}
- /testfor @e[type=area_effect_cloud,tag=tntDelay] {Age:1}
->{"conditional":true}
- /execute @e[type=area_effect_cloud,tag=tntProt] ~ ~ ~
- 	clone ~-1002 ~-2 ~-1002 ~-998 ~2 ~-998 ~-2 ~-2 ~-2 replace force
- /scoreboard players tag @e[type=area_effect_cloud,tag=tntProt] remove tntProt
->{"conditional":false}
+ //scoreboard players tag @e[type=tnt] add exploding {Fuse:1s}
+ //execute @e[type=tnt,tag=exploding] ~ ~ ~
+ 	//scoreboard players tag @e[type=area_effect_cloud,tag=cube,c=1] add tntProt
+//>{"conditional":true}
+ //execute @e[type=area_effect_cloud,tag=tntProt] ~ ~ ~
+ 		//clone ~-2 ~-2 ~-2 ~2 ~2 ~2 ~-1002 ~-2 ~-1002
+ //summon minecraft:area_effect_cloud ~ ~ ~ {Duration:1,Tags:["tntDelay"]}
+//>{"conditional":false}
+ //testfor @e[type=area_effect_cloud,tag=tntDelay] {Age:1}
+//>{"conditional":true}
+ //execute @e[type=area_effect_cloud,tag=tntProt] ~ ~ ~
+ 	//clone ~-1002 ~-2 ~-1002 ~-998 ~2 ~-998 ~-2 ~-2 ~-2 replace force
+ //scoreboard players tag @e[type=area_effect_cloud,tag=tntProt] remove tntProt
+//>{"conditional":false}
 	// Rotates armor stands.
  /tp @e[type=armor_stand,tag=display] ~ ~ ~ ~0.2 ~
 
@@ -85,64 +76,4 @@ various
  /execute @a ~ ~ ~ advancement grant @p[tag=advDia] only cc:fall_dia
  
 // Location-based stuff (map boundries, spawn zones...)
-	//+X
- /execute @a ~ ~ ~ title @p[x=1055,dx=25,score_tpDelay_min=40] title {"text":""}
->{"conditional":true}
- /execute @a ~ ~ ~ title @p[x=1055,dx=25,score_tpDelay_min=40] subtitle {"text":"You are exiting the map!","color":"red"}
- /execute @a ~ ~ ~ playsound minecraft:block.anvil.land master @p[x=1055,dx=3,score_tpDelay_min=40] ~ ~ ~ 1 1.5
->{"conditional":false}
- /execute @a ~ ~ ~ effect @p[x=1060,dx=5] minecraft:wither 2 10
- /execute @a ~ ~ ~ effect @p[x=1065,dx=2] minecraft:instant_damage 1 0
-	//-X
- /execute @a ~ ~ ~ title @p[x=945,dx=-25,score_tpDelay_min=40] title {"text":""}
->{"conditional":true}
- /execute @a ~ ~ ~ title @p[x=945,dx=-25,score_tpDelay_min=40] subtitle {"text":"You are exiting the map!","color":"red"}
- /execute @a ~ ~ ~ playsound minecraft:block.anvil.land master @p[x=945,dx=-3,score_tpDelay_min=40] ~ ~ ~ 1 1.5
->{"conditional":false}
- /execute @a ~ ~ ~ effect @p[x=940,dx=-5] minecraft:wither 2 10
- /execute @a ~ ~ ~ effect @p[x=935,dx=-2] minecraft:instant_damage 1 0
-	//+Z
- /execute @a ~ ~ ~ title @p[z=1055,dz=25,score_tpDelay_min=40] title {"text":""}
->{"conditional":true}
- /execute @a ~ ~ ~ title @p[z=1055,dz=25,score_tpDelay_min=40] subtitle {"text":"You are exiting the map!","color":"red"}
- /execute @a ~ ~ ~ playsound minecraft:block.anvil.land master @p[z=1055,dz=3,score_tpDelay_min=40] ~ ~ ~ 1 1.5
->{"conditional":false}
- /execute @a ~ ~ ~ effect @p[z=1060,dz=5] minecraft:wither 2 10
- /execute @a ~ ~ ~ effect @p[z=1065,dz=2] minecraft:instant_damage 1 0
-	//-Z
- /execute @a ~ ~ ~ title @p[z=945,dz=-25,score_tpDelay_min=40] title {"text":""}
->{"conditional":true}
- /execute @a ~ ~ ~ title @p[z=945,dz=-25,score_tpDelay_min=40] subtitle {"text":"You are exiting the map!","color":"red"}
- /execute @a ~ ~ ~ playsound minecraft:block.anvil.land master @p[z=945,dz=-3,score_tpDelay_min=40] ~ ~ ~ 1 1.5
->{"conditional":false}
- /execute @a ~ ~ ~ effect @p[z=940,dz=-5] minecraft:wither 2 10
- /execute @a ~ ~ ~ effect @p[z=935,dz=-2] minecraft:instant_damage 1 0
-	//+Y
- /execute @a ~ ~ ~ title @p[y=60,dy=25,score_tpDelay_min=40] title {"text":""}
->{"conditional":true}
- /execute @a ~ ~ ~ title @p[y=60,dy=25,score_tpDelay_min=40] subtitle {"text":"You are exiting the map!","color":"red"}
- /execute @a ~ ~ ~ playsound minecraft:block.anvil.land master @p[y=60,dy=3,score_tpDelay_min=40] ~ ~ ~ 1 1.5
->{"conditional":false}
- /execute @a ~ ~ ~ effect @p[y=65,dy=5] minecraft:wither 2 10
- /execute @a ~ ~ ~ effect @p[y=70,dy=2] minecraft:instant_damage 1 0
- 	//-Y
- /execute @a ~ ~ ~ kill @p[y=-60,dy=1]
- 	// Prevents players from falling into concrete.
- /execute @a[m=0] ~ ~ ~ detect ~ ~0.1 ~ minecraft:concrete * teleport @s ~ ~0.4 ~
- 	// Spawn protection.
- /effect @a[team=Blue,x=1013,y=46,z=1028,dx=19,dy=8,dz=4] minecraft:resistance 1 1 true
- /effect @a[team=Blue,x=1028,y=46,z=1013,dx=4,dy=8,dz=19] minecraft:resistance 1 1 true
- /effect @a[team=Red,x=968,y=46,z=968,dx=19,dy=8,dz=4] minecraft:resistance 1 1 true
- /effect @a[team=Red,x=968,y=46,z=968,dx=4,dy=8,dz=19] minecraft:resistance 1 1 true
- /title @a[team=Blue,x=968,y=46,z=968,dx=19,dy=8,dz=4,score_tpDelay_min=40] title {"text":""}
- /title @a[team=Blue,x=968,y=46,z=968,dx=19,dy=8,dz=4,score_tpDelay_min=40] subtitle {"text":"You are in a forbidden area.","color":"red"}
- /effect @a[team=Blue,x=968,y=46,z=968,dx=19,dy=8,dz=4,score_tpDelay_min=40] minecraft:poison 3 1
- /title @a[team=Blue,x=968,y=46,z=968,dx=4,dy=8,dz=19,score_tpDelay_min=40] title {"text":""}
- /title @a[team=Blue,x=968,y=46,z=968,dx=4,dy=8,dz=19,score_tpDelay_min=40] subtitle {"text":"You are in a forbidden area.","color":"red"}
- /effect @a[team=Blue,x=968,y=46,z=968,dx=4,dy=8,dz=19,score_tpDelay_min=40] minecraft:poison 3 1
- /title @a[team=Red,x=1013,y=46,z=1028,dx=19,dy=8,dz=4,score_tpDelay_min=40] title {"text":""}
- /title @a[team=Red,x=1013,y=46,z=1028,dx=19,dy=8,dz=4,score_tpDelay_min=40] subtitle {"text":"You are in a forbidden area.","color":"red"}
- /effect @a[team=Red,x=1013,y=46,z=1028,dx=19,dy=8,dz=4,score_tpDelay_min=40] minecraft:poison 3 1
- /title @a[team=Red,x=1028,y=46,z=1013,dx=4,dy=8,dz=19,score_tpDelay_min=40] title {"text":""}
- /title @a[team=Red,x=1028,y=46,z=1013,dx=4,dy=8,dz=19,score_tpDelay_min=40] subtitle {"text":"You are in a forbidden area.","color":"red"}
- /effect @a[team=Red,x=1028,y=46,z=1013,dx=4,dy=8,dz=19,score_tpDelay_min=40] minecraft:poison 3 1
+ /execute @a ~ ~ ~ function loops:arena_edge

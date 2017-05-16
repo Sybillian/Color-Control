@@ -64,43 +64,57 @@
  /scoreboard players set TeamsReady gameSettings 0
  /fill -996 32 -1008 -992 33 -992 minecraft:air 0 replace minecraft:barrier
  /fill -996 32 -1008 -992 33 -992 minecraft:air 0 replace minecraft:stained_glass
- /teleport @a[team=!] 0 51 0
  /scoreboard players set StartGame gameSettings 0
  /execute @e[type=area_effect_cloud,name=StartGame] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
 
 // Performs one-time operations to prepare for and kickstart the game.
 # StartGame
 >{"type":"impulse-chain","conditional":false,"auto":false}
- /scoreboard players set TickDivide gameSettings 20
- /scoreboard players operation RotationSeconds gameSettings = TimerSetting rotateCubes
- /scoreboard players operation RotationSeconds gameSettings /= TickDivide gameSettings
- /scoreboard players set MinuteDivide gameSettings 1200
- /scoreboard players operation TimeSeconds gameSettings = GameLength gameSettings
- /scoreboard players operation TimeSeconds gameSettings /= MinuteDivide gameSettings
- /scoreboard players set GameActive gameSettings 1
- /scoreboard teams join Spectators @a[team=]
  /tp @a[team=Spectators] 1000 60 1000
  /tp @a[team=Red] 970 51 970
  /tp @a[team=Blue] 1030 51 1030
- /spawnpoint @a[team=Red] 970 51 970
- /spawnpoint @a[team=Blue] 1030 51 1030
- /spawnpoint @a[team=Spectators] 1000 60 1000
- /gamemode 0 @a
- /gamemode 3 @a[team=Spectators]
- /give @a[team=!Spectators] minecraft:wooden_pickaxe 1 0 {Unbreakable:1b,AttributeModifiers:[{AttributeName:"generic.attackDamage",Name:"generic.attackDamage",Amount:4,Operation:0,UUIDLeast:211354,UUIDMost:771025,Slot:"mainhand"},{AttributeName:"generic.attackSpeed",Name:"generic.attackSpeed",Amount:-0.5,Operation:1,UUIDLeast:445289,UUIDMost:45367,Slot:"mainhand"}],ench:[{id:71,lvl:1}]}
- /scoreboard players set Red Lives 15
- /scoreboard players set Blue Lives 15
- /scoreboard players set Red Points 0
- /scoreboard players set Blue Points 0
- /scoreboard players operation Timer rotateCubes = TimerSetting rotateCubes
  /scoreboard players set @e[type=area_effect_cloud,tag=cube] pointTimerBlue 0
  /scoreboard players set @e[type=area_effect_cloud,tag=cube] pointTimerRed 0
  /scoreboard players set @e[type=area_effect_cloud,tag=cube] spawnTimer 0
  /scoreboard players set @e[type=area_effect_cloud,tag=cube] blocksBlue 0
  /scoreboard players set @e[type=area_effect_cloud,tag=cube] blocksRed 0
- /scoreboard teams join R_Display Red
- /scoreboard teams join B_Display Blue
  /execute @e[type=area_effect_cloud,name=HandleGame] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
  /execute @e[type=area_effect_cloud,name=TriggerCubes] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
  /execute @e[type=area_effect_cloud,name=PrepGame] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
  /execute @e[type=area_effect_cloud,name=StartGame] ~1 ~ ~ blockdata ~ ~ ~ {auto:0b}
+
+# PrepGame
+>{"type":"impulse-chain","conditional":false,"auto":false}
+ /scoreboard players test GameMode gameSettings 1 1 // Mode: Points
+>{"conditional":true}
+ /execute @e[type=area_effect_cloud,name=ModePoints] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
+ /scoreboard objectives setdisplay sidebar Points
+ /tellraw @a {"text":"Points","color":"green","bold":"true"}
+ /tellraw @a [{"text":"Every ","color":"yellow"},{"score":{"name":"RotationSeconds","objective":"gameSettings"},"color":"gold"},{"text":" seconds, the cubes making up the map will rotate.","color":"yellow"}]
+ /tellraw @a [{"text":"The game can be won by having the most points after ","color":"yellow"},{"score":{"name":"TimeSeconds","objective":"gameSettings"},"color":"gold"},{"text":" minutes."}]
+ /tellraw @a {"text":" minutes have passed.","color":"yellow"}
+>{"conditional":false}
+ /scoreboard players test GameMode gameSettings 2 2 // Mode: Deathmatch
+>{"conditional":true}
+ /execute @e[type=area_effect_cloud,name=ModeDeathmatch] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
+ /scoreboard objectives setdisplay sidebar Lives
+ /tellraw @a {"text":"Deathmatch","color":"dark_red","bold":"true"}
+ /tellraw @a [{"text":"Every ","color":"yellow"},{"score":{"name":"RotationSeconds","objective":"gameSettings"},"color":"gold"},{"text":" seconds, the cubes making up the map will rotate.","color":"yellow"}]
+ /tellraw @a {"text":"In this gamemode, teams claim victory only by dominating their enemy and bringing their foes' lives count to zero. Lives cannot be regained once they've been lost; the first team to run out loses.","color":"yellow"}
+>{"conditional":false}
+ /scoreboard players test GameMode gameSettings 3 3 // Mode: Entropy
+>{"conditional":true}
+ /execute @e[type=area_effect_cloud,name=ModeEntropy] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
+ /scoreboard objectives setdisplay sidebar Points
+ /tellraw @a {"text":"Begin!","color":"green","bold":"true"}
+ /tellraw @a [{"text":"Every ","color":"yellow"},{"score":{"name":"RotationSeconds","objective":"gameSettings"},"color":"gold"},{"text":" seconds, the cubes making up the map will rotate.","color":"yellow"}]
+ /tellraw @a [{"text":"The game can be won by having the most points after ","color":"yellow"},{"score":{"name":"TimeSeconds","objective":"gameSettings"},"color":"gold"},{"text":" minutes... but be careful not to fall, as the cubes making up the map will plummet as the game goes on!","color":"yellow"}]
+>{"conditional":false}
+ /summon minecraft:area_effect_cloud ~ ~ ~ {Duration:20,Tags:["startDelay"]}
+ /execute @e[type=area_effect_cloud,name=PrepGame] ~1 ~ ~ blockdata ~ ~ ~ {auto:0b}
+
+# PrepTrigger
+>{"type":"repeating-chain","auto":true}
+ /testfor @e[type=area_effect_cloud,tag=startDelay] {Age:1}
+>{"conditional":true}
+ /function triggers:start_game
