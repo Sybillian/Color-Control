@@ -18,6 +18,8 @@ various
  		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=red replace minecraft:air
  /scoreboard players set @a[score_brokeConcrete_min=1] brokeConcrete 0
  /execute @e[type=area_effect_cloud,tag=cube] ~ ~ ~
+ 		fill ~-1 ~-1 ~-1 ~1 ~1 ~1 minecraft:concrete color=white replace minecraft:air
+ /execute @e[type=area_effect_cloud,tag=cube] ~ ~ ~
  		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=white replace minecraft:air
 
 // Arena preservation
@@ -31,21 +33,6 @@ various
  /setblock 1030 48 1030 minecraft:redstone_block
  /setblock 1030 47 1030 minecraft:concrete color=gray
  /setblock 970 47 970 minecraft:concrete color=gray
- 	// Prevents TNT from destroying cubes.
- //scoreboard players tag @e[type=tnt] add exploding {Fuse:1s}
- //execute @e[type=tnt,tag=exploding] ~ ~ ~
- 	//scoreboard players tag @e[type=area_effect_cloud,tag=cube,c=1] add tntProt
-//>{"conditional":true}
- //execute @e[type=area_effect_cloud,tag=tntProt] ~ ~ ~
- 		//clone ~-2 ~-2 ~-2 ~2 ~2 ~2 ~-1002 ~-2 ~-1002
- //summon minecraft:area_effect_cloud ~ ~ ~ {Duration:1,Tags:["tntDelay"]}
-//>{"conditional":false}
- //testfor @e[type=area_effect_cloud,tag=tntDelay] {Age:1}
-//>{"conditional":true}
- //execute @e[type=area_effect_cloud,tag=tntProt] ~ ~ ~
- 	//clone ~-1002 ~-2 ~-1002 ~-998 ~2 ~-998 ~-2 ~-2 ~-2 replace force
- //scoreboard players tag @e[type=area_effect_cloud,tag=tntProt] remove tntProt
-//>{"conditional":false}
 	// Rotates armor stands.
  /tp @e[type=armor_stand,tag=display] ~ ~ ~ ~0.2 ~
 
@@ -61,11 +48,20 @@ various
  	// Tests for a full team having left.
  /scoreboard players test RedPlayers 0 0
 >{"conditional":true}
- /execute @e[type=area_effect_cloud,tag=BlueWinForfeit] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=area_effect_cloud,tag=BlueWinForfeit] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}
 >{"conditional":false}
  /scoreboard players test BluePlayers 0 0
 >{"conditional":true}
- /execute @e[type=area_effect_cloud,tag=RedWinForfeit] ~ ~ ~ /blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=area_effect_cloud,tag=RedWinForfeit] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}
+>{"conditional":false}
+ 
+ /scoreboard players test HalfLength gameSettings 1 *
+>{"conditional":true}
+ /scoreboard players remove HalfLength gameSettings 1
+>{"conditional":false}
+ /scoreboard players test HalfLength gameSettings 1 1
+>{"conditional":true}
+ /function triggers:lootbox
 >{"conditional":false}
 	
 // Advancements

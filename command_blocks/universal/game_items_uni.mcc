@@ -153,5 +153,7 @@
  	particle portal ~ ~ ~ 0 2 0 1 10 force @a
  /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=10,score_cloudType_min=10] ~-2 ~3 ~-2
 	effect @a[team=!Spectators,dx=4,dy=0,dz=4] glowing 1 0 // Diamond glow
+ /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=18,score_cloudType_min=18,score_spawnItem_min=20] ~ ~ ~
+ 	function loops:rng
  /scoreboard players tag @a[tag=hasArrow] remove hasArrow
  /scoreboard players set @a[score_tpDelay_min=41] tpDelay 0

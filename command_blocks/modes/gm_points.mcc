@@ -88,5 +88,5 @@
  /scoreboard players test TimePassed gameSettings 0 0
 >{"conditional":true}
  /function triggers:end_game
- /execute @e[type=area_effect_cloud,name=PointCalc] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1b}
- /execute @e[type=area_effect_cloud,name=ModePoints] ~1 ~ ~ /blockdata ~ ~ ~ {auto:0b}
+ /execute @e[type=area_effect_cloud,name=PointCalc] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
+ /execute @e[type=area_effect_cloud,name=ModePoints] ~1 ~ ~ blockdata ~ ~ ~ {auto:0b}
