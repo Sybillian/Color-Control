@@ -17,8 +17,10 @@ scoreboard objectives add goldPlace stat.useItem.minecraft.gold_block
 scoreboard objectives add goldProcess dummy
 scoreboard objectives add Health health
 scoreboard objectives add itemType dummy
+scoreboard objectives add joinGame stat.leaveGame
 scoreboard objectives add Kills playerKillCount
 scoreboard objectives add Lives dummy
+scoreboard objectives add playerTrigger dummy
 scoreboard objectives add ran trigger
 scoreboard objectives add regenTimer dummy
 scoreboard objectives add respawnTrack stat.timeSinceDeath

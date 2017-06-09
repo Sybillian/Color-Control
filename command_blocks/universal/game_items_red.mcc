@@ -81,14 +81,6 @@ ID's:
  /execute @e[type=area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=18,score_cloudType_min=18,score_blocksRed=9,score_blocksRed_min=9,score_rng=1,score_rng_min=1] ~-2 ~3 ~-2 give @a[team=Red,dx=4,dy=0,dz=4,tag=hasArrow] minecraft:tipped_arrow 1 0 {Potion:"minecraft:harming"}
  /execute @e[type=area_effect_cloud,tag=cube,score_spawnItem=20,score_spawnItem_min=20,score_cloudType=18,score_cloudType_min=18,score_blocksRed=9,score_blocksRed_min=9,score_rng=2,score_rng_min=2] ~-2 ~3 ~-2 give @a[team=Red,dx=4,dy=0,dz=4,tag=hasArrow] minecraft:tipped_arrow 1 0 {Potion:"minecraft:poison"}
 
-	// Messages
- /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=15,score_cloudType_min=15,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
- 	title @a[dx=4,dy=0,dz=4,team=Red] actionbar [{"text":"[!] ","color":"red"},{"text":"TNT will remove color from all concrete within its blast radius!","color":"yellow"},{"text":" [!]","color":"red"}]
- /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=17,score_cloudType_min=17,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
- 	title @a[dx=4,dy=0,dz=4,team=Red] actionbar [{"text":"[!] ","color":"red"},{"text":"You can use gold blocks to insta-capture and upgrade cubes!","color":"yellow"},{"text":" [!]","color":"red"}]
- /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=18,score_cloudType_min=18,score_blocksRed=9,score_blocksRed_min=9] ~-2 ~3 ~-2
- 	title @a[dx=4,dy=0,dz=4,tag=!hasArrow,team=Red] actionbar [{"text":"[!] ","color":"red"},{"text":"You need an arrow to use this cube!","color":"yellow"},{"text":" [!]","color":"red"}]
-
 // Handles spawning of items when a cube is upgraded.
 # GoldItems
 >{"type":"repeating-chain","conditional":false,"auto":true}
@@ -122,6 +114,6 @@ ID's:
  /execute @e[type=area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=17,score_cloudType_min=17] ~ ~ ~
 	detect ~ ~2 ~ minecraft:gold_block *
 		summon item ~ ~3 ~ {Item:{id:gold_ingot,Count:1b},PickupDelay:0} // Gold
-/execute @e[type=area_effect_cloud,tag=cube,score_spawnItemS=20,score_spawnItemS_min=20,score_cloudType=19,score_cloudType_min=19] ~ ~ ~
+/execute @e[type=area_effect_cloud,tag=cube,score_spawnItemS=10,score_spawnItemS_min=10,score_cloudType=19,score_cloudType_min=19] ~ ~ ~
 	detect ~ ~2 ~ minecraft:gold_block *
 		summon item ~ ~3 ~ {Item:{id:leather,Count:1b},PickupDelay:0} // Leather

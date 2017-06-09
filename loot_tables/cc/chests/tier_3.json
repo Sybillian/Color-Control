@@ -228,6 +228,20 @@
 				},
 				{
 					"type": "item",
+					"name": "minecraft:arrow",
+					"weight": 1,
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": {
+								"min": 24,
+								"max": 40
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
 					"name": "minecraft:tipped_arrow",
 					"weight": 1,
 					"functions": [

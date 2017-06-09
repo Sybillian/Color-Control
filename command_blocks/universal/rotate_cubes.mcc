@@ -25,7 +25,6 @@ Active during all gamemodes.
 >{"conditional":true}
  /scoreboard players test Phase rotateCubes 2 2
  /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~ function triggers:rotate_cubes_z
- //execute @e[type=area_effect_cloud,tag=oc_marker,name=RotateCubesZ] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
  /scoreboard players operation Timer rotateCubes = TimerSetting rotateCubes
  /scoreboard players set Phase rotateCubes 1
  /title @a actionbar {"text":"The cubes have rotated!","color":"gold","bold":"true"}

@@ -17,10 +17,15 @@ various
  	execute @e[type=area_effect_cloud,tag=cube,c=1] ~ ~ ~
  		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=red replace minecraft:air
  /scoreboard players set @a[score_brokeConcrete_min=1] brokeConcrete 0
- /execute @e[type=area_effect_cloud,tag=cube] ~ ~ ~
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~
  		fill ~-1 ~-1 ~-1 ~1 ~1 ~1 minecraft:concrete color=white replace minecraft:air
- /execute @e[type=area_effect_cloud,tag=cube] ~ ~ ~
+ /execute @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] ~ ~ ~
  		fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=white replace minecraft:air
+ 	// Shows particles on captured cubes.
+ /execute @e[tag=cube,score_blocksRed_min=9,score_blocksRed=9] ~ ~ ~
+ 	particle blockdust ~ ~3 ~ 0.7 0 0.7 0 1 force @a 57595
+ /execute @e[tag=cube,score_blocksBlue_min=9,score_blocksBlue=9] ~ ~ ~
+ 	particle blockdust ~ ~3 ~ 0.7 0 0.7 0 1 force @a 45307
 
 // Arena preservation
 	// Prevents players from placing blocks on spawn locations.
@@ -38,9 +43,11 @@ various
 
 // Player handling
 	// Handles players joining while a game is going on.
- /scoreboard teams join Spectators @a[x=-1000,y=31,z=-1000,r=50]
- /gamemode 3 @a[team=Spectators,x=-1000,y=31,z=-1000,r=50]
- /teleport @a[x=-1000,y=31,z=-1000,r=50] 1000 60 1000
+ /scoreboard players tag @a[score_joinGame_min=1] add tpGame
+ /teleport @a[tag=tpGame] 1000 50 1000
+ /gamemode 3 @a[tag=tpGame]
+ /scoreboard teams join Spectators @a[tag=tpGame]
+ /scoreboard players tag @a[tag=tpGame] remove tpGame
 	// Gives players a wooden pickaxe upon spawning, as well as iron boots which are removed after 5 seconds.
  /give @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] minecraft:wooden_pickaxe 1 0 {Unbreakable:1b,AttributeModifiers:[{AttributeName:"generic.attackDamage",Name:"generic.attackDamage",Amount:4,Operation:0,UUIDLeast:211354,UUIDMost:771025,Slot:"mainhand"},{AttributeName:"generic.attackSpeed",Name:"generic.attackSpeed",Amount:-0.5,Operation:1,UUIDLeast:445289,UUIDMost:45367,Slot:"mainhand"}],ench:[{id:71,lvl:1}]} // Give respawning players thier items
  /replaceitem entity @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] slot.armor.feet minecraft:iron_boots 1 0 {HideFlags:63,Unbreakable:1b,AttributeModifiers:[{AttributeName:"generic.knockbackResistance",Name:"generic.knockbackResistance",Amount:100,Operation:1,UUIDLeast:548037,UUIDMost:36657,Slot:"feet"}],display:{Name:"Spawn Boots",Lore:["Protects from knockback and damage.","Removed after 5 seconds."]},ench:[{id:0,lvl:100},{id:71,lvl:1}]}
@@ -54,22 +61,13 @@ various
 >{"conditional":true}
  /execute @e[type=area_effect_cloud,tag=RedWinForfeit] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}
 >{"conditional":false}
- 
- /scoreboard players test HalfLength gameSettings 1 *
->{"conditional":true}
- /scoreboard players remove HalfLength gameSettings 1
->{"conditional":false}
- /scoreboard players test HalfLength gameSettings 1 1
->{"conditional":true}
- /function triggers:lootbox
->{"conditional":false}
-	
+
 // Advancements
- /execute @a ~ ~ ~ scoreboard players tag @p[y=20,dy=10] add testCD
- /execute @a ~ ~ ~ advancement grant @p[y=49,dy=10,tag=testCD] only cc:cheat_death
+ /execute @a[m=0] ~ ~ ~ scoreboard players tag @p[y=20,dy=10,m=0] add testCD
+ /execute @a[m=0] ~ ~ ~ advancement grant @p[y=49,dy=10,tag=testCD,m=0] only cc:cheat_death
  /scoreboard players tag @a remove testCD {Health:0f}
- /execute @a ~ ~ ~ scoreboard players tag @p[y=-10,dy=10] add advDia {Inventory:[{id:"minecraft:diamond_helmet"},{id:"minecraft:diamond_chestplate"},{id:"minecraft:diamond_leggings"},{id:"minecraft:diamond_boots"}]}
- /execute @a ~ ~ ~ advancement grant @p[tag=advDia] only cc:fall_dia
+ /execute @a[m=0] ~ ~ ~ scoreboard players tag @p[y=-10,dy=10,m=0] add advDia {Inventory:[{id:"minecraft:diamond_helmet"},{id:"minecraft:diamond_chestplate"},{id:"minecraft:diamond_leggings"},{id:"minecraft:diamond_boots"}]}
+ /execute @a[m=0] ~ ~ ~ advancement grant @p[tag=advDia,m=0] only cc:fall_dia
  
 // Location-based stuff (map boundries, spawn zones...)
- /execute @a ~ ~ ~ function loops:arena_edge
+ /execute @a[m=0] ~ ~ ~ function loops:arena_edge

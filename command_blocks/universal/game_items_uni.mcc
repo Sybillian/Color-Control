@@ -157,3 +157,12 @@
  	function loops:rng
  /scoreboard players tag @a[tag=hasArrow] remove hasArrow
  /scoreboard players set @a[score_tpDelay_min=41] tpDelay 0
+
+ /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=12,score_cloudType_min=13] ~-2 ~3 ~-2
+ 	title @a[dx=4,dy=0,dz=4] actionbar [{"text":"[!] ","color":"blue"},{"text":"Stand in the center of this cube to teleport to the opposite corner!","color":"yellow"},{"text":" [!]","color":"blue"}]
+ /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=15,score_cloudType_min=15] ~-2 ~3 ~-2
+ 	title @a[dx=4,dy=0,dz=4] actionbar [{"text":"[!] ","color":"blue"},{"text":"TNT will remove color from all concrete within its blast radius!","color":"yellow"},{"text":" [!]","color":"blue"}]
+ /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=17,score_cloudType_min=17] ~-2 ~3 ~-2
+ 	title @a[dx=4,dy=0,dz=4] actionbar [{"text":"[!] ","color":"blue"},{"text":"You can use gold blocks to insta-capture and upgrade cubes!","color":"yellow"},{"text":" [!]","color":"blue"}]
+ /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=18,score_cloudType_min=18] ~-2 ~3 ~-2
+ 	title @a[dx=4,dy=0,dz=4,tag=!hasArrow] actionbar [{"text":"[!] ","color":"blue"},{"text":"You need an arrow to use this cube!","color":"yellow"},{"text":" [!]","color":"blue"}]

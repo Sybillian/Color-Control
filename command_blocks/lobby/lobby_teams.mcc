@@ -49,12 +49,18 @@
 >{"conditional":true}
  /tellraw @a[score_ran_min=1] {"text":"Teams cannot be randomized while a team is ready!","color":"red"}
  /execute @a[score_ran_min=1] ~ ~ ~ playsound minecraft:entity.blaze.hurt block @a[tag=ran] ~ ~ ~ 1 1.5
+ /scoreboard players set @a[score_ran_min=1] ran 0
 >{"conditional":false}
  /execute @a[score_ran_min=1] ~ ~ ~ 
  	scoreboard players test TeamsReady gameSettings 0 0
 >{"conditional":true}
- /scoreboard players set @a[score_ran_min=1] ran 0
  /scoreboard teams leave @a
+>{"conditional":false}
+ /execute @a[score_ran_min=1] ~ ~ ~ 
+ 	scoreboard players test TeamsReady gameSettings 0 0
+>{"conditional":true}
+ /tellraw @a [{"selector":"@a[score_ran_min=1]"},{"text":" has randomized teams!","color":"green"}]
+ /scoreboard players set @a[score_ran_min=1] ran 0
  /execute @e[type=area_effect_cloud,name=TeamRandomizer] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
 >{"conditional":false}
 

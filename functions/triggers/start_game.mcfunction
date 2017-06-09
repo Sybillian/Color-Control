@@ -79,6 +79,7 @@ scoreboard players set @e[type=area_effect_cloud,tag=cube] blocksBlue 0
 execute @e[type=area_effect_cloud,tag=cube] ~ ~ ~ fill ~-1002 ~-2 ~-1002 ~-998 ~2 ~-998 minecraft:concrete color=white replace minecraft:concrete *
 execute @e[type=area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=white replace minecraft:concrete color=red
 execute @e[type=area_effect_cloud,tag=cube] ~ ~ ~ fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:concrete color=white replace minecraft:concrete color=blue
+kill @e[type=item]
 kill @e[type=armor_stand,tag=display]
 execute @e[score_cloudType=1,score_cloudType_min=1] ~ ~ ~ summon armor_stand ~ 60.5 ~ {NoGravity:1b,Marker:1b,Invisible:1,Invulnerable:1,NoBasePlate:1,ArmorItems:[{},{},{},{id:planks,Count:1b}],Tags:["display"]}
 execute @e[score_cloudType=2,score_cloudType_min=2] ~ ~ ~ summon armor_stand ~ 60.5 ~ {NoGravity:1b,Marker:1b,Invisible:1,Invulnerable:1,NoBasePlate:1,ArmorItems:[{},{},{},{id:cobblestone,Count:1b}],Tags:["display"]}
@@ -99,3 +100,5 @@ execute @e[score_cloudType=18,score_cloudType_min=18] ~ ~ ~ summon armor_stand ~
 execute @e[score_cloudType=19,score_cloudType_min=19] ~ ~ ~ summon armor_stand ~ 60 ~ {NoGravity:1b,Marker:1b,Invisible:1,Invulnerable:1,NoBasePlate:1,ArmorItems:[{},{},{},{id:leather,Count:1b}],Tags:["display"]}
 execute @e[type=area_effect_cloud,name=HandleGame] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
 execute @e[type=area_effect_cloud,name=TriggerCubes] ~1 ~ ~ blockdata ~ ~ ~ {auto:1b}
+scoreboard players set GameActive gameSettings 1
+tellraw @a[tag=debug] {"text":"start_game.mcfunction ran successfully.","color":"green"}

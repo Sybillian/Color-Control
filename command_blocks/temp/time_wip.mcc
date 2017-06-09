@@ -1,6 +1,0 @@
-/scoreboard players operation TimeCache Workshop = TimePassed Workshop
-/scoreboard players operation TimeCache Workshop /= Divide/20 Workshop
-/scoreboard players operation Seconds Workshop = TimeCache Workshop
-/scoreboard players operation Minutes Workshop = Seconds Workshop
-/scoreboard players operation Minutes Workshop /= Divide/60 Workshop
-/scoreboard players operation Seconds Workshop /= Divide/20 Workshop

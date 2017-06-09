@@ -36,6 +36,16 @@
 >{"conditional":true}
  /scoreboard players set Red Points 0
 >{"conditional":false}
+
+ /scoreboard players test HalfLength gameSettings 1 *
+>{"conditional":true}
+ /scoreboard players remove HalfLength gameSettings 1
+>{"conditional":false}
+ /scoreboard players test HalfLength gameSettings 1 1
+>{"conditional":true}
+ /function triggers:lootbox_points
+>{"conditional":false}
+
  /scoreboard players remove TimePassed gameSettings 1 // Game timer
  /scoreboard players operation DisplaySeconds gameSettings *= TickDivide gameSettings
  /scoreboard players operation DisplaySeconds gameSettings /= TimePassed gameSettings
@@ -65,9 +75,29 @@
  /tellraw @a {"text":"5 minutes remain!","color":"yellow"}
  /execute @a ~ ~ ~ /playsound minecraft:entity.player.levelup block @p ~ ~ ~ 1 0.5
 >{"conditional":false}
+ /scoreboard players test TimePassed gameSettings 4799 4799
+>{"conditional":true}
+ /tellraw @a {"text":"4 minutes remain!","color":"yellow"}
+ /execute @a ~ ~ ~ /playsound minecraft:entity.player.levelup block @p ~ ~ ~ 1 0.5
+>{"conditional":false}
+ /scoreboard players test TimePassed gameSettings 3599 3599
+>{"conditional":true}
+ /tellraw @a {"text":"3 minutes remain!","color":"yellow"}
+ /execute @a ~ ~ ~ /playsound minecraft:entity.player.levelup block @p ~ ~ ~ 1 0.5
+>{"conditional":false}
+ /scoreboard players test TimePassed gameSettings 2399 2399
+>{"conditional":true}
+ /tellraw @a {"text":"2 minutes remain!","color":"yellow"}
+ /execute @a ~ ~ ~ /playsound minecraft:entity.player.levelup block @p ~ ~ ~ 1 0.5
+>{"conditional":false}
  /scoreboard players test TimePassed gameSettings 1200 1200
 >{"conditional":true}
  /tellraw @a {"text":"1 minute remains!","color":"yellow"}
+ /execute @a ~ ~ ~ /playsound minecraft:entity.player.levelup block @p ~ ~ ~ 1 0.5
+>{"conditional":false}
+ /scoreboard players test TimePassed gameSettings 600 600
+>{"conditional":true}
+ /tellraw @a {"text":"30 seconds remain!","color":"yellow"}
  /execute @a ~ ~ ~ /playsound minecraft:entity.player.levelup block @p ~ ~ ~ 1 0.5
 >{"conditional":false}
  /scoreboard players test TimePassed gameSettings 60 60
