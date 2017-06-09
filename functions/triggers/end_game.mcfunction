@@ -10,3 +10,4 @@ execute @e[type=area_effect_cloud,name=HandleGame] ~1 ~ ~ blockdata ~ ~ ~ {auto:
 execute @e[type=area_effect_cloud,name=TriggerCubes] ~1 ~ ~ blockdata ~ ~ ~ {auto:0b}
 scoreboard players set GameActive gameSettings 0
 tellraw @a[tag=debug] {"text":"end_game.mcfunction ran successfully.","color":"green"}
+xp -1000L @a
