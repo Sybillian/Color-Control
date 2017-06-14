@@ -22,6 +22,7 @@
  	function triggers:win/blue_classic
 >{"conditional":false}
  /scoreboard players reset * calcPoints
+ /execute @e[type=area_effect_cloud,tag=EndCleanup] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}
  /execute @e[type=area_effect_cloud,name=PointCalc] ~1 ~ ~ blockdata ~ ~ ~ {auto:0b}
 
 # PointCalc2
@@ -48,6 +49,7 @@
  	function triggers:win/blue_entro
 >{"conditional":false}
  /scoreboard players reset * calcPoints
+ /execute @e[type=area_effect_cloud,tag=EndCleanup] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}
  /execute @e[type=area_effect_cloud,name=PointCalc2] ~1 ~ ~ blockdata ~ ~ ~ {auto:0b}
 
 # PointCalc3
@@ -76,6 +78,7 @@
  		blockdata ~ ~ ~ {auto:1b}
 >{"conditional":false}
  /scoreboard players reset * calcPoints
+ /execute @e[type=area_effect_cloud,tag=EndCleanup] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}
  /execute @e[type=area_effect_cloud,name=PointCalc3] ~1 ~ ~ blockdata ~ ~ ~ {auto:0b}
 
 >{"type":"impulse-chain","auto":false,"markerTag":"BlueWinDM"}

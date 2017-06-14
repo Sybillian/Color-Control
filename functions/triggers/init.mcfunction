@@ -31,6 +31,8 @@ scoreboard objectives add rotateCubes dummy
 scoreboard objectives add spawnItem dummy
 scoreboard objectives add spawnItemL dummy
 scoreboard objectives add spawnItemS dummy
+scoreboard objectives add spawnItemXL dummy
+scoreboard objectives add spawnItemXS dummy
 scoreboard objectives add tpDelay dummy
 scoreboard objectives add winStreak dummy
 tellraw @s {"text":"Scoreboards initiated.","color":"green"}

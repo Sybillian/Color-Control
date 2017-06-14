@@ -120,12 +120,17 @@
  /scoreboard players add @e[type=area_effect_cloud,tag=cube] spawnItemS 1 // Advance spawn timer
  /scoreboard players add @e[type=area_effect_cloud,tag=cube] spawnItem 1
  /scoreboard players add @e[type=area_effect_cloud,tag=cube] spawnItemL 1
+ /scoreboard players add @e[type=area_effect_cloud,tag=cube] spawnItemXL 1
  /scoreboard players add @e[type=area_effect_cloud,tag=redSpawnCloud] spawnItemS 1
  /scoreboard players add @e[type=area_effect_cloud,tag=blueSpawnCloud] spawnItemS 1
+ /scoreboard players add @e[type=area_effect_cloud,tag=redSpawnCloud] spawnItemXS 1
+ /scoreboard players add @e[type=area_effect_cloud,tag=blueSpawnCloud] spawnItemXS 1
  /scoreboard players add @a tpDelay 1
- /scoreboard players tag @e[type=area_effect_cloud,tag=!goldPresent,score_spawnItemS=10,score_spawnItemS_min=10] add trySpawn // Starts spawn process
+ /scoreboard players tag @e[type=area_effect_cloud,tag=!goldPresent,score_spawnItemXS=5,score_spawnItemXS_min=5] add trySpawn // Starts spawn process
+ /scoreboard players tag @e[type=area_effect_cloud,tag=!goldPresent,score_spawnItemS=10,score_spawnItemS_min=10] add trySpawn
  /scoreboard players tag @e[type=area_effect_cloud,tag=!goldPresent,score_spawnItem=20,score_spawnItem_min=20] add trySpawn
  /scoreboard players tag @e[type=area_effect_cloud,tag=!goldPresent,score_spawnItemL=40,score_spawnItemL_min=40] add trySpawn
+ /scoreboard players tag @e[type=area_effect_cloud,tag=!goldPresent,score_spawnItemXL=80,score_spawnItemXL_min=80] add trySpawn
  
  /execute @e[type=area_effect_cloud,tag=goldPresent] ~ ~ ~
 	testforblocks -4 2 -15 -2 2 -13 ~-1 ~2 ~-1 // Test for claimed blocks (GOLD)
@@ -144,9 +149,11 @@
 	testforblocks -4 1 -11 -2 1 -9 ~-1 ~2 ~-1 // Test for claimed blocks
  /execute @e[type=area_effect_cloud,tag=trySpawn] ~ ~ ~
 	stats entity @e[type=area_effect_cloud,tag=trySpawn,r=0,c=1] set AffectedBlocks @e[type=area_effect_cloud,tag=trySpawn,r=0,c=1] blocksRed
- /scoreboard players set @e[type=area_effect_cloud,score_spawnItemS_min=11] spawnItemS 0 // Reset spawn timer
- /scoreboard players set @e[type=area_effect_cloud,score_spawnItem_min=21] spawnItem 0
- /scoreboard players set @e[type=area_effect_cloud,score_spawnItemL_min=41] spawnItemL 0
+ /scoreboard players set @e[type=area_effect_cloud,score_spawnItemXS_min=6] spawnItemXS 0 // Reset spawn timer
+ /scoreboard players set @e[type=area_effect_cloud,score_spawnItemS_min=11] spawnItemS 0
+ /scoreboard players set @e[type=area_effect_cloud,tag=cube,score_spawnItem_min=21] spawnItem 0
+ /scoreboard players set @e[type=area_effect_cloud,tag=cube,score_spawnItemL_min=41] spawnItemL 0
+ /scoreboard players set @e[type=area_effect_cloud,tag=cube,score_spawnItemXL_min=81] spawnItemXL 0
  /scoreboard players tag @e[type=area_effect_cloud,tag=trySpawn] remove trySpawn
  /tp @e[type=armor_stand,tag=display] ~ ~ ~ ~1 ~
  /execute @e[score_cloudType_min=12,score_cloudType=13,score_entropyCycle_min=1] ~ ~4 ~ // Portal particles
@@ -155,14 +162,20 @@
 	effect @a[team=!Spectators,dx=4,dy=0,dz=4] glowing 1 0 // Diamond glow
  /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=18,score_cloudType_min=18,score_spawnItem_min=20] ~ ~ ~
  	function loops:rng
- /scoreboard players tag @a[tag=hasArrow] remove hasArrow
  /scoreboard players set @a[score_tpDelay_min=41] tpDelay 0
-
- /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=12,score_cloudType_min=13] ~-2 ~3 ~-2
- 	title @a[dx=4,dy=0,dz=4] actionbar [{"text":"[!] ","color":"blue"},{"text":"Stand in the center of this cube to teleport to the opposite corner!","color":"yellow"},{"text":" [!]","color":"blue"}]
+ 
+ /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=8,score_cloudType_min=8] ~-2 ~3 ~-2
+ 	title @a[dx=4,dy=0,dz=4,m=0] actionbar [{"text":"[!] ","color":"red"},{"text":"When captured, this cube will give your allies Strength and your foes Weakness.","color":"gold"},{"text":" [!]","color":"blue"}]
+ /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=9,score_cloudType_min=9] ~-2 ~3 ~-2
+ 	title @a[dx=4,dy=0,dz=4,m=0] actionbar [{"text":"[!] ","color":"red"},{"text":"When captured, this cube will give your allies Speed and your foes Slowness.","color":"gold"},{"text":" [!]","color":"blue"}]
+ /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=10,score_cloudType_min=10] ~-2 ~3 ~-2
+ 	title @a[dx=4,dy=0,dz=4,m=0] actionbar [{"text":"[!] ","color":"red"},{"text":"This cube will spawn diamonds every 4 seconds.","color":"gold"},{"text":" [!]","color":"blue"}]
+ /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=13,score_cloudType_min=12] ~-2 ~3 ~-2
+ 	title @a[dx=4,dy=0,dz=4,m=0] actionbar [{"text":"[!] ","color":"red"},{"text":"Stand in the center of this cube to teleport to the opposite corner!","color":"gold"},{"text":" [!]","color":"blue"}]
  /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=15,score_cloudType_min=15] ~-2 ~3 ~-2
- 	title @a[dx=4,dy=0,dz=4] actionbar [{"text":"[!] ","color":"blue"},{"text":"TNT will remove color from all concrete within its blast radius!","color":"yellow"},{"text":" [!]","color":"blue"}]
+ 	title @a[dx=4,dy=0,dz=4,m=0] actionbar [{"text":"[!] ","color":"red"},{"text":"TNT will remove color from all concrete within its blast radius!","color":"gold"},{"text":" [!]","color":"blue"}]
  /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=17,score_cloudType_min=17] ~-2 ~3 ~-2
- 	title @a[dx=4,dy=0,dz=4] actionbar [{"text":"[!] ","color":"blue"},{"text":"You can use gold blocks to insta-capture and upgrade cubes!","color":"yellow"},{"text":" [!]","color":"blue"}]
- /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=18,score_cloudType_min=18] ~-2 ~3 ~-2
- 	title @a[dx=4,dy=0,dz=4,tag=!hasArrow] actionbar [{"text":"[!] ","color":"blue"},{"text":"You need an arrow to use this cube!","color":"yellow"},{"text":" [!]","color":"blue"}]
+ 	title @a[dx=4,dy=0,dz=4,m=0] actionbar [{"text":"[!] ","color":"red"},{"text":"You can use gold blocks to insta-capture and upgrade cubes!","color":"gold"},{"text":" [!]","color":"blue"}]
+ /execute @e[type=area_effect_cloud,tag=cube,score_cloudType=18,score_cloudType_min=18,tag=!hasArrow] ~-2 ~3 ~-2
+ 	title @a[dx=4,dy=0,dz=4,m=0,tag=!hasArrow] actionbar [{"text":"[!] ","color":"red"},{"text":"You need an arrow to use this cube!","color":"gold"},{"text":" [!]","color":"blue"}]
+ /scoreboard players tag @a[tag=hasArrow] remove hasArrow

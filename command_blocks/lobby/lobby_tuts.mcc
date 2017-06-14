@@ -4,7 +4,7 @@
 >{"type":"impulse-chain","markerTag":"signCubes","auto":false,"conditional":false}
  /tellraw @a[tag=textCubes] [{"text":"Cubes; How Do They Work?","color":"green","bold":"true"}]
 >{"markerTag":""}
- /tellraw @a[tag=textCubes] [{"text":"The map is made up of a grid of cubes. These cubes can be captured by mining the white concrete blocks they're made of, and once captured, will provide your team with points and items. Every set interval (default 1.5 minutes), all of the cubes will rotate. Items will only be spawned on top of a cube, so be sure to keep it captured as it rotates!","color":"yellow"}]
+ /tellraw @a[tag=textCubes] [{"text":"The map is made up of a grid of cubes. These cubes can be captured by mining the white concrete blocks they're made of, and once captured, will provide your team with points and items. Every set interval (default 2 minutes), all of the cubes will rotate. Items will only be spawned on top of a cube, so be sure to keep it captured as it rotates!","color":"yellow"}]
  /scoreboard players tag @a[tag=textCubes] remove textCubes
  /execute @e[type=area_effect_cloud,tag=signCubes] ~ ~ ~ blockdata ~ ~ ~ {auto:0b}
 >{"type":"impulse-chain","markerTag":"signPoints","auto":false}
