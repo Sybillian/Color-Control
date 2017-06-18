@@ -7,3 +7,4 @@ tellraw @s [{"text":"Welcome to ","color":"yellow"},{"text":"Color","color":"red
 gamemode 2 @s
 recipe give @s *
 scoreboard players set @s joinGame 1
+tellraw @a[tag=debug] {"text":"join.mcfunction ran successfully.","color":"green"}

@@ -22,3 +22,4 @@ clone ~-2 ~-1 ~1 ~2 ~-1 ~1 ~-1002 ~-1 ~-1001
 clone ~-2 ~-1 ~ ~2 ~-1 ~ ~-1002 ~ ~-1001
 clone ~-2 ~ ~ ~2 ~ ~ ~-1002 ~ ~-1000
 clone ~-1002 ~-2 ~-1002 ~-998 ~2 ~-998 ~-2 ~-2 ~-2 masked
+tellraw @a[tag=debug] [{"selector":"@s"},{"text":" ran rotate_cubes_z.mcfunction successfully.","color":"green"}]

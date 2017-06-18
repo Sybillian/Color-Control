@@ -99,7 +99,7 @@ ID's:
  /execute @e[type=area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=7,score_cloudType_min=7] ~ ~ ~
 	detect ~ ~2 ~ minecraft:gold_block *
 		summon item ~ ~3 ~ {Item:{id:golden_apple,Count:1b},PickupDelay:0} // GApples
- /execute @e[type=area_effect_cloud,tag=cube,score_spawnItemL=40,score_spawnItemL_min=40,score_cloudType=10,score_cloudType_min=10] ~ ~ ~
+ /execute @e[type=area_effect_cloud,tag=cube,score_spawnItemXL=80,score_spawnItemXL_min=80,score_cloudType=10,score_cloudType_min=10] ~ ~ ~
 	detect ~ ~2 ~ minecraft:gold_block *
 		summon item ~ ~3 ~ {Item:{id:diamond,Count:1b},PickupDelay:0} // Diamonds
  /execute @e[type=area_effect_cloud,tag=cube,score_spawnItemXL=80,score_spawnItemXL_min=80,score_cloudType=14,score_cloudType_min=14] ~ ~ ~

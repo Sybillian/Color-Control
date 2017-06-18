@@ -32,3 +32,4 @@ particle magicCrit 969 51 969 0.5 0.5 0.5 0.3 50
 tellraw @a {"text":"A loot box has appeared at your team's spawn location!","color":"green","bold":"true"}
 execute @a ~ ~ ~ playsound minecraft:block.brewing_stand.brew master @s ~ ~ ~ 1 2
 scoreboard players reset * calcPoints
+tellraw @a[tag=debug] {"text":"lootbox_kills.mcfunction ran successfully.","color":"green"}

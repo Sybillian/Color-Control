@@ -56,10 +56,12 @@ various
  /scoreboard players test RedPlayers gameSettings 0 0
 >{"conditional":true}
  /execute @e[type=area_effect_cloud,tag=BlueWinForfeit] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}
+ /function triggers:end_game
 >{"conditional":false}
  /scoreboard players test BluePlayers gameSettings 0 0
 >{"conditional":true}
  /execute @e[type=area_effect_cloud,tag=RedWinForfeit] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}
+ /function triggers:end_game
 >{"conditional":false}
 
 // Advancements

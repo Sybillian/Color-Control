@@ -129,3 +129,5 @@ summon falling_block ~ ~-2 ~-2 {Block:concrete,Data:15,Time:1,DropItem:0}
 summon falling_block ~-1 ~-2 ~-2 {Block:concrete,Data:15,Time:1,DropItem:0}
 
 scoreboard players tag @s remove dropCube
+
+tellraw @a[tag=debug] {"text":"entropy_fall.mcfunction ran successfully.","color":"green"}

@@ -35,4 +35,4 @@ scoreboard objectives add spawnItemXL dummy
 scoreboard objectives add spawnItemXS dummy
 scoreboard objectives add tpDelay dummy
 scoreboard objectives add winStreak dummy
-tellraw @s {"text":"Scoreboards initiated.","color":"green"}
+tellraw @a[tag=debug] {"text":"init.mcfunction ran successfully.","color":"green"}
