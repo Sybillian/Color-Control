@@ -53,11 +53,11 @@ various
  /replaceitem entity @a[team=!Spectators,score_respawnTrack=1,score_respawnTrack_min=1] slot.armor.feet minecraft:iron_boots 1 0 {HideFlags:63,Unbreakable:1b,AttributeModifiers:[{AttributeName:"generic.knockbackResistance",Name:"generic.knockbackResistance",Amount:100,Operation:1,UUIDLeast:548037,UUIDMost:36657,Slot:"feet"}],display:{Name:"Spawn Boots",Lore:["Protects from knockback and damage.","Removed after 5 seconds."]},ench:[{id:0,lvl:100},{id:71,lvl:1}]}
  /clear @a[score_respawnTrack_min=100] minecraft:iron_boots 0 1 {Unbreakable:1b}
  	// Tests for a full team having left.
- /scoreboard players test RedPlayers 0 0
+ /scoreboard players test RedPlayers gameSettings 0 0
 >{"conditional":true}
  /execute @e[type=area_effect_cloud,tag=BlueWinForfeit] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}
 >{"conditional":false}
- /scoreboard players test BluePlayers 0 0
+ /scoreboard players test BluePlayers gameSettings 0 0
 >{"conditional":true}
  /execute @e[type=area_effect_cloud,tag=RedWinForfeit] ~ ~ ~ blockdata ~ ~ ~ {auto:1b}
 >{"conditional":false}
