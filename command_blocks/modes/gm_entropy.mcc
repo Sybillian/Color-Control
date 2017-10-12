@@ -20,6 +20,9 @@
 	/execute @a ~ ~ ~
 		playsound minecraft:item.shield.break master @p ~ ~ ~ 1 0.5
 	/scoreboard players tag @e[type=area_effect_cloud,tag=cube,score_entropyCycle=1,score_entropyCycle_min=1] add dropCube
+>{"conditional":false}
+	/scoreboard players test EntropyTime gameSettings 2400 *
+>{"conditional":true}
 	/scoreboard players set EntropyTime gameSettings 0
 	/scoreboard players remove @e[type=area_effect_cloud,tag=cube,score_entropyCycle_min=1] entropyCycle 1
 	/tellraw @a [{"text":"The ","color":"red"},{"selector":"@e[type=area_effect_cloud,tag=cube,score_entropyCycle=1,score_entropyCycle_min=1,c=1]","color":"yellow","bold":"true"},{"text":" cubes will fall next!","color":"red"}]
